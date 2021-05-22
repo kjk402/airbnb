@@ -1,3 +1,5 @@
+import Week from './Week';
+
 interface Props {
 
 }
@@ -10,34 +12,12 @@ export default function CalendarCore (props: Props) {
     <div>
       <table>
         <tbody>
-          <tr>
-            <td>일</td>
-            <td>월</td>
-            <td>화</td>
-            <td>수</td>
-            <td>목</td>
-            <td>금</td>
-            <td>토</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-          </tr>
-        {/* ... */}
+            <Week />
+            <Week />
+            <Week />
+            <Week />
+            <Week />
+            <Week />
         </tbody>
       </table>
     </div>

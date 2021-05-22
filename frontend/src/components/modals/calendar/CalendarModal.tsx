@@ -22,11 +22,17 @@ export default function CalendarModal({ type, setInplaceHolder, isActive, setMod
 		<>
 			{isActive && (
 				<ModalContainer type={type} onClick={(e) => handleOnclick(e)}>
-					<ContentWrapper><CalendarContainer /></ContentWrapper>
+					<ContentWrapper>
+						<CalendarContainer />
+					</ContentWrapper>
 				</ModalContainer>
 			)}
 		</>
 	);
 }
 
-const ContentWrapper = styled.div``;
+const ContentWrapper = styled.div`
+display: flex;
+justify-content: center;
+width: 100%;
+`;
