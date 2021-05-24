@@ -15,8 +15,9 @@ export default function Tour(props: EmptyInterface) {
 
 export const StyleList = styled.ul`
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	li {
 		cursor: pointer;
+		padding: 0 20px;
 	}
 `;
