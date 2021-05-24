@@ -5,13 +5,11 @@ import { ModalInterface } from "../../../utils/interfaces";
 import { ReactComponent as Minus } from "./../../../icons/minus.svg";
 import { ReactComponent as Plus } from "./../../../icons/plus.svg";
 import { ReactComponent as XCircle } from "./../../../icons/x-circle.svg";
-import { ReactComponent as XCircleHover } from "./../../../icons/x-circle-hover.svg";
 
 export default function GuestModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
 	const [adultCount, setAdultCount] = useState<number>(0);
 	const [childCount, setChildCount] = useState<number>(0);
 	const [infantCount, setInfantCount] = useState<number>(0);
-	const [xCircle, setXCircle] = useState(<XCircle />);
 	const onAdultIncrease = () => setAdultCount(adultCount + 1);
 	const onAdultDecrease = () => {
 		if ((childCount || infantCount) && adultCount === 1) return;
@@ -35,8 +33,6 @@ export default function GuestModal({ type, setInplaceHolder, isActive, setModalO
 		else setInplaceHolder("게스트 추가");
 	});
 
-	const handleOnEnter = () => setXCircle(<XCircleHover />);
-	const handleOnLeave = () => setXCircle(<XCircle />);
 	const cleanUpGuest = (e: any) => {
 		e.stopPropagation();
 		setInfantCount(0);
@@ -100,10 +96,12 @@ export default function GuestModal({ type, setInplaceHolder, isActive, setModalO
 					</ContentWrapper>
 				</ModalContainer>
 			)}
-			{isActive && (
-				<XCircleWrapper onMouseEnter={handleOnEnter} onMouseLeave={handleOnLeave} onClick={cleanUpGuest}>
-					{xCircle}
+			{isActive && totalGuest.current ? (
+				<XCircleWrapper onClick={cleanUpGuest}>
+					<XCircle className="x-circle" />
 				</XCircleWrapper>
+			) : (
+				<></>
 			)}
 		</>
 	);
@@ -125,12 +123,12 @@ const AgeWrapper = styled.li<{ isEnd: boolean }>`
 		:hover {
 			cursor: pointer;
 		}
-	}
-	.counter_icon_disabled {
-		border-radius: 60px;
-		border: 1px solid #e4e4e4;
-		:hover {
-			cursor: not-allowed;
+		&_disabled {
+			border-radius: 60px;
+			border: 1px solid #e4e4e4;
+			:hover {
+				cursor: not-allowed;
+			}
 		}
 	}
 `;
@@ -163,4 +161,9 @@ const XCircleWrapper = styled.button`
 	position: absolute;
 	left: 100px;
 	background: none;
+	* {
+		:hover {
+			fill: "#e4e4e4";
+		}
+	}
 `;
