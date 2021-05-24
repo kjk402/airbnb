@@ -4,6 +4,7 @@ import ModalContainer from "../../../styles/ModalContainer";
 import { ModalInterface } from "../../../utils/interfaces";
 import CalendarContainer from './CalendarContainer';
 
+
 export default function CalendarModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
 	const handleOutClick = () => {
 		setModalOn(false);
@@ -31,8 +32,10 @@ export default function CalendarModal({ type, setInplaceHolder, isActive, setMod
 	);
 }
 
+
 const ContentWrapper = styled.div`
 display: flex;
 justify-content: center;
 width: 100%;
 `;
+
