@@ -161,7 +161,6 @@ const Count = styled.span`
 
 const XCircleWrapper = styled.button`
 	position: absolute;
-	left: 1130px;
-	/* top: 25px; */
+	left: 100px;
 	background: none;
 `;
