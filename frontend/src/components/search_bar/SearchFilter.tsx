@@ -45,6 +45,7 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 }
 
 const SearchFilterWrapper = styled.div`
+	position: relative;
 	display: flex;
 	height: 100%;
 	align-items: center;

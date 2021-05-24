@@ -24,6 +24,7 @@ export default function SearchBar(props: EmptyInterface) {
 
 const StyleSearchBar = styled.div`
 	display: flex;
+	position: relative;
 	align-items: center;
 	width: 1016px;
 	height: 76px;

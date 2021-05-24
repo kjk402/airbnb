@@ -1,8 +1,7 @@
 import SearchBar from "./../search_bar/SearchBar";
-import { EmptyInterface } from "./../../utils/interfaces";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export default function Main(props: EmptyInterface) {
+export default function Main({}) {
 	return (
 		<StyleMain>
 			<SearchBar />
@@ -14,4 +13,4 @@ const StyleMain = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-`
+`;

@@ -16,5 +16,5 @@ export default function Header(props: EmptyInterface) {
 
 const StyleHeader = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 0.5fr 1fr;
+	grid-template-columns: 1fr 3fr 1fr;
 `;

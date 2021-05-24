@@ -28,15 +28,15 @@ const ModalContainer = styled.div<{ type: string }>`
 		switch (props.type) {
 			case "CHECKIN":
 			case "CHECKOUT":
-				return "210px";
+				return "-200px";
 			case "GUEST":
-				return "830px";
+				return "-200px";
 			case "FEE":
-				return "740px";
+				return "-80px";
 		}
 	}};
 	position: absolute;
-	top: 200px;
+	top: 100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
