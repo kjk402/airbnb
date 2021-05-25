@@ -40,12 +40,12 @@ public class RoomController {
 
     @GetMapping("/search")
     @ApiOperation(value = "예약 가능한 방들 목록보기", notes = "검색 조건에 따른 예약 가능한 방들 모두를 반환합니다.")
-    public List<RoomListDTO> searchRoomByConditions(@ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
-                                    @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
-                                    @ApiParam(value = "도시 이름", example = "인천") @RequestParam String cityName,
-                                    @ApiParam(value = "최소 가격", example = "30000") @RequestParam int minPrice,
-                                    @ApiParam(value = "최대 가격", example = "80000") @RequestParam int maxPrice,
-                                    @ApiParam(value = "인원", example = "2") @RequestParam int numOfPeople) {
+    public List<RoomListDTO> searchRoomByConditions2(@ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
+                                                 @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
+                                                 @ApiParam(value = "도시 이름", example = "인천") @RequestParam String cityName,
+                                                 @ApiParam(value = "최소 가격", example = "30000") @RequestParam int minPrice,
+                                                 @ApiParam(value = "최대 가격", example = "100000") @RequestParam int maxPrice,
+                                                 @ApiParam(value = "인원", example = "1") @RequestParam int numOfPeople) {
         return roomService.getRoomsByConditionsOfCityAndPeriodAndPriceAndHeadcount(checkIn, checkOut, cityName, minPrice, maxPrice, numOfPeople);
     }
 

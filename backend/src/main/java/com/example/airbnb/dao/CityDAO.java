@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.airbnb.utils.SQLKt.*;
+import static com.example.airbnb.utils.sqls.RoomQueryKt.*;
 
 @Repository
 public class CityDAO {

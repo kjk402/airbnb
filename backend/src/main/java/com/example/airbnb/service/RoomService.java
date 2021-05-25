@@ -1,5 +1,6 @@
 package com.example.airbnb.service;
 
+import com.example.airbnb.dto.RoomDTO;
 import com.example.airbnb.utils.Calculators;
 import com.example.airbnb.dao.ImageDAO;
 import com.example.airbnb.dao.LocationDAO;
@@ -29,7 +30,7 @@ public class RoomService {
 
     public RoomDetailDTO getRoomDetail(Long id) {
         return new RoomDetailDTO(
-                roomDAO.getRoom(id).orElseThrow(() -> new NotFoundDataException("해당하는 방이 없습니다.")),
+                roomDAO.findSingleRoom(id).orElseThrow(() -> new NotFoundDataException("해당하는 방이 없습니다.")),
                 imageDAO.getThumbImage(id),
                 imageDAO.getDetailImages(id)
         );
@@ -53,14 +54,17 @@ public class RoomService {
 
         List<Long> allConditions = Calculators.intersection(cityCondition, Calculators.intersection(priceCondition, headcountCondition));
         Calculators.difference(allConditions, periodCondition);
+
         int fewNights = Calculators.calculatePeriod(checkIn, checkOut);
 
         List<RoomListDTO> roomListDTO = new ArrayList<>();
-        for (Long roomId : allConditions) {
-            roomListDTO.add(new RoomListDTO(roomDAO.getRoom(roomId).orElseThrow(() -> new NotFoundDataException("해당하는 방이 없습니다.")),
-                    imageDAO.getThumbImage(roomId),
-                    fewNights
-            ));
+
+        List<RoomDTO> roomDTOS = roomDAO.findMultipleRooms(allConditions);
+        List<String> thumbImages = imageDAO.getThumbImages(allConditions);
+        for (int i = 0; i< roomDTOS.size(); i++) {
+            roomListDTO.add(
+                    new RoomListDTO(roomDTOS.get(i), thumbImages.get(i), fewNights)
+            );
         }
         return roomListDTO;
     }
