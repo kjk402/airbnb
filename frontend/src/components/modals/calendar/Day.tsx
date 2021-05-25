@@ -1,9 +1,5 @@
-export interface Props {
+export interface Props {}
 
-}
-
-export default function Day(props:Props) {
-  return (
-    <div> </div>
-  )
+export default function Day(props: Props) {
+	return <> </>;
 }
