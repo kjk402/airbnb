@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.airbnb.utils.SQLKt.*;
+import static com.example.airbnb.utils.sqls.RoomQueryKt.*;
 
 @Repository
 public class RoomDAO {
@@ -23,11 +23,11 @@ public class RoomDAO {
         namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    public Optional<RoomDTO> getRoom(Long roomId) {
+    public Optional<RoomDTO> findSingleRoom(Long roomId) {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
                 .addValue("room_id", roomId);
 
-        List<RoomDTO> roomDTO = namedParameterJdbcTemplate.query(SELECT_ROOM_BY_ID, sqlParameterSource, (rs, rowNum) -> {
+        List<RoomDTO> roomDTO = namedParameterJdbcTemplate.query(SELECT_SINGLE_ROOM_BY_ID, sqlParameterSource, (rs, rowNum) -> {
             return new RoomDTO(
                     rs.getLong("id"),
                     rs.getString("title"),
@@ -44,6 +44,31 @@ public class RoomDAO {
             );
         });
         return roomDTO.stream().findFirst();
+    }
+
+    public List<RoomDTO> findMultipleRooms(List<Long> roomList) {
+        if (roomList.size() <= 0) {
+            roomList.add(0L);
+        }
+        List<RoomDTO> roomDTOS = new ArrayList<>();
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("room_ids", roomList);
+        namedParameterJdbcTemplate.query(SELECT_MULTIPLE_ROOMS_BY_ID, sqlParameterSource, (rs, rowNum) ->
+                roomDTOS.add(new RoomDTO(
+                        rs.getLong("id"),
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getInt("price_per_day"),
+                        rs.getString("room_type"),
+                        rs.getInt("bed"),
+                        rs.getInt("max_guest"),
+                        rs.getInt("bathroom"),
+                        new LocationDTO(
+                                rs.getDouble("latitude"),
+                                rs.getDouble("longitude")
+                        )
+                )));
+        return roomDTOS;
     }
 
     public List<Long> cityCondition(String cityName) {
@@ -66,7 +91,6 @@ public class RoomDAO {
 
         return allPrices;
     }
-
 
     public List<Long> periodCondition(LocalDate reserveCheckIn, LocalDate reserveCheckOut) {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()

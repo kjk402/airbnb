@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.airbnb.utils.SQLKt.*;
+import static com.example.airbnb.utils.sqls.ImageQueryKt.*;
 
 @Repository
 public class ImageDAO {
@@ -25,8 +25,17 @@ public class ImageDAO {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
                 .addValue("room_id", roomId);
 
-        String thumbImage = namedParameterJdbcTemplate.queryForObject(SELECT_THUMB_IMAGE_BY_ID, sqlParameterSource, String.class);
-        return thumbImage;
+        return namedParameterJdbcTemplate.queryForObject(SELECT_THUMB_IMAGE_BY_ID, sqlParameterSource, String.class);
+    }
+
+    public List<String> getThumbImages(List<Long> roomList) {
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("room_ids", roomList);
+        List<String> thumbImages = new ArrayList<>();
+
+        namedParameterJdbcTemplate.query(SELECT_THUMB_IMAGES_BY_ID, sqlParameterSource, (rs, rowNum) ->
+                thumbImages.add(rs.getString("url")));
+        return thumbImages;
     }
 
     public List<String> getDetailImages(Long roomId) {

@@ -4,10 +4,13 @@ import com.example.airbnb.exception.NotFoundDataException;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calculators {
+
+    private Calculators() {
+    }
 
     public static int calculatePeriod(LocalDate checkIn, LocalDate checkOut) {
         long period = ChronoUnit.DAYS.between(checkIn, checkOut);
@@ -30,13 +33,9 @@ public class Calculators {
     }
 
     public static List<Long> intersection(List<Long> condition1, List<Long> condition2) {
-        List<Long> list = new ArrayList<>();
-        for (Long roomId : condition1) {
-            if (condition2.contains(roomId)) {
-                list.add(roomId);
-            }
-        }
-        return list;
+        return condition1.stream()
+                .filter(condition2::contains)
+                .collect(Collectors.toList());
     }
 
 }

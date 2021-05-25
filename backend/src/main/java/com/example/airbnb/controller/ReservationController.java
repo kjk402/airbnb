@@ -27,7 +27,7 @@ public class ReservationController {
     public ReservationDTO reserveRoom(@ApiParam(value = "방 식별자", example = "2") @PathVariable Long roomId,
                                                       @ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
                                                       @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
-                                                      @ApiParam(value = "인원", example = "3") @RequestParam int numOfPeople) {
+                                                      @ApiParam(value = "인원", example = "1") @RequestParam int numOfPeople) {
         return reservationService.confirmAndReserve(roomId, checkIn, checkOut, numOfPeople);
     }
 

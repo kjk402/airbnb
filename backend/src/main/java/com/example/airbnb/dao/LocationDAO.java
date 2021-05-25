@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.airbnb.utils.SQLKt.*;
+import static com.example.airbnb.utils.sqls.LocationQueryKt.*;
 
 @Repository
 public class LocationDAO {

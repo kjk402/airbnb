@@ -5,6 +5,7 @@ public class Receipt {
     private static final double SERVICE_FEE_PERCENT = 0.14;
     private static final double RESULT_FEE_PERCENT = 0.014;
     private static final int CLEANING_FEE = 20000;
+    private static final int DAYS_OF_THE_WEEK = 7;
 
     private int basicPrice;
     private int weekSalePrice;
@@ -51,7 +52,7 @@ public class Receipt {
     }
 
     private int calculateWeekSalePrice(double percent, int days) {
-        if (days > 6) {
+        if (days >= DAYS_OF_THE_WEEK) {
             return (int) (basicPrice * percent);
         }
         return 0;
