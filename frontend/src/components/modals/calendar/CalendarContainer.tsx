@@ -1,3 +1,4 @@
+import {useState, useEffect, useRef} from 'react';
 import styled from "styled-components";
 import { ReactComponent as Larrow } from "./../../../icons/chevron-left.svg";
 import { ReactComponent as Rarrow } from "./../../../icons/chevron-right.svg";
@@ -7,9 +8,21 @@ export interface Props {}
 
 export default function CalendarContainer(props: Props) {
 	// 여기서 달력 상태관리
+	const [dx, setDx] = useState([-2, -1, 0, 1, 2, 3]);
+	const [isLeftClicked, setIsLeftClicked] = useState(false);
+	const [isRightClicked, setIsRightClicked] = useState(false);
+	// const calendarMoveCnt = useRef(0);
+	const CALENDAR_COUNT = 6;
 	const now = new Date();
-	const dateList = [new Date(now.getFullYear(), now.getMonth() - 2), new Date(now.getFullYear(), now.getMonth() - 1), new Date(now.getFullYear(), now.getMonth()), new Date(now.getFullYear(), now.getMonth() + 1), new Date(now.getFullYear(), now.getMonth() + 2), new Date(now.getFullYear(), now.getMonth() + 3)];
+	const dateList = [];
+	useEffect (() => {
+		isLeftClicked && setDx(()=>dx.map((el)=>el-2));
+		isRightClicked && setDx(()=>dx.map((el)=>el+2));
+		setIsLeftClicked(false);
+		setIsRightClicked(false);
+	},[]);
 
+	for(let i = 0; i < CALENDAR_COUNT; i++) dateList.push(new Date(now.getFullYear(), now.getMonth() + dx[i]));
 	const calendarList = dateList.map((calendar, idx) => <CalendarCon key={idx} data={calendar} />);
 
 	return (

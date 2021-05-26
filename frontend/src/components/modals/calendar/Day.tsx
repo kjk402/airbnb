@@ -2,16 +2,17 @@ import styled from 'styled-components';
 interface Props {
 	year: number;
 	month: number;
-	firstWeekDay: number;
-	index: number;
-	d: number;
+	day: number;
 	lastDay : number;
 }
-export default function Day({ year, month, firstWeekDay, index, d, lastDay  }: Props) {
+export default function Day({ year, month,  day, lastDay  }: Props) {
 
-	
-	if(d > lastDay || d <= 0) return<StyleTd></StyleTd>;
-	return <StyleTd>{d}</StyleTd>;
+	const date = new Date(year, month, day);
+	const today = new Date();
+	const now = new Date(today.getFullYear(), today.getMonth()+1, today.getDate());
+	if(day > lastDay || day <= 0) return<OldStyleTd></OldStyleTd>;
+	if(date < now) return <OldStyleTd>{day}</OldStyleTd>
+	return <StyleTd>{day}</StyleTd>;
 }
 
 const StyleTd = styled.td`
@@ -27,4 +28,14 @@ const StyleTd = styled.td`
 			cursor: pointer;
 		}
 	
+`
+
+const OldStyleTd = styled.td`
+		width: 48px;
+		height: 48px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 30px;
+		color: #e4e4e4;
 `

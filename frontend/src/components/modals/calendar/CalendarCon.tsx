@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import Week from "./Week";
 import Day from "./Day";
 
 interface ConProps {
@@ -13,18 +12,18 @@ export default function CalendarCon({ data }: ConProps) {
 	const weekList = [];
 	const weekTitleList = ["일", "월", "화", "수", "목", "금", "토"];
 	const weekDayTitleList = [];
-	let d = -firstWeekDay;
+	let day = -firstWeekDay;
 
 	for (let i = 0; i < 7; i++) {
 			weekList.push([
 				<Week>
-				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay} key={d}/>
-				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
-				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
-				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
-				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
-				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
-				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
+				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
+				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
+				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
+				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
+				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
+				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
+				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
 			</Week>,
 		]);
 		weekDayTitleList.push(<StyleDay key={i}>{weekTitleList[i]}</StyleDay>);
