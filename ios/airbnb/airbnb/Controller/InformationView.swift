@@ -9,6 +9,13 @@ import UIKit
 
 final class InformationView: UIView {
     
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var periodLabel: UILabel!
+    @IBOutlet weak var feeLabel: UILabel!
+    @IBOutlet weak var numberOfPeopleLabel: UILabel!
+    
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetUp()
