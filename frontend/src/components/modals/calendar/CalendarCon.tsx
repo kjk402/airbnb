@@ -9,30 +9,29 @@ export default function CalendarCon({ data }: ConProps) {
 	const year = data.getFullYear();
 	const month = data.getMonth() + 1;
 	const lastDay = new Date(year, month, 0).getDate();
-	const dayList = [];
-	for (let i = 1; i <= lastDay; i++) dayList.push(i);
 	const firstWeekDay = data.getDay();
 	const weekList = [];
 	const weekTitleList = ["일", "월", "화", "수", "목", "금", "토"];
 	const weekDayTitleList = [];
-	let d = 1 - firstWeekDay;
-	const sevenDays = [];
-	for (let i = 0; i < 7; i++) sevenDays.push(<Day year={year} month={month} firstWeekDay={firstWeekDay} />);
+	let d = -firstWeekDay;
+
 	for (let i = 0; i < 7; i++) {
-		weekList.push([
-			<Week>
-				<td>{d}</td>
-				<td>{++d}</td>
-				<td>{++d}</td>
-				<td>{++d}</td>
-				<td>{++d}</td>
-				<td>{++d}</td>
-				<td>{++d}</td>
+			weekList.push([
+				<Week>
+				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay} key={d}/>
+				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
+				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
+				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
+				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
+				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
+				<Day year={year} month={month} firstWeekDay={firstWeekDay} index={i} d={++d} lastDay={lastDay}key={d}/>
 			</Week>,
 		]);
-		d++;
-		weekDayTitleList.push(<StyleDay>{weekTitleList[i]}</StyleDay>);
+		weekDayTitleList.push(<StyleDay key={i}>{weekTitleList[i]}</StyleDay>);
 	}
+	
+// 1~31 들은 배열
+// 월의 첫 날짜의 요일
 
 	return (
 		<StyleCalendar>
@@ -87,17 +86,5 @@ const StyleDay = styled.td`
 
 const Week = styled.tr`
 	display: flex;
-	justify-content: space-between;
-	td {
-		width: 48px;
-		height: 48px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 30px;
-		:hover {
-			border: 1px solid #b8b8b8;
-			cursor: pointer;
-		}
-	}
+	
 `;
