@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import ModalContainer from "../../../styles/ModalContainer";
-import { ModalInterface } from "../../../utils/interfaces";
 import CalendarContainer from "./CalendarContainer";
 
 interface ICalendar {
@@ -42,8 +41,8 @@ export default function CalendarModal({ type, isActive, setModalOn }: ICalendar)
 const ContentWrapper = styled.div`
 	display: flex;
 	justify-content: center;
-	width: 80%;
+	width: 800px; /* 나중에 슬라이더를 이만큼 이동시키자. */
 	height: 85%;
 	border: 1px solid green;
-	overflow: hidden;
+	/* overflow: hidden; */
 `;

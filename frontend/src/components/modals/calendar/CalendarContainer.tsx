@@ -7,7 +7,10 @@ export interface Props {}
 
 export default function CalendarContainer(props: Props) {
 	// 여기서 달력 상태관리
-	const slide = [-2, -1, 0, 1, 2, 3];
+	const now = new Date();
+	const dateList = [new Date(now.getFullYear(), now.getMonth() - 2), new Date(now.getFullYear(), now.getMonth() - 1), new Date(now.getFullYear(), now.getMonth()), new Date(now.getFullYear(), now.getMonth() + 1), new Date(now.getFullYear(), now.getMonth() + 2), new Date(now.getFullYear(), now.getMonth() + 3)];
+
+	const calendarList = dateList.map((calendar, idx) => <CalendarCon key={idx} data={calendar} />);
 
 	return (
 		<>
@@ -15,14 +18,7 @@ export default function CalendarContainer(props: Props) {
 				<Larrow />
 			</LIcon>
 			<StyleContainer>
-				<Slider>
-					<CalendarCon month={slide[0]} />
-					<CalendarCon month={slide[1]} />
-					<CalendarCon month={slide[2]} />
-					<CalendarCon month={slide[3]} />
-					<CalendarCon month={slide[4]} />
-					<CalendarCon month={slide[5]} />
-				</Slider>
+				<Slider>{calendarList}</Slider>
 			</StyleContainer>
 			<RIcon>
 				<Rarrow />

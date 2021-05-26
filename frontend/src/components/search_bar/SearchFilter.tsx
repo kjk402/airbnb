@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "./../../icons/search.svg";
 import parseByType from "../../utils/parseByType";
-import LocationModal from "../modals/location/LocationModal";
 import CalendarModal from "../modals/calendar/CalendarModal";
 import FeeModal from "../modals/fee/FeeModal";
 import GuestModal from "../modals/guest/GuestModal";

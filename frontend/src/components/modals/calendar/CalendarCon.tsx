@@ -1,29 +1,49 @@
 import styled from "styled-components";
-import Week from "./Week";
+// import Week from "./Week";
+import Day from "./Day";
 
 interface ConProps {
-	month: number;
+	data: Date;
 }
-export default function CalendarCon({ month }: ConProps) {
+export default function CalendarCon({ data }: ConProps) {
+	const year = data.getFullYear();
+	const month = data.getMonth() + 1;
+	const lastDay = new Date(year, month, 0).getDate();
+	const dayList = [];
+	for (let i = 1; i <= lastDay; i++) dayList.push(i);
+	const firstWeekDay = data.getDay();
+	const weekList = [];
+	const weekTitleList = ["일", "월", "화", "수", "목", "금", "토"];
+	const weekDayTitleList = [];
+	let d = 1 - firstWeekDay;
+	const sevenDays = [];
+	for (let i = 0; i < 7; i++) sevenDays.push(<Day year={year} month={month} firstWeekDay={firstWeekDay} />);
+	for (let i = 0; i < 7; i++) {
+		weekList.push([
+			<Week>
+				<td>{d}</td>
+				<td>{++d}</td>
+				<td>{++d}</td>
+				<td>{++d}</td>
+				<td>{++d}</td>
+				<td>{++d}</td>
+				<td>{++d}</td>
+			</Week>,
+		]);
+		d++;
+		weekDayTitleList.push(<StyleDay>{weekTitleList[i]}</StyleDay>);
+	}
+
 	return (
 		<StyleCalendar>
-			<HeaderWrapper>2021년 {month}월</HeaderWrapper>
+			<HeaderWrapper>
+				{year}년 {month}월
+			</HeaderWrapper>
 			<BodyWrapper>
-				<WeekHeader>
-					<StyleDay>일</StyleDay>
-					<StyleDay>월</StyleDay>
-					<StyleDay>화</StyleDay>
-					<StyleDay>수</StyleDay>
-					<StyleDay>목</StyleDay>
-					<StyleDay>금</StyleDay>
-					<StyleDay>토</StyleDay>
-				</WeekHeader>
-				<Week />
-				<Week />
-				<Week />
-				<Week />
-				<Week />
-				<Week />
+				<tbody>
+					<WeekHeader>{weekDayTitleList}</WeekHeader>
+					{weekList}
+				</tbody>
 			</BodyWrapper>
 		</StyleCalendar>
 	);
@@ -31,7 +51,6 @@ export default function CalendarCon({ month }: ConProps) {
 const StyleCalendar = styled.div`
 	width: 336px;
 	height: 336px;
-	/* border: 1px solid black; */
 	font-size: 12px;
 	margin: 0 30px;
 `;
@@ -60,4 +79,25 @@ const StyleDay = styled.td`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	td {
+		width: 48px;
+		height: 48px;
+	}
+`;
+
+const Week = styled.tr`
+	display: flex;
+	justify-content: space-between;
+	td {
+		width: 48px;
+		height: 48px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 30px;
+		:hover {
+			border: 1px solid #b8b8b8;
+			cursor: pointer;
+		}
+	}
 `;
