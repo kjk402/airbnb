@@ -9,31 +9,43 @@ export interface Props {}
 export default function CalendarContainer(props: Props) {
 	// 여기서 달력 상태관리
 	const [dx, setDx] = useState([-2, -1, 0, 1, 2, 3]);
+	const [curPos, setCurPos] = useState(0);
 	const [isLeftClicked, setIsLeftClicked] = useState(false);
 	const [isRightClicked, setIsRightClicked] = useState(false);
 	// const calendarMoveCnt = useRef(0);
 	const CALENDAR_COUNT = 6;
 	const now = new Date();
-	const dateList = [];
-	useEffect (() => {
-		isLeftClicked && setDx(()=>dx.map((el)=>el-2));
-		isRightClicked && setDx(()=>dx.map((el)=>el+2));
-		setIsLeftClicked(false);
-		setIsRightClicked(false);
-	},[]);
+	let dateList = useRef<Date[]>([]);
 
-	for(let i = 0; i < CALENDAR_COUNT; i++) dateList.push(new Date(now.getFullYear(), now.getMonth() + dx[i]));
-	const calendarList = dateList.map((calendar, idx) => <CalendarCon key={idx} data={calendar} />);
+	const handleLeftClick = () => {
+		setCurPos(()=>curPos+800);
+		setIsLeftClicked(true);
+	}
+	const handleRightClick = () => {
+		setCurPos(()=>curPos-800);
+		setIsRightClicked(true);
+	}
+	const handleSlideEnd = () => {	
+		console.log('transition ended');
+		if(isLeftClicked) {
+			setIsLeftClicked(false);
+		}
+		if(isRightClicked) {
+			setIsRightClicked(false);
+		}
+	}
+	for(let i = 0; i < CALENDAR_COUNT; i++) dateList.current.push(new Date(now.getFullYear(), now.getMonth() + dx[i]));
+	const calendarList = dateList.current.map((calendar, idx) => <CalendarCon key={idx} data={calendar} />);
 
 	return (
 		<>
-			<LIcon>
+			<StyleContainer>
+				<Slider curPos={curPos} onTransitionEnd={handleSlideEnd}>{calendarList}</Slider>
+			</StyleContainer>
+			<LIcon onClick={handleLeftClick}>
 				<Larrow />
 			</LIcon>
-			<StyleContainer>
-				<Slider>{calendarList}</Slider>
-			</StyleContainer>
-			<RIcon>
+			<RIcon onClick={handleRightClick}>
 				<Rarrow />
 			</RIcon>
 		</>
@@ -44,11 +56,12 @@ const StyleContainer = styled.div`
 	border: 1px solid red;
 `;
 
-const Slider = styled.div`
+const Slider = styled.div<{ curPos: number }>`
 	height: 100%;
 	display: flex;
 	align-items: center;
-	transform: translateX(0px);
+	transform: ${(props) => `translateX(${props.curPos}px)`};
+	transition: transform, 0.2s;
 `;
 
 const LIcon = styled.button`
