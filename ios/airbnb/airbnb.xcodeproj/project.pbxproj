@@ -24,6 +24,8 @@
 		B3C8FB2126563304005C6235 /* MainLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB2026563304005C6235 /* MainLayout.swift */; };
 		B3C8FB2526563D26005C6235 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB2426563D26005C6235 /* LocationManager.swift */; };
 		B3C8FB2726564787005C6235 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB2626564787005C6235 /* EndPoint.swift */; };
+		B3D54D5C265E7C3E00736374 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D54D5B265E7C3E00736374 /* BottomView.swift */; };
+		B3D54D5E265E7C4700736374 /* BottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3D54D5D265E7C4700736374 /* BottomView.xib */; };
 		B3D7315726523C4300FE6C62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D7315626523C4300FE6C62 /* AppDelegate.swift */; };
 		B3D7315926523C4300FE6C62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D7315826523C4300FE6C62 /* SceneDelegate.swift */; };
 		B3D7315B26523C4300FE6C62 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D7315A26523C4300FE6C62 /* ViewController.swift */; };
@@ -68,6 +70,8 @@
 		B3C8FB2026563304005C6235 /* MainLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLayout.swift; sourceTree = "<group>"; };
 		B3C8FB2426563D26005C6235 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B3C8FB2626564787005C6235 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		B3D54D5B265E7C3E00736374 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomView.swift; path = airbnb/BottomView.swift; sourceTree = SOURCE_ROOT; };
+		B3D54D5D265E7C4700736374 /* BottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomView.xib; sourceTree = "<group>"; };
 		B3D7315326523C4300FE6C62 /* airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D7315626523C4300FE6C62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3D7315826523C4300FE6C62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 		B30210FE265757D900A0AA92 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B3D54D5B265E7C3E00736374 /* BottomView.swift */,
+				B3D54D5D265E7C4700736374 /* BottomView.xib */,
 				B304DF03265C9233008F3BB3 /* InformationView.swift */,
 				B304DF05265C9255008F3BB3 /* InformationView.xib */,
 				B30210FF26575A8000A0AA92 /* SpotCollectionViewCell.swift */,
@@ -359,6 +365,7 @@
 				B3D7316026523C4400FE6C62 /* Assets.xcassets in Resources */,
 				B304DF06265C9255008F3BB3 /* InformationView.xib in Resources */,
 				B3D7315E26523C4300FE6C62 /* Main.storyboard in Resources */,
+				B3D54D5E265E7C4700736374 /* BottomView.xib in Resources */,
 				B3C8FB172655FD52005C6235 /* CityCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +465,7 @@
 				B3C8FB2126563304005C6235 /* MainLayout.swift in Sources */,
 				B304DF04265C9233008F3BB3 /* InformationView.swift in Sources */,
 				B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */,
+				B3D54D5C265E7C3E00736374 /* BottomView.swift in Sources */,
 				B3D73187265289DA00FE6C62 /* LocationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
