@@ -42,5 +42,8 @@ export default function CalendarModal({ type, isActive, setModalOn }: ICalendar)
 const ContentWrapper = styled.div`
 	display: flex;
 	justify-content: center;
-	width: 100%;
+	width: 80%;
+	height: 85%;
+	border: 1px solid green;
+	overflow: hidden;
 `;
