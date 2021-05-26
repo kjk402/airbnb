@@ -18,6 +18,8 @@ public class MainPageDTO {
 
     public String getMainImage() {
         return "https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=960";
+        //신버전
+//        return "https://a0.muscache.com/im/pictures/415fe2dc-98a1-4565-a702-70b03ae757d7.jpg";
     }
 
     public List<String> getExtraImages() {

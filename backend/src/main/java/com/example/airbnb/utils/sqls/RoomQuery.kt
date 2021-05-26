@@ -14,6 +14,10 @@ const val SELECT_PRICE_BY_ID: String = """
 SELECT r.price_per_day FROM room r WHERE r.id IN (:room_ids);    
 """
 
+const val SELECT_ALL_ROOM_ID: String = """
+SELECT r.id FROM room r ORDER BY id LIMIT 500;    
+"""
+
 const val SELECT_ROOM_ID_BY_CITY_CONDITION: String = """
 SELECT l.id FROM location l WHERE l.city = :city_name;    
 """
@@ -33,8 +37,11 @@ SELECT r.id FROM room r WHERE max_guest >= :guest_count;
 """
 
 const val SELECT_MULTIPLE_ROOMS_BY_ID: String = """
-SELECT r.id, r.title, r.description, r.price_per_day, r.room_type, r.bed, r.max_guest, r.bathroom, l.latitude, l.longitude
+SELECT r.id, r.title, r.description, r.price_per_day, r.room_type, r.bed, r.max_guest, r.bathroom, l.latitude, l.longitude, i.url
 FROM room r 
 inner JOIN location l ON l.id = r.id
-WHERE r.id IN (:room_ids);
+inner JOIN image i ON i.room = r.id
+WHERE i.type = 'thumb' AND r.id IN (:room_ids);
 """
+
+

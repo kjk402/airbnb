@@ -42,12 +42,20 @@ public class ReservationService {
     }
 
     private void validateConditions(Long roomId, LocalDate checkIn, LocalDate checkOut, int guestCount) {
+        if (!checkRoomId(roomId)) {
+            throw new NotFoundDataException("방이 존재하지 않습니다.");
+        }
         if (checkPeriodCondition(roomId, checkIn, checkOut)) {
             throw new ConditionException("선택하신 기간에 예약이 불가능합니다.");
         }
         if (!checkHeadcountCondition(roomId, guestCount)) {
             throw new ConditionException("수용인원을 초과하였습니다.");
         }
+    }
+
+    private boolean checkRoomId(Long roomId) {
+        List<Long> allRoomList = new ArrayList<>(roomDAO.getAllRoomId());
+        return allRoomList.contains(roomId);
     }
 
     private boolean checkPeriodCondition(Long roomId, LocalDate checkIn, LocalDate checkOut) {
