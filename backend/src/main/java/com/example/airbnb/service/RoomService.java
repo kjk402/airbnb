@@ -57,9 +57,9 @@ public class RoomService {
         List<Long> periodCondition = roomDAO.periodCondition(checkIn, checkOut);
 
         List<Long> allConditions = Calculators.difference(cityCondition, periodCondition);
+
         if (allConditions.isEmpty())
             allConditions.add(0L);
-
         return allConditions;
     }
 
@@ -71,9 +71,9 @@ public class RoomService {
 
         List<Long> allConditions = Calculators.intersection(cityCondition, Calculators.intersection(priceCondition, headcountCondition));
         Calculators.difference(allConditions, periodCondition);
+
         if (allConditions.isEmpty())
             allConditions.add(0L);
-
         return allConditions;
     }
 
