@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import parseDate from "./../../../utils/parseDate";
+import makeDate from "../../../utils/makeDate";
 interface Props {
 	year: number;
 	month: number;
@@ -17,17 +17,15 @@ export default function Day({ year, month, day, lastDay, setCheckInValue, setChe
 	const date = new Date(year, month, day);
 	const today = new Date();
 	const now = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-
+	let isMiddleDay = false;
+	if (date > makeDate(checkInValue) && date < makeDate(checkOutValue)) isMiddleDay = true;
 	const handleOnClick = () => {
 		console.log(`${year}년 ${month + 1}월 ${day}일 클릭.`);
-		setSelected(!selected);
+		// setSelected(!selected);
 		clickCntRef.current = clickCntRef.current + 1;
-		console.log(`방금 클릭한 날짜: ${year}년 ${month + 1}월 ${day}일`);
-		const dateSelected = new Date(year, month, day);
-
 		if (clickCntRef.current === 1) setCheckInValue(`${year}년 ${month + 1}월 ${day}일`);
 		else {
-			if (dateSelected >= parseDate(checkInValue)) setCheckoutValue(`${year}년 ${month + 1}월 ${day}일`);
+			if (date >= makeDate(checkInValue)) setCheckoutValue(`${year}년 ${month + 1}월 ${day}일`);
 			else {
 				setCheckoutValue(checkInValue);
 				setCheckInValue(`${year}년 ${month + 1}월 ${day}일`);
@@ -35,14 +33,25 @@ export default function Day({ year, month, day, lastDay, setCheckInValue, setChe
 		}
 	};
 
+	useEffect(() => {
+		if (date.getTime() === makeDate(checkInValue).getTime() || date.getTime() === makeDate(checkOutValue).getTime()) setSelected(true);
+		else setSelected(false);
+	}, [checkInValue, checkOutValue]);
+
 	if (day > lastDay || day <= 0) return <OldStyleTd></OldStyleTd>;
 	if (date < now) return <OldStyleTd className="disable">{day}</OldStyleTd>;
 	return (
-		<StyleTd onClick={handleOnClick} selected={selected}>
-			{day}
-		</StyleTd>
+		<TdWrapper isMiddleDay={isMiddleDay}>
+			<StyleTd onClick={handleOnClick} selected={selected}>
+				{day}
+			</StyleTd>
+		</TdWrapper>
 	);
 }
+
+const TdWrapper = styled.div<{ isMiddleDay: boolean }>`
+	background-color: ${(props) => (props.isMiddleDay ? "#f5f5f7" : "#ffffff")};
+`;
 
 const StyleTd = styled.td<{ selected: boolean }>`
 	width: 48px;
@@ -51,11 +60,16 @@ const StyleTd = styled.td<{ selected: boolean }>`
 	justify-content: center;
 	align-items: center;
 	border-radius: 30px;
-	background-color: ${(props) => (props.selected ? "#333333" : "#FFFFFF")};
+	background-color: ${(props) => {
+		if (props.selected) return "#333333";
+	}};
 	color: ${(props) => (props.selected ? "#FFFFFF" : "#333333")};
 	:hover {
 		border: 1px solid #b8b8b8;
 		cursor: pointer;
+	}
+	.mid-day {
+		background-color: #f5f5f7;
 	}
 `;
 
