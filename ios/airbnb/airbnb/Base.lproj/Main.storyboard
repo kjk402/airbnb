@@ -111,7 +111,7 @@
                                                 <cells/>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayq-bd-qlS">
-                                                <rect key="frame" x="40" y="8" width="334" height="40"/>
+                                                <rect key="frame" x="40" y="141" width="334" height="40"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hLg-8h-w9K">
                                                         <rect key="frame" x="76.5" y="8" width="181" height="24"/>
@@ -254,14 +254,13 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIq-BK-WPg" customClass="InformationView" customModule="airbnb" customModuleProvider="target">
-                                <rect key="frame" x="19.5" y="637" width="375" height="176"/>
+                                <rect key="frame" x="0.0" y="637" width="414" height="176"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="87q-4s-cLe"/>
                                     <constraint firstAttribute="height" constant="176" id="kO8-xD-PM7"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGh-05-sFS">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGh-05-sFS" customClass="BottomView" customModule="airbnb" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -274,17 +273,20 @@
                         <constraints>
                             <constraint firstItem="7Aa-Mf-CAR" firstAttribute="trailing" secondItem="kGh-05-sFS" secondAttribute="trailing" id="0Up-Rx-QjG"/>
                             <constraint firstItem="AIq-BK-WPg" firstAttribute="top" secondItem="uh6-Qf-Xeu" secondAttribute="bottom" id="592-6s-8Wj"/>
-                            <constraint firstItem="AIq-BK-WPg" firstAttribute="centerX" secondItem="NPY-s9-e0Z" secondAttribute="centerX" id="9hR-Aw-czr"/>
                             <constraint firstItem="uh6-Qf-Xeu" firstAttribute="trailing" secondItem="7Aa-Mf-CAR" secondAttribute="trailing" id="Ffb-Dz-WjS"/>
+                            <constraint firstItem="AIq-BK-WPg" firstAttribute="leading" secondItem="7Aa-Mf-CAR" secondAttribute="leading" id="Fw6-ji-aVT"/>
                             <constraint firstAttribute="bottom" secondItem="kGh-05-sFS" secondAttribute="bottom" id="JFP-6u-5Pu"/>
                             <constraint firstItem="kGh-05-sFS" firstAttribute="top" secondItem="AIq-BK-WPg" secondAttribute="bottom" id="XjD-bk-fc6"/>
+                            <constraint firstItem="7Aa-Mf-CAR" firstAttribute="trailing" secondItem="AIq-BK-WPg" secondAttribute="trailing" id="chF-es-3AL"/>
                             <constraint firstItem="uh6-Qf-Xeu" firstAttribute="leading" secondItem="7Aa-Mf-CAR" secondAttribute="leading" id="i16-hk-8H6"/>
                             <constraint firstItem="uh6-Qf-Xeu" firstAttribute="top" secondItem="7Aa-Mf-CAR" secondAttribute="top" id="vdg-Zu-WtL"/>
                             <constraint firstItem="kGh-05-sFS" firstAttribute="leading" secondItem="7Aa-Mf-CAR" secondAttribute="leading" id="xfc-NO-e9T"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="kGh-05-sFS" id="xaI-ab-D9H"/>
                         <outlet property="calendarView" destination="uh6-Qf-Xeu" id="oi0-mA-nnv"/>
+                        <outlet property="informationView" destination="AIq-BK-WPg" id="hpt-FI-CZL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgX-rK-gmP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
