@@ -10,7 +10,7 @@ interface SearchFilterInterface {
 	type: string;
 	isEnd: boolean;
 	input?: string;
-	placeholder?: string;
+	placeholder?: string | undefined;
 	isCalendarModalOn?: boolean;
 	setIsCalendarModalOn?: any;
 	isFeeModalOn?: boolean;

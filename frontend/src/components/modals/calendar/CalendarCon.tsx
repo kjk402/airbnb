@@ -11,7 +11,7 @@ interface ConProps {
 }
 export default function CalendarCon({ data, setCheckInValue, setCheckoutValue, clickCntRef, checkInValue, checkOutValue }: ConProps) {
 	const year = data.getFullYear();
-	const month = data.getMonth() + 1;
+	const month = data.getMonth();
 	const lastDay = new Date(year, month, 0).getDate();
 	const firstWeekDay = data.getDay();
 	const weekList = [];
@@ -36,7 +36,7 @@ export default function CalendarCon({ data, setCheckInValue, setCheckoutValue, c
 	return (
 		<StyleCalendar>
 			<HeaderWrapper>
-				{year}년 {month}월
+				{year}년 {month + 1}월
 			</HeaderWrapper>
 			<BodyWrapper>
 				<tbody>

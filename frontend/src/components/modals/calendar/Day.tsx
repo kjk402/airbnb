@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import parseDate from "./../../../utils/parseDate";
 interface Props {
 	year: number;
 	month: number;
@@ -15,19 +16,21 @@ export default function Day({ year, month, day, lastDay, setCheckInValue, setChe
 	const [selected, setSelected] = useState(false);
 	const date = new Date(year, month, day);
 	const today = new Date();
-	const now = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+	const now = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
 	const handleOnClick = () => {
-		console.log(`${year}년 ${month}월 ${day}일 클릭.`);
+		console.log(`${year}년 ${month + 1}월 ${day}일 클릭.`);
 		setSelected(!selected);
-		if (clickCntRef.current < 2) {
-			clickCntRef.current = clickCntRef.current + 1;
-			if (clickCntRef.current === 1) setCheckInValue(`${year}년 ${month}월 ${day}일`);
-			if (clickCntRef.current === 2) {
-				const clickedDate = new Date(year, month - 1, day);
-				console.log(clickedDate);
-				console.log(checkInValue);
-				setCheckoutValue(`${year}년 ${month}월 ${day}일`);
+		clickCntRef.current = clickCntRef.current + 1;
+		console.log(`방금 클릭한 날짜: ${year}년 ${month + 1}월 ${day}일`);
+		const dateSelected = new Date(year, month, day);
+
+		if (clickCntRef.current === 1) setCheckInValue(`${year}년 ${month + 1}월 ${day}일`);
+		else {
+			if (dateSelected >= parseDate(checkInValue)) setCheckoutValue(`${year}년 ${month + 1}월 ${day}일`);
+			else {
+				setCheckoutValue(checkInValue);
+				setCheckInValue(`${year}년 ${month + 1}월 ${day}일`);
 			}
 		}
 	};
