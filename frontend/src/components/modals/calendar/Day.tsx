@@ -20,8 +20,6 @@ export default function Day({ year, month, day, lastDay, setCheckInValue, setChe
 	let isMiddleDay = false;
 	if (date > makeDate(checkInValue) && date < makeDate(checkOutValue)) isMiddleDay = true;
 	const handleOnClick = () => {
-		console.log(`${year}년 ${month + 1}월 ${day}일 클릭.`);
-		// setSelected(!selected);
 		clickCntRef.current = clickCntRef.current + 1;
 		if (clickCntRef.current === 1) setCheckInValue(`${year}년 ${month + 1}월 ${day}일`);
 		else {

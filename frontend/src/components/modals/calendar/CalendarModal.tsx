@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import ModalContainer from "../../../styles/ModalContainer";
 import CalendarContainer from "./CalendarContainer";
+import { ReactComponent as XCircle } from "./../../../icons/x-circle.svg";
 
 interface ICalendar {
 	type: string;
@@ -29,6 +30,13 @@ export default function CalendarModal({ type, isActive, setModalOn, setCheckInVa
 		e.stopPropagation();
 	};
 
+	const cleanUpDate = (e: React.MouseEvent) => {
+		e.stopPropagation();
+		clickCntRef.current = 0;
+		setCheckInValue("날짜 입력");
+		setCheckoutValue("날짜 입력");
+	};
+
 	return (
 		<>
 			{isActive && (
@@ -37,6 +45,13 @@ export default function CalendarModal({ type, isActive, setModalOn, setCheckInVa
 						<CalendarContainer checkInValue={checkInValue} checkOutValue={checkOutValue} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} />
 					</ContentWrapper>
 				</ModalContainer>
+			)}
+			{isActive || clickCntRef.current !== 0 ? (
+				<XCircleWrapper onClick={cleanUpDate}>
+					<XCircle className="x-circle" />
+				</XCircleWrapper>
+			) : (
+				<></>
 			)}
 		</>
 	);
@@ -48,4 +63,16 @@ const ContentWrapper = styled.div`
 	width: 800px;
 	height: 85%;
 	overflow: hidden;
+`;
+
+const XCircleWrapper = styled.button`
+	position: absolute;
+	left: 325px;
+	background: none;
+	z-index: 1;
+	* {
+		:hover {
+			fill: "#e4e4e4";
+		}
+	}
 `;
