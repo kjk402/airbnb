@@ -1,14 +1,18 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as Larrow } from "./../../../icons/chevron-left.svg";
 import { ReactComponent as Rarrow } from "./../../../icons/chevron-right.svg";
 import CalendarCon from "./CalendarCon";
 
 export interface Props {
-	setInplaceHolder: React.Dispatch<React.SetStateAction<string | undefined>>;
+	setCheckInValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+	setCheckoutValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+	checkInValue: string | undefined;
+	checkOutValue: string | undefined;
+	clickCntRef: React.MutableRefObject<number>;
 }
 
-export default function CalendarContainer({ setInplaceHolder }: Props) {
+export default function CalendarContainer({ setCheckInValue, setCheckoutValue, clickCntRef, checkInValue, checkOutValue }: Props) {
 	const CALENDAR_WIDTH = 800;
 	const now = new Date();
 	const [dx, setDx] = useState([-2, -1, 0, 1, 2, 3]);
@@ -42,7 +46,7 @@ export default function CalendarContainer({ setInplaceHolder }: Props) {
 	useEffect(() => {
 		setDateList(dateList.map((date, i) => new Date(now.getFullYear(), now.getMonth() + dx[i])));
 	}, [dx]);
-	const calendarList = dateList.map((calendar, idx) => <CalendarCon key={idx} data={calendar} setInplaceHolder={setInplaceHolder} />);
+	const calendarList = dateList.map((calendar, idx) => <CalendarCon checkInValue={checkInValue} checkOutValue={checkOutValue} clickCntRef={clickCntRef} key={idx} data={calendar} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} />);
 
 	return (
 		<>

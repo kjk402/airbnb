@@ -67,7 +67,7 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 				</StyleSearchBtn>
 			)}
 
-			{isCalendarModalOn && <CalendarModal className="calendar-modal" type={type} setInplaceHolder={setInplaceHolder} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} />}
+			{isCalendarModalOn && <CalendarModal className="calendar-modal" type={type} setCheckInValue={setInplaceHolder} setCheckoutValue={setCheckoutValue} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} checkInValue={inplaceHolder} checkOutValue={checkOutValue} />}
 			{isFeeModalOn && <FeeModal type={type} className="fee-modal" setInplaceHolder={setInplaceHolder} isActive={isFeeModalOn} setModalOn={setIsFeeModalOn} />}
 			{isGuestModalOn && <GuestModal type={type} className="guest-modal" setInplaceHolder={setInplaceHolder} isActive={isGuestModalOn} setModalOn={setIsGuestModalOn} />}
 		</SearchFilterWrapper>
@@ -110,7 +110,7 @@ const SearchWrapper = styled.div<{ isEnd: boolean }>`
 const CheckInWrapper = styled.div`
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 `;
 
@@ -126,6 +126,7 @@ const CheckOut = styled.div`
 	height: 44px;
 	flex-direction: column;
 	justify-content: space-around;
+	margin-right: 100px;
 `;
 const SearchLocationStyle = styled.input`
 	border: none;

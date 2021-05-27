@@ -3,9 +3,13 @@ import Day from "./Day";
 
 interface ConProps {
 	data: Date;
-	setInplaceHolder: React.Dispatch<React.SetStateAction<string | undefined>>;
+	setCheckInValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+	setCheckoutValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+	checkInValue: string | undefined;
+	checkOutValue: string | undefined;
+	clickCntRef: React.MutableRefObject<number>;
 }
-export default function CalendarCon({ data, setInplaceHolder }: ConProps) {
+export default function CalendarCon({ data, setCheckInValue, setCheckoutValue, clickCntRef, checkInValue, checkOutValue }: ConProps) {
 	const year = data.getFullYear();
 	const month = data.getMonth() + 1;
 	const lastDay = new Date(year, month, 0).getDate();
@@ -18,13 +22,13 @@ export default function CalendarCon({ data, setInplaceHolder }: ConProps) {
 	for (let i = 0; i < 7; i++) {
 		weekList.push([
 			<Week>
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} checkInValue={checkInValue} checkOutValue={checkOutValue} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} checkInValue={checkInValue} checkOutValue={checkOutValue} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} checkInValue={checkInValue} checkOutValue={checkOutValue} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} checkInValue={checkInValue} checkOutValue={checkOutValue} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} checkInValue={checkInValue} checkOutValue={checkOutValue} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} checkInValue={checkInValue} checkOutValue={checkOutValue} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} checkInValue={checkInValue} checkOutValue={checkOutValue} />
 			</Week>,
 		]);
 		weekDayTitleList.push(<StyleDay key={i}>{weekTitleList[i]}</StyleDay>);

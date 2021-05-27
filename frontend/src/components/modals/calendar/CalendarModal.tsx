@@ -1,17 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import ModalContainer from "../../../styles/ModalContainer";
 import CalendarContainer from "./CalendarContainer";
 
 interface ICalendar {
 	type: string;
-	setInplaceHolder: React.Dispatch<React.SetStateAction<string | undefined>>;
+	checkInValue: string | undefined;
+	checkOutValue: string | undefined;
+	setCheckInValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+	setCheckoutValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 	className?: string;
 	isActive?: boolean;
 	setModalOn: any;
 }
 
-export default function CalendarModal({ type, isActive, setModalOn, setInplaceHolder }: ICalendar) {
+export default function CalendarModal({ type, isActive, setModalOn, setCheckInValue, setCheckoutValue, checkInValue, checkOutValue }: ICalendar) {
+	const clickCntRef = useRef(0);
 	const handleOutClick = () => {
 		setModalOn(false);
 		window.removeEventListener("click", handleOutClick);
@@ -30,7 +34,7 @@ export default function CalendarModal({ type, isActive, setModalOn, setInplaceHo
 			{isActive && (
 				<ModalContainer type={type} onClick={(e) => handleOnclick(e)}>
 					<ContentWrapper>
-						<CalendarContainer setInplaceHolder={setInplaceHolder} />
+						<CalendarContainer checkInValue={checkInValue} checkOutValue={checkOutValue} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} />
 					</ContentWrapper>
 				</ModalContainer>
 			)}
