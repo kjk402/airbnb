@@ -254,14 +254,13 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIq-BK-WPg" customClass="InformationView" customModule="airbnb" customModuleProvider="target">
-                                <rect key="frame" x="19.5" y="637" width="375" height="176"/>
+                                <rect key="frame" x="0.0" y="637" width="414" height="176"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="87q-4s-cLe"/>
                                     <constraint firstAttribute="height" constant="176" id="kO8-xD-PM7"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGh-05-sFS">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGh-05-sFS" customClass="BottomView" customModule="airbnb" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="813" width="414" height="83"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -274,22 +273,40 @@
                         <constraints>
                             <constraint firstItem="7Aa-Mf-CAR" firstAttribute="trailing" secondItem="kGh-05-sFS" secondAttribute="trailing" id="0Up-Rx-QjG"/>
                             <constraint firstItem="AIq-BK-WPg" firstAttribute="top" secondItem="uh6-Qf-Xeu" secondAttribute="bottom" id="592-6s-8Wj"/>
-                            <constraint firstItem="AIq-BK-WPg" firstAttribute="centerX" secondItem="NPY-s9-e0Z" secondAttribute="centerX" id="9hR-Aw-czr"/>
                             <constraint firstItem="uh6-Qf-Xeu" firstAttribute="trailing" secondItem="7Aa-Mf-CAR" secondAttribute="trailing" id="Ffb-Dz-WjS"/>
+                            <constraint firstItem="AIq-BK-WPg" firstAttribute="leading" secondItem="7Aa-Mf-CAR" secondAttribute="leading" id="Fw6-ji-aVT"/>
                             <constraint firstAttribute="bottom" secondItem="kGh-05-sFS" secondAttribute="bottom" id="JFP-6u-5Pu"/>
                             <constraint firstItem="kGh-05-sFS" firstAttribute="top" secondItem="AIq-BK-WPg" secondAttribute="bottom" id="XjD-bk-fc6"/>
+                            <constraint firstItem="7Aa-Mf-CAR" firstAttribute="trailing" secondItem="AIq-BK-WPg" secondAttribute="trailing" id="chF-es-3AL"/>
                             <constraint firstItem="uh6-Qf-Xeu" firstAttribute="leading" secondItem="7Aa-Mf-CAR" secondAttribute="leading" id="i16-hk-8H6"/>
                             <constraint firstItem="uh6-Qf-Xeu" firstAttribute="top" secondItem="7Aa-Mf-CAR" secondAttribute="top" id="vdg-Zu-WtL"/>
                             <constraint firstItem="kGh-05-sFS" firstAttribute="leading" secondItem="7Aa-Mf-CAR" secondAttribute="leading" id="xfc-NO-e9T"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="kGh-05-sFS" id="xaI-ab-D9H"/>
                         <outlet property="calendarView" destination="uh6-Qf-Xeu" id="oi0-mA-nnv"/>
+                        <outlet property="informationView" destination="AIq-BK-WPg" id="hpt-FI-CZL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgX-rK-gmP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2673.913043478261" y="-131.25"/>
+        </scene>
+        <!--Fee View Controller-->
+        <scene sceneID="ag0-wc-Jcm">
+            <objects>
+                <viewController storyboardIdentifier="FeeViewController" id="e5b-8L-JNP" customClass="FeeViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AQA-WB-uRo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Zh0-CK-9eK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bav-Va-I6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3522" y="-131"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9wb-Pd-fxU">

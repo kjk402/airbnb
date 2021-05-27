@@ -17,6 +17,8 @@ final class LocationViewController: UIViewController {
     private var searchController : UISearchController?
     private var resultsViewController: GMSAutocompleteResultsViewController?
     private var locationManager: LocationManager!
+    private var findingAccommodationManager: FindingAccommodationManager?
+    
     lazy var cancelButton = UIBarButtonItem(title: "지우기", style: .done, target: self, action: #selector(tappedCancelButton))
 
     override func viewDidLoad() {
@@ -26,6 +28,9 @@ final class LocationViewController: UIViewController {
         configureSearchController()
         registerNib()
         cityCollectionView.dataSource = self
+        
+        let networkManager = NetworkManager()
+        findingAccommodationManager = FindingAccommodationManager(networkManager: networkManager)
     }
 
     
@@ -86,7 +91,11 @@ extension LocationViewController: UICollectionViewDataSource {
 extension LocationViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
+        
         let dateViewController = storyboard?.instantiateViewController(identifier: "DateViewController") as! DateViewController
+        findingAccommodationManager?.getCityName(cityName: place.name!)
+        dateViewController.getFindingAccommodationManager(object: findingAccommodationManager!)
+        
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             self.navigationController?.pushViewController(dateViewController, animated: true)
         }

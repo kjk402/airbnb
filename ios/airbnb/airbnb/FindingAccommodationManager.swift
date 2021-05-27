@@ -7,15 +7,15 @@
 
 import Foundation
 
-final class FindingAccommodation {
-    private let cityName: String?
-    private let checkIn: String?
-    private let checkOut: String?
+final class FindingAccommodationManager {
+    private(set) var cityName: String?
+    private var checkIn: String?
+    @Published private(set) var checkOut: String?
     private var allPrices: [Int]?
     private var averagePrices: Int?
     private var maxPrice: Int?
     private var minPrice: Int?
-    private let numOfPeople: Int?
+    private var numOfPeople: Int?
     private var roomList: RoomsList?
     private let networkManager: Networking
     
@@ -57,6 +57,14 @@ final class FindingAccommodation {
         networkManager.getData(url: EndPoint.url(path: .rooms), decodableType: RoomsList.self) { roomList in
             self.roomList = roomList
         }
-        
+    }
+    
+    func getCityName(cityName: String) {
+        self.cityName = cityName
+    }
+    
+    func setCheckInAndOut(checkIn: String?, checkOut: String?) {
+        self.checkIn = checkIn
+        self.checkOut = checkOut
     }
 }

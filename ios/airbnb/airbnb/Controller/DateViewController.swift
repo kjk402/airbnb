@@ -7,18 +7,42 @@
 
 import UIKit
 import FSCalendar
+import Combine
 
 final class DateViewController: UIViewController {
 
     @IBOutlet weak var calendarView: FSCalendar!
+    @IBOutlet weak var informationView: InformationView!
+    @IBOutlet weak var bottomView: BottomView!
+    private var findingAccmmodationManager: FindingAccommodationManager!
+    private var cancelable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarView.delegate = self
-        calendarView.dataSource = self
         setUpCalendarView()
         navigationItem.title = "숙소 찾기"
         tabBarController?.tabBar.isHidden = false
+        setInformationView()
+        tabBarController?.tabBar.isHidden = true
+        bind()
+    }
+    
+    func bind() {
+        findingAccmmodationManager.$checkOut
+            .receive(on: DispatchQueue.main)
+            .sink { checkOut in
+                if checkOut != nil {
+                    self.bottomView.leftButton.setTitle("지우기", for: .normal)
+                    self.bottomView.rightButton.setTitleColor(.black, for: .normal)
+                    self.bottomView.rightButton.isEnabled = true
+                } else {
+                    self.bottomView.leftButton.setTitle("건너뛰기", for: .normal)
+                    self.bottomView.rightButton.setTitleColor(.lightGray, for: .normal)
+                    self.bottomView.rightButton.isEnabled = false
+                }
+            }
+            .store(in: &self.cancelable)
     }
  
     private func setUpCalendarView() {
@@ -29,12 +53,81 @@ final class DateViewController: UIViewController {
         calendarView.appearance.headerTitleColor = .black
         calendarView.locale = Locale(identifier: "ko_KR")
     }
+    
+    private func setInformationView() {
+        self.informationView.locationLabel.text = findingAccmmodationManager.cityName
+    }
+    
+    func setNextButton() {
+        bottomView.convertNextView {
+            guard let viewController = storyboard?.instantiateViewController(identifier: "FeeViewController") as? FeeViewController else { return }
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    func getFindingAccommodationManager(object: FindingAccommodationManager) {
+        self.findingAccmmodationManager = object
+    }
 }
 
 extension DateViewController: FSCalendarDelegate {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일"
+        let minDate = dateFormatter.string(from: calendar.selectedDates.min()!)
+        let maxDate = dateFormatter.string(from: calendar.selectedDates.max()!)
+        
+        if calendar.selectedDates.count >= 2 {
+            self.informationView.periodLabel.text = "\(minDate) - \(maxDate)"
+            findingAccmmodationManager.setCheckInAndOut(checkIn: minDate, checkOut: maxDate)
+            selectDateRange(calendar: calendar)
+        } else if calendar.selectedDates.count == 1 {
+            self.informationView.periodLabel.text = "\(minDate)"
+            findingAccmmodationManager.setCheckInAndOut(checkIn: minDate, checkOut: nil)
+        } else {
+            self.informationView.periodLabel.text = ""
+            findingAccmmodationManager.setCheckInAndOut(checkIn: nil, checkOut: nil)
+        }
+        
+    }
     
-}
-
-extension DateViewController: FSCalendarDataSource {
+    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일"
+        
+        guard let min = calendar.selectedDates.min() else {
+            self.informationView.periodLabel.text = ""
+            findingAccmmodationManager.setCheckInAndOut(checkIn: nil, checkOut: nil)
+            return
+        }
+        let formattingMinDate = dateFormatter.string(from: min)
+        
+        if calendar.selectedDates.count == 1 {
+            self.informationView.periodLabel.text = "\(formattingMinDate)"
+            findingAccmmodationManager.setCheckInAndOut(checkIn: formattingMinDate, checkOut: nil)
+        } else if calendar.selectedDates.count > 1 {
+            let maxDate = calendar.selectedDates.max()!
+            let formattingMaxDate = dateFormatter.string(from: maxDate)
+            self.informationView.periodLabel.text = "\(formattingMinDate) - \(formattingMaxDate)"
+            findingAccmmodationManager.setCheckInAndOut(checkIn: formattingMinDate, checkOut: formattingMaxDate)
+        }
+    }
     
+    func selectDateRange(calendar: FSCalendar) {
+        var dateRange = [Date]()
+        let min = calendar.selectedDates.min()
+        let max = calendar.selectedDates.max()
+        dateRange.append(min!)
+        if Calendar.current.date(byAdding: .day, value: 1, to: min!) == max! {
+            return
+        }
+        while true {
+            let minDate = Calendar.current.date(byAdding: .day, value: 1, to: dateRange.last!)
+            dateRange.append(minDate!)
+            if Calendar.current.date(byAdding: .day, value: 1, to: minDate!) == calendar.selectedDates.max() {
+                dateRange.forEach { calendar.select($0) }
+                return
+            }
+        }
+    }
 }
