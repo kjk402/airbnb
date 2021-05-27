@@ -58,6 +58,13 @@ final class DateViewController: UIViewController {
         self.informationView.locationLabel.text = findingAccmmodationManager.cityName
     }
     
+    func setNextButton() {
+        bottomView.convertNextView {
+            guard let viewController = storyboard?.instantiateViewController(identifier: "FeeViewController") as? FeeViewController else { return }
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
     func getFindingAccommodationManager(object: FindingAccommodationManager) {
         self.findingAccmmodationManager = object
     }

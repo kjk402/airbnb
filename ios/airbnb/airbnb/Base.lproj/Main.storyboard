@@ -296,7 +296,7 @@
         <!--Fee View Controller-->
         <scene sceneID="ag0-wc-Jcm">
             <objects>
-                <viewController id="e5b-8L-JNP" customClass="FeeViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeeViewController" id="e5b-8L-JNP" customClass="FeeViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AQA-WB-uRo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

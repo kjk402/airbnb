@@ -226,10 +226,10 @@
 		B3D73188265289EF00FE6C62 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B3A811EA265F4A4F007FCE43 /* FeeViewController.swift */,
 				B3D7315A26523C4300FE6C62 /* ViewController.swift */,
 				B3D73186265289DA00FE6C62 /* LocationViewController.swift */,
 				B302CD7D265B7F8600FDD896 /* DateViewController.swift */,
+				B3A811EA265F4A4F007FCE43 /* FeeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
