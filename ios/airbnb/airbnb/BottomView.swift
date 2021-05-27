@@ -15,12 +15,13 @@ class BottomView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetUp()
+        rightButton.setTitleColor(.lightGray, for: .normal)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         xibSetUp()
-        rightButton.isEnabled = false
+        rightButton.setTitleColor(.lightGray, for: .normal)
     }
     
     private func xibSetUp() {

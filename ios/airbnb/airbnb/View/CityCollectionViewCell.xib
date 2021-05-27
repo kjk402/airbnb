@@ -40,11 +40,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="382" id="2Ad-1t-RYq"/>
                             <constraint firstItem="osy-ER-C52" firstAttribute="leading" secondItem="8HO-Nd-p0X" secondAttribute="trailing" constant="30" id="3RV-IN-mjp"/>
                             <constraint firstItem="osy-ER-C52" firstAttribute="centerY" secondItem="iuY-zY-ug5" secondAttribute="centerY" id="6el-tu-NQy"/>
                             <constraint firstItem="8HO-Nd-p0X" firstAttribute="top" secondItem="iuY-zY-ug5" secondAttribute="top" id="Fh3-9H-mS6"/>
-                            <constraint firstAttribute="height" constant="64" id="MKa-QW-Syv"/>
                             <constraint firstItem="8HO-Nd-p0X" firstAttribute="leading" secondItem="iuY-zY-ug5" secondAttribute="leading" id="W30-De-Imz"/>
                             <constraint firstAttribute="bottom" secondItem="8HO-Nd-p0X" secondAttribute="bottom" id="t1E-O0-4yF"/>
                         </constraints>
