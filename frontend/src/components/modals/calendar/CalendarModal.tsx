@@ -11,7 +11,7 @@ interface ICalendar {
 	setModalOn: any;
 }
 
-export default function CalendarModal({ type, isActive, setModalOn }: ICalendar) {
+export default function CalendarModal({ type, isActive, setModalOn, setInplaceHolder }: ICalendar) {
 	const handleOutClick = () => {
 		setModalOn(false);
 		window.removeEventListener("click", handleOutClick);
@@ -30,7 +30,7 @@ export default function CalendarModal({ type, isActive, setModalOn }: ICalendar)
 			{isActive && (
 				<ModalContainer type={type} onClick={(e) => handleOnclick(e)}>
 					<ContentWrapper>
-						<CalendarContainer />
+						<CalendarContainer setInplaceHolder={setInplaceHolder} />
 					</ContentWrapper>
 				</ModalContainer>
 			)}

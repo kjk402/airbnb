@@ -16,7 +16,6 @@ export default function SearchBar(props: EmptyInterface) {
 		<StyleSearchBar onClick={handleOnclick}>
 			<SearchFilter type="LOCATION" input="어디로 여행가세요?" isEnd={false} isLocationModalOn={isLocationModalOn} setIsLocationModalOn={setIsLocationModalOn} />
 			<SearchFilter type="CHECKIN" isEnd={false} placeholder={"날짜 입력"} isCalendarModalOn={isCalendarModalOn} setIsCalendarModalOn={setIsCalendarModalOn} calendarToggleCheckInRef={calendarToggleCheckInRef} calendarToggleCheckOutRef={calendarToggleCheckOutRef} />
-			<SearchFilter type="CHECKOUT" isEnd={false} placeholder={"날짜 입력"} isCalendarModalOn={isCalendarModalOn} setIsCalendarModalOn={setIsCalendarModalOn} calendarToggleCheckInRef={calendarToggleCheckInRef} calendarToggleCheckOutRef={calendarToggleCheckOutRef} />
 			<SearchFilter type="FEE" isEnd={false} placeholder={"금액대 설정"} isFeeModalOn={isFeeModalOn} setIsFeeModalOn={setIsFeeModalOn} />
 			<SearchFilter type="GUEST" isEnd={true} placeholder={"게스트 추가"} isGuestModalOn={isGuestModalOn} setIsGuestModalOn={setIsGuestModalOn} />
 		</StyleSearchBar>

@@ -25,13 +25,13 @@ interface SearchFilterInterface {
 
 export default function SearchFilter({ type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn, calendarToggleCheckInRef, calendarToggleCheckOutRef }: SearchFilterInterface) {
 	const [inplaceHolder, setInplaceHolder] = useState(placeholder);
+	const [checkOutValue, setCheckoutValue] = useState(placeholder);
 
 	const handleSearchClick = (e: React.MouseEvent): void => {
 		e.stopPropagation();
 	};
 
 	const handleOnClick = (e: React.MouseEvent, type: string): void => {
-		// e.stopPropagation();
 		if (type === "LOCATION") setIsLocationModalOn((isLocationModalOn: boolean) => !isLocationModalOn);
 		if (type === "FEE") setIsFeeModalOn((isFeeModalOn: boolean) => !isFeeModalOn);
 		if (type === "GUEST") setIsGuestModalOn((isGuestModalOn: boolean) => !isGuestModalOn);
@@ -39,11 +39,26 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 	};
 	return (
 		<SearchFilterWrapper onClick={(e) => handleOnClick(e, type)}>
-			<StyleFilter isEnd={isEnd}>
+			<StyleFilter type={type}>
 				<SearchWrapper isEnd={isEnd}>
-					{parseByType("title", type)}
-					{input && <SearchLocationStyle placeholder={input} />}
-					{placeholder && <div>{inplaceHolder}</div>}
+					{type === "CHECKIN" ? (
+						<CheckInWrapper>
+							<CheckIn>
+								<div>체크인</div>
+								<div>{placeholder && <div>{inplaceHolder}</div>}</div>
+							</CheckIn>
+							<CheckOut>
+								<div>체크아웃</div>
+								<div>{placeholder && <div>{checkOutValue}</div>}</div>
+							</CheckOut>
+						</CheckInWrapper>
+					) : (
+						<>
+							{parseByType("title", type)}
+							{input && <SearchLocationStyle placeholder={input} />}
+							{placeholder && <div>{inplaceHolder}</div>}{" "}
+						</>
+					)}
 				</SearchWrapper>
 			</StyleFilter>
 			{isEnd && (
@@ -52,7 +67,7 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 				</StyleSearchBtn>
 			)}
 
-			{type !== "CHECKOUT" && isCalendarModalOn ? <CalendarModal className="calendar-modal" type={type} setInplaceHolder={setInplaceHolder} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} /> : <></>}
+			{isCalendarModalOn && <CalendarModal className="calendar-modal" type={type} setInplaceHolder={setInplaceHolder} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} />}
 			{isFeeModalOn && <FeeModal type={type} className="fee-modal" setInplaceHolder={setInplaceHolder} isActive={isFeeModalOn} setModalOn={setIsFeeModalOn} />}
 			{isGuestModalOn && <GuestModal type={type} className="guest-modal" setInplaceHolder={setInplaceHolder} isActive={isGuestModalOn} setModalOn={setIsGuestModalOn} />}
 		</SearchFilterWrapper>
@@ -66,22 +81,23 @@ const SearchFilterWrapper = styled.div`
 	align-items: center;
 `;
 
-const StyleFilter = styled.button<{ isEnd: boolean }>`
+const StyleFilter = styled.div<{ type: string }>`
 	font-family: "Noto Sans KR", sans-serif;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	width: 205px;
+	width: ${(props) => (props.type === "CHECKIN" ? "410px" : "205px")};
 	height: 100%;
 	border-radius: 60px;
 	background-color: #ffffff;
 	:hover {
 		background-color: #e0e0e0;
+		cursor: pointer;
 	}
 `;
 
 const SearchWrapper = styled.div<{ isEnd: boolean }>`
-	width: 100%;
+	width: 90%;
 	height: 44px;
 	display: flex;
 	flex-direction: column;
@@ -91,6 +107,26 @@ const SearchWrapper = styled.div<{ isEnd: boolean }>`
 	margin-left: 20px;
 `;
 
+const CheckInWrapper = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+`;
+
+const CheckIn = styled.div`
+	display: flex;
+	height: 44px;
+	flex-direction: column;
+	justify-content: space-around;
+`;
+
+const CheckOut = styled.div`
+	display: flex;
+	height: 44px;
+	flex-direction: column;
+	justify-content: space-around;
+`;
 const SearchLocationStyle = styled.input`
 	border: none;
 `;

@@ -3,8 +3,9 @@ import Day from "./Day";
 
 interface ConProps {
 	data: Date;
+	setInplaceHolder: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
-export default function CalendarCon({ data }: ConProps) {
+export default function CalendarCon({ data, setInplaceHolder }: ConProps) {
 	const year = data.getFullYear();
 	const month = data.getMonth() + 1;
 	const lastDay = new Date(year, month, 0).getDate();
@@ -17,13 +18,13 @@ export default function CalendarCon({ data }: ConProps) {
 	for (let i = 0; i < 7; i++) {
 		weekList.push([
 			<Week>
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
-				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} setInplaceHolder={setInplaceHolder} />
 			</Week>,
 		]);
 		weekDayTitleList.push(<StyleDay key={i}>{weekTitleList[i]}</StyleDay>);
