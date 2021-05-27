@@ -26,6 +26,7 @@ final class DateViewController: UIViewController {
         setInformationView()
         tabBarController?.tabBar.isHidden = true
         bind()
+        setNextButton()
     }
     
     func bind() {
@@ -58,11 +59,13 @@ final class DateViewController: UIViewController {
         self.informationView.locationLabel.text = findingAccmmodationManager.cityName
     }
     
-    func setNextButton() {
-        bottomView.convertNextView {
-            guard let viewController = storyboard?.instantiateViewController(identifier: "FeeViewController") as? FeeViewController else { return }
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
+    private func setNextButton() {
+        bottomView.rightButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func nextButtonTapped() {
+        guard let viewController = storyboard?.instantiateViewController(identifier: "FeeViewController") as? FeeViewController else { return }
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func getFindingAccommodationManager(object: FindingAccommodationManager) {
