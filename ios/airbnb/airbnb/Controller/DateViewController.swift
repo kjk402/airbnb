@@ -65,24 +65,62 @@ final class DateViewController: UIViewController {
 
 extension DateViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        if calendar.selectedDates.count == 2 {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM월 dd일"
-            let minDate = dateFormatter.string(from: calendar.selectedDates.min()!)
-            let maxDate = dateFormatter.string(from: calendar.selectedDates.max()!)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일"
+        let minDate = dateFormatter.string(from: calendar.selectedDates.min()!)
+        let maxDate = dateFormatter.string(from: calendar.selectedDates.max()!)
+        
+        if calendar.selectedDates.count >= 2 {
             self.informationView.periodLabel.text = "\(minDate) - \(maxDate)"
+            findingAccmmodationManager.setCheckInAndOut(checkIn: minDate, checkOut: maxDate)
+            selectDateRange(calendar: calendar)
+        } else if calendar.selectedDates.count == 1 {
+            self.informationView.periodLabel.text = "\(minDate)"
+            findingAccmmodationManager.setCheckInAndOut(checkIn: minDate, checkOut: nil)
+        } else {
+            self.informationView.periodLabel.text = ""
+            findingAccmmodationManager.setCheckInAndOut(checkIn: nil, checkOut: nil)
         }
         
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM월 dd일"
         
+        guard let min = calendar.selectedDates.min() else {
+            self.informationView.periodLabel.text = ""
+            findingAccmmodationManager.setCheckInAndOut(checkIn: nil, checkOut: nil)
+            return
+        }
+        let formattingMinDate = dateFormatter.string(from: min)
+        
+        if calendar.selectedDates.count == 1 {
+            self.informationView.periodLabel.text = "\(formattingMinDate)"
+            findingAccmmodationManager.setCheckInAndOut(checkIn: formattingMinDate, checkOut: nil)
+        } else if calendar.selectedDates.count > 1 {
+            let maxDate = calendar.selectedDates.max()!
+            let formattingMaxDate = dateFormatter.string(from: maxDate)
+            self.informationView.periodLabel.text = "\(formattingMinDate) - \(formattingMaxDate)"
+            findingAccmmodationManager.setCheckInAndOut(checkIn: formattingMinDate, checkOut: formattingMaxDate)
+        }
     }
     
-    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-        if calendar.selectedDates.count == 2  {
-            return false
+    func selectDateRange(calendar: FSCalendar) {
+        var dateRange = [Date]()
+        let min = calendar.selectedDates.min()
+        let max = calendar.selectedDates.max()
+        dateRange.append(min!)
+        if Calendar.current.date(byAdding: .day, value: 1, to: min!) == max! {
+            return
         }
-        return true
+        while true {
+            let minDate = Calendar.current.date(byAdding: .day, value: 1, to: dateRange.last!)
+            dateRange.append(minDate!)
+            if Calendar.current.date(byAdding: .day, value: 1, to: minDate!) == calendar.selectedDates.max() {
+                dateRange.forEach { calendar.select($0) }
+                return
+            }
+        }
     }
 }
