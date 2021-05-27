@@ -300,9 +300,73 @@
                     <view key="view" contentMode="scaleToFill" id="AQA-WB-uRo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b50-sv-mAB">
+                                <rect key="frame" x="16" y="97" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.20000064370000001" green="0.19999992850000001" blue="0.1999979019" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가격 범위" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j10-A6-xpo">
+                                <rect key="frame" x="16" y="60" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74d-7P-TJ4">
+                                <rect key="frame" x="16" y="126" width="31" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AML-7o-eeR" customClass="BottomView" customModule="airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="6vT-ge-pDK"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q8m-mT-S7v" customClass="InformationView" customModule="airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="637" width="414" height="176"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="176" id="pmb-Ne-13o"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ht-1x-mxk" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="207" width="382" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Lps-ba-anu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Zh0-CK-9eK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="b50-sv-mAB" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" constant="16" id="4dU-Zb-QQi"/>
+                            <constraint firstItem="7ht-1x-mxk" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" constant="16" id="5Gh-bI-cYm"/>
+                            <constraint firstAttribute="bottom" secondItem="AML-7o-eeR" secondAttribute="bottom" id="Com-0I-rvg"/>
+                            <constraint firstItem="AML-7o-eeR" firstAttribute="top" secondItem="q8m-mT-S7v" secondAttribute="bottom" id="E9K-02-RJF"/>
+                            <constraint firstItem="7ht-1x-mxk" firstAttribute="top" secondItem="74d-7P-TJ4" secondAttribute="bottom" constant="66.5" id="ECP-t6-3FF"/>
+                            <constraint firstItem="Zh0-CK-9eK" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="74d-7P-TJ4" secondAttribute="trailing" constant="367" id="Fz8-Jb-fhu"/>
+                            <constraint firstItem="Zh0-CK-9eK" firstAttribute="trailing" secondItem="q8m-mT-S7v" secondAttribute="trailing" id="Q4i-Bl-sNY"/>
+                            <constraint firstItem="Zh0-CK-9eK" firstAttribute="trailing" secondItem="7ht-1x-mxk" secondAttribute="trailing" constant="16" id="T3D-0g-OP3"/>
+                            <constraint firstItem="j10-A6-xpo" firstAttribute="top" secondItem="Zh0-CK-9eK" secondAttribute="top" constant="16" id="TDe-Ar-OEU"/>
+                            <constraint firstItem="74d-7P-TJ4" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" constant="16" id="Weo-Oi-6rp"/>
+                            <constraint firstItem="Zh0-CK-9eK" firstAttribute="trailing" secondItem="AML-7o-eeR" secondAttribute="trailing" id="YPO-p1-Op7"/>
+                            <constraint firstItem="74d-7P-TJ4" firstAttribute="top" secondItem="b50-sv-mAB" secondAttribute="bottom" constant="8" id="bRn-la-8zT"/>
+                            <constraint firstItem="q8m-mT-S7v" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" id="dLF-Wm-Er7"/>
+                            <constraint firstItem="j10-A6-xpo" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" constant="16" id="ekD-mb-818"/>
+                            <constraint firstItem="b50-sv-mAB" firstAttribute="top" secondItem="j10-A6-xpo" secondAttribute="bottom" constant="16" id="mW6-il-KBd"/>
+                            <constraint firstItem="AML-7o-eeR" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" id="mbP-Nh-0NI"/>
+                            <constraint firstItem="Zh0-CK-9eK" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="b50-sv-mAB" secondAttribute="trailing" constant="356" id="tEX-bS-yVt"/>
+                            <constraint firstItem="Zh0-CK-9eK" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="j10-A6-xpo" secondAttribute="trailing" constant="353.5" id="zop-6i-rJq"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lineChartView" destination="7ht-1x-mxk" id="xNP-8p-Hu1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bav-Va-I6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
