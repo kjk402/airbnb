@@ -79,11 +79,11 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="400" id="5Li-v7-N2x"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RlB-dV-fil">
-                                                    <size key="itemSize" width="128" height="128"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="16" minimumInteritemSpacing="24" id="RlB-dV-fil">
+                                                    <size key="itemSize" width="253" height="74"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells/>
                                             </collectionView>
@@ -97,21 +97,64 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ymh-LP-H4G">
-                                                <rect key="frame" x="16" y="992" width="382" height="320"/>
+                                                <rect key="frame" x="0.0" y="992" width="414" height="320"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="320" id="sLR-6g-vz6"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wxR-x3-xbo">
-                                                    <size key="itemSize" width="128" height="128"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wxR-x3-xbo">
+                                                    <size key="itemSize" width="253" height="320"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells/>
                                             </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="슬기로운 자연생활" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="966-4p-wtC">
+                                                <rect key="frame" x="16" y="24" width="293" height="82"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="254" id="5xt-4A-hPO"/>
+                                                    <constraint firstAttribute="height" constant="82" id="Gae-62-6qh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="34"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMs-pe-pLK">
+                                                <rect key="frame" x="16" y="122" width="293" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="JtR-aY-hju"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WMf-6N-7sI">
+                                                <rect key="frame" x="16" y="182" width="165" height="38"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여행 아이디어 얻기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TI6-jx-DS3">
+                                                        <rect key="frame" x="19.5" y="9" width="126.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.96091216800000001" green="0.96058207750000002" blue="0.96857136489999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.20000064370000001" green="0.19999992850000001" blue="0.1999979019" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="38" id="9Dh-Wr-TzQ"/>
+                                                    <constraint firstAttribute="width" constant="165" id="beh-dV-98n"/>
+                                                    <constraint firstItem="TI6-jx-DS3" firstAttribute="centerY" secondItem="WMf-6N-7sI" secondAttribute="centerY" id="i2D-t2-cPh"/>
+                                                    <constraint firstItem="TI6-jx-DS3" firstAttribute="centerX" secondItem="WMf-6N-7sI" secondAttribute="centerX" id="lXP-LC-LzS"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayq-bd-qlS">
-                                                <rect key="frame" x="40" y="8" width="334" height="40"/>
+                                                <rect key="frame" x="40" y="569" width="334" height="40"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hLg-8h-w9K">
                                                         <rect key="frame" x="76.5" y="8" width="181" height="24"/>
@@ -146,10 +189,13 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="jOR-bQ-yQt" firstAttribute="top" secondItem="dnw-0t-5Oq" secondAttribute="top" id="1fO-Zg-PpK"/>
+                                            <constraint firstItem="966-4p-wtC" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" constant="16" id="6Ep-kj-OPN"/>
                                             <constraint firstAttribute="trailing" secondItem="ayq-bd-qlS" secondAttribute="trailing" constant="40" id="7Tf-pg-wPm"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ymh-LP-H4G" secondAttribute="trailing" constant="16" id="GY2-yr-2YV"/>
+                                            <constraint firstItem="WMf-6N-7sI" firstAttribute="top" secondItem="NMs-pe-pLK" secondAttribute="bottom" constant="16" id="Eoj-WG-MeL"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ymh-LP-H4G" secondAttribute="trailing" id="GY2-yr-2YV"/>
                                             <constraint firstItem="ayq-bd-qlS" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" constant="40" id="HFQ-Gt-Ii7"/>
-                                            <constraint firstItem="Ymh-LP-H4G" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" constant="16" id="ICm-fC-kon"/>
+                                            <constraint firstItem="Ymh-LP-H4G" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" id="ICm-fC-kon"/>
+                                            <constraint firstItem="966-4p-wtC" firstAttribute="top" secondItem="jOR-bQ-yQt" secondAttribute="top" constant="24" id="JvB-Xb-3Yu"/>
                                             <constraint firstAttribute="trailing" secondItem="jOR-bQ-yQt" secondAttribute="trailing" id="LBv-1N-OlI"/>
                                             <constraint firstAttribute="trailing" secondItem="kbl-hK-I6A" secondAttribute="trailing" id="NQc-Kw-IsP"/>
                                             <constraint firstAttribute="bottom" secondItem="Ymh-LP-H4G" secondAttribute="bottom" id="ORi-zU-eZ2"/>
@@ -159,8 +205,11 @@
                                             <constraint firstItem="kbl-hK-I6A" firstAttribute="top" secondItem="tYG-Ks-xi7" secondAttribute="bottom" constant="24" id="YII-wQ-h6U"/>
                                             <constraint firstItem="mGe-AQ-wFh" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" constant="16" id="aJG-Qn-9zi"/>
                                             <constraint firstItem="Ymh-LP-H4G" firstAttribute="top" secondItem="mGe-AQ-wFh" secondAttribute="bottom" constant="28" id="bgt-8q-5T4"/>
+                                            <constraint firstItem="WMf-6N-7sI" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" constant="16" id="gPO-cI-Fvg"/>
                                             <constraint firstItem="jOR-bQ-yQt" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" id="gor-7K-SdZ"/>
                                             <constraint firstItem="kbl-hK-I6A" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" id="jy8-ci-rID"/>
+                                            <constraint firstItem="NMs-pe-pLK" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" constant="16" id="lnQ-Ul-zkn"/>
+                                            <constraint firstItem="NMs-pe-pLK" firstAttribute="top" secondItem="966-4p-wtC" secondAttribute="bottom" constant="16" id="nlY-CO-UH3"/>
                                             <constraint firstItem="tYG-Ks-xi7" firstAttribute="leading" secondItem="dnw-0t-5Oq" secondAttribute="leading" constant="16" id="oaT-Hc-xlV"/>
                                             <constraint firstItem="tYG-Ks-xi7" firstAttribute="top" secondItem="jOR-bQ-yQt" secondAttribute="bottom" constant="40" id="wJo-q7-VML"/>
                                         </constraints>
@@ -183,8 +232,10 @@
                             <constraint firstItem="nFX-kF-WtB" firstAttribute="top" secondItem="z0S-vr-11t" secondAttribute="top" id="KKB-sn-1kz"/>
                             <constraint firstItem="z0S-vr-11t" firstAttribute="bottom" secondItem="nFX-kF-WtB" secondAttribute="bottom" id="Tgy-cv-bBI"/>
                             <constraint firstItem="ayq-bd-qlS" firstAttribute="top" secondItem="z0S-vr-11t" secondAttribute="top" constant="8" id="UBv-qW-fOf"/>
+                            <constraint firstItem="z0S-vr-11t" firstAttribute="trailing" secondItem="NMs-pe-pLK" secondAttribute="trailing" constant="105" id="bFS-eo-APM"/>
                             <constraint firstItem="z0S-vr-11t" firstAttribute="trailing" secondItem="nFX-kF-WtB" secondAttribute="trailing" id="dhW-zX-zHa"/>
                             <constraint firstItem="nFX-kF-WtB" firstAttribute="leading" secondItem="z0S-vr-11t" secondAttribute="leading" id="erG-vF-xge"/>
+                            <constraint firstItem="z0S-vr-11t" firstAttribute="trailing" secondItem="966-4p-wtC" secondAttribute="trailing" constant="105" id="oOJ-gH-Zox"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GHZ-sw-TNJ">
@@ -193,9 +244,11 @@
                     <connections>
                         <outlet property="cityCollectionView" destination="kbl-hK-I6A" id="7im-xk-F4b"/>
                         <outlet property="curationImage" destination="jOR-bQ-yQt" id="0yA-Et-4OV"/>
+                        <outlet property="curationTitle" destination="966-4p-wtC" id="6ho-ck-2VK"/>
                         <outlet property="searchView" destination="ayq-bd-qlS" id="sE8-CK-XBd"/>
                         <outlet property="spotCollectionView" destination="Ymh-LP-H4G" id="kNh-Ta-dLe"/>
                         <outlet property="spotTitle" destination="mGe-AQ-wFh" id="DHx-Va-stq"/>
+                        <outlet property="subtitle" destination="NMs-pe-pLK" id="gcl-ZE-ip2"/>
                         <segue destination="exg-hB-AFd" kind="show" identifier="local" id="mKg-70-pzN"/>
                     </connections>
                 </viewController>
