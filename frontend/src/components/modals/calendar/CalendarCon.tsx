@@ -15,23 +15,19 @@ export default function CalendarCon({ data }: ConProps) {
 	let day = -firstWeekDay;
 
 	for (let i = 0; i < 7; i++) {
-			weekList.push([
-				<Week>
-				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
-				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
-				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
-				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
-				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
-				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
-				<Day year={year} month={month} day={++day} lastDay={lastDay}key={day}/>
+		weekList.push([
+			<Week>
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
+				<Day year={year} month={month} day={++day} lastDay={lastDay} key={`${year}-${month}-${day}`} />
 			</Week>,
 		]);
 		weekDayTitleList.push(<StyleDay key={i}>{weekTitleList[i]}</StyleDay>);
 	}
-	
-// 1~31 들은 배열
-// 월의 첫 날짜의 요일
-
 	return (
 		<StyleCalendar>
 			<HeaderWrapper>
@@ -85,5 +81,4 @@ const StyleDay = styled.td`
 
 const Week = styled.tr`
 	display: flex;
-	
 `;

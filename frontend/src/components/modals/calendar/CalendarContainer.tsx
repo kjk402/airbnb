@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as Larrow } from "./../../../icons/chevron-left.svg";
 import { ReactComponent as Rarrow } from "./../../../icons/chevron-right.svg";
@@ -7,6 +7,7 @@ import CalendarCon from "./CalendarCon";
 export interface Props {}
 
 export default function CalendarContainer(props: Props) {
+	const CALENDAR_WIDTH = 800;
 	const now = new Date();
 	const [dx, setDx] = useState([-2, -1, 0, 1, 2, 3]);
 	const initialCalendars = [new Date(now.getFullYear(), now.getMonth() + dx[0]), new Date(now.getFullYear(), now.getMonth() + dx[1]), new Date(now.getFullYear(), now.getMonth() + dx[2]), new Date(now.getFullYear(), now.getMonth() + dx[3]), new Date(now.getFullYear(), now.getMonth() + dx[4]), new Date(now.getFullYear(), now.getMonth() + dx[5])];
@@ -17,28 +18,28 @@ export default function CalendarContainer(props: Props) {
 	const [dateList, setDateList] = useState(initialCalendars);
 	const handleLeftClick = () => {
 		setIsLeftClicked(true);
-		setCurPos(() => curPos + 800);
+		setCurPos(() => curPos + CALENDAR_WIDTH);
 	};
 	const handleRightClick = () => {
 		setIsRightClicked(true);
-		setCurPos(() => curPos - 800);
+		setCurPos(() => curPos - CALENDAR_WIDTH);
 	};
 	const handleSlideEnd = () => {
 		if (isLeftClicked) {
 			setIsLeftClicked(false);
 			setDx(dx.map((el) => el - 2));
-			setCurPos(() => curPos - 800);
+			setCurPos(() => curPos - CALENDAR_WIDTH);
 		}
 		if (isRightClicked) {
 			setIsRightClicked(false);
 			setDx(dx.map((el) => el + 2));
-			setCurPos(() => curPos + 800);
+			setCurPos(() => curPos + CALENDAR_WIDTH);
 		}
 	};
 
 	useEffect(() => {
 		setDateList(dateList.map((date, i) => new Date(now.getFullYear(), now.getMonth() + dx[i])));
-	}, [curPos]);
+	}, [dx]);
 	const calendarList = dateList.map((calendar, idx) => <CalendarCon key={idx} data={calendar} />);
 
 	return (
@@ -58,9 +59,7 @@ export default function CalendarContainer(props: Props) {
 	);
 }
 
-const StyleContainer = styled.div`
-	/* border: 1px solid red; */
-`;
+const StyleContainer = styled.div``;
 
 const Slider = styled.div<{ curPos: number }>`
 	height: 100%;
@@ -68,7 +67,7 @@ const Slider = styled.div<{ curPos: number }>`
 	align-items: center;
 	transform: ${(props) => `translateX(${props.curPos}px)`};
 	&.on-slide {
-		transition: all, 0.2s;
+		transition: transform, 0.2s;
 	}
 `;
 

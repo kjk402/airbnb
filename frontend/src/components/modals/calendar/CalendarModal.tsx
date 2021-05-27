@@ -41,8 +41,7 @@ export default function CalendarModal({ type, isActive, setModalOn }: ICalendar)
 const ContentWrapper = styled.div`
 	display: flex;
 	justify-content: center;
-	width: 800px; /* 나중에 슬라이더를 이만큼 이동시키자. */
+	width: 800px;
 	height: 85%;
-	/* border: 1px solid green; */
 	overflow: hidden;
 `;
