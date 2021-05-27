@@ -7,12 +7,15 @@
 
 import UIKit
 import FSCalendar
+import Combine
 
 final class DateViewController: UIViewController {
 
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var informationView: InformationView!
+    @IBOutlet weak var bottomView: BottomView!
     private var findingAccmmodationManager: FindingAccommodationManager!
+    private var cancelable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,24 @@ final class DateViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
         setInformationView()
         tabBarController?.tabBar.isHidden = true
+        bind()
+    }
+    
+    func bind() {
+        findingAccmmodationManager.$checkOut
+            .receive(on: DispatchQueue.main)
+            .sink { checkOut in
+                if checkOut != nil {
+                    self.bottomView.leftButton.setTitle("지우기", for: .normal)
+                    self.bottomView.rightButton.setTitleColor(.black, for: .normal)
+                    self.bottomView.rightButton.isEnabled = true
+                } else {
+                    self.bottomView.leftButton.setTitle("건너뛰기", for: .normal)
+                    self.bottomView.rightButton.setTitleColor(.lightGray, for: .normal)
+                    self.bottomView.rightButton.isEnabled = false
+                }
+            }
+            .store(in: &self.cancelable)
     }
  
     private func setUpCalendarView() {
