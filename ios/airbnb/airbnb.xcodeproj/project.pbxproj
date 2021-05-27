@@ -55,6 +55,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B3A811F2265F6F79007FCE43 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B30210FF26575A8000A0AA92 /* SpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpotCollectionViewCell.swift; path = airbnb/SpotCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		B302110026575A8000A0AA92 /* SpotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SpotCollectionViewCell.xib; path = airbnb/SpotCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -264,6 +277,7 @@
 				B3D7315126523C4300FE6C62 /* Resources */,
 				CDA993137936CC98A60C6C9F /* [CP] Copy Pods Resources */,
 				BE8598E1789B7125603FF524 /* [CP] Embed Pods Frameworks */,
+				B3A811F2265F6F79007FCE43 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
