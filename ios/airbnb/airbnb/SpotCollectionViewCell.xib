@@ -26,13 +26,17 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="250" id="2G8-8S-DeP"/>
                             <constraint firstItem="tWI-n9-xHU" firstAttribute="top" secondItem="yU0-C8-9ff" secondAttribute="top" id="Sou-qB-GFd"/>
                             <constraint firstAttribute="bottom" secondItem="tWI-n9-xHU" secondAttribute="bottom" id="YSd-Xj-hzE"/>
                             <constraint firstAttribute="trailing" secondItem="tWI-n9-xHU" secondAttribute="trailing" id="kUP-1E-qjg"/>
                             <constraint firstItem="tWI-n9-xHU" firstAttribute="leading" secondItem="yU0-C8-9ff" secondAttribute="leading" id="mkS-6L-oa4"/>
-                            <constraint firstAttribute="height" constant="250" id="tZc-cP-SCE"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
