@@ -43,6 +43,6 @@ const ContentWrapper = styled.div`
 	justify-content: center;
 	width: 800px; /* 나중에 슬라이더를 이만큼 이동시키자. */
 	height: 85%;
-	border: 1px solid green;
-	/* overflow: hidden; */
+	/* border: 1px solid green; */
+	overflow: hidden;
 `;
