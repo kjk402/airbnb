@@ -1,29 +1,95 @@
 package com.example.airbnb.domain;
 
+import com.example.airbnb.dto.EmailDTO;
+import com.example.airbnb.dto.TokenDTO;
+import com.example.airbnb.dto.UserInfoDTO;
 import org.springframework.data.annotation.Id;
 
 public class User {
-    @Id
-    private final Long id;
-    private final String githubId;
-    private final String githubEmail;
 
-    public User(Long id, String githubId, String githubEmail) {
-        this.id = id;
-        this.githubId = githubId;
-        this.githubEmail = githubEmail;
+    @Id
+    private Long id;
+    private String userId;
+    private String email;
+    private String name;
+    private String token;
+
+    public User() {}
+
+    public User(String userId, String email, String name, String token) {
+        this.userId = userId;
+        this.email = email;
+        this.name = name;
+        this.token = token;
+    }
+
+    public static User createUser(UserInfoDTO userInfoDTO, EmailDTO emailDTO, TokenDTO tokenDTO) {
+        return new User(userInfoDTO.getUserId(), emailDTO.getEmail(), userInfoDTO.getName(), tokenDTO.getAccessToken());
+    }
+
+    public void update(UserInfoDTO userInfoDTO, EmailDTO emailDTO, TokenDTO tokenDTO) {
+        this.userId = userInfoDTO.getUserId();
+        this.email = emailDTO.getEmail();
+        this.name = userInfoDTO.getName();
+        this.token = tokenDTO.getAccessToken();
+    }
+
+    public void removeToken() {
+        this.token = null;
+    }
+
+    public boolean verifyToken(String token) {
+        return this.token.equals(token);
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getGithubId() {
-        return githubId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getGithubEmail() {
-        return githubEmail;
+    public String getUserId() {
+        return userId;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", userId='" + userId + '\'' +
+                ", token='" + token + '\'' +
+                '}';
+    }
 }

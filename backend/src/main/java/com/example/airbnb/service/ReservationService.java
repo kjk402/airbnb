@@ -1,5 +1,8 @@
 package com.example.airbnb.service;
 
+import com.example.airbnb.dao.UserDAO;
+import com.example.airbnb.domain.User;
+import com.example.airbnb.dto.ReservationList;
 import com.example.airbnb.utils.Calculators;
 import com.example.airbnb.dao.ReservationDAO;
 import com.example.airbnb.dao.RoomDAO;
@@ -14,27 +17,37 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.airbnb.service.UserService.getUserFromAuthorization;
+
 @Service
 public class ReservationService {
     private final RoomDAO roomDAO;
     private final ReservationDAO reservationDAO;
+    private final UserDAO userDAO;
 
-    public ReservationService(RoomDAO roomDAO, ReservationDAO reservationDAO) {
+    public ReservationService(RoomDAO roomDAO, ReservationDAO reservationDAO, UserDAO userDAO) {
         this.roomDAO = roomDAO;
         this.reservationDAO = reservationDAO;
+        this.userDAO = userDAO;
     }
 
-    public ReservationDTO confirmAndReserve(Long roomId, LocalDate checkIn, LocalDate checkOut, int guestCount) {
+    public ReservationDTO confirmAndReserve(String authorization, Long roomId, LocalDate checkIn, LocalDate checkOut, int guestCount) {
         validateConditions(roomId, checkIn, checkOut, guestCount);
-        return reservationRoom(roomId, checkIn, checkOut, guestCount);
+        return reservationRoom(authorization, roomId, checkIn, checkOut, guestCount);
     }
 
-    public ReservationDTO reservationRoom(Long roomId, LocalDate checkIn, LocalDate checkOut, int guestCount) {
+    public ReservationDTO reservationRoom(String authorization, Long roomId, LocalDate checkIn, LocalDate checkOut, int guestCount) {
+        User user = getUserFromAuthorization(userDAO, authorization);
         RoomDTO roomDTO = roomDAO.findSingleRoom(roomId).orElseThrow(() -> new NotFoundDataException("해당하는 방이 없습니다."));
         int days = Calculators.calculatePeriod(checkIn, checkOut);
         int totalPrice = new Receipt(roomDTO, days).getTotalPrice();
-        Long reservationId = reservationDAO.reservationRoom(roomId, checkIn, checkOut, guestCount, totalPrice);
+        Long reservationId = reservationDAO.reservationRoom(user, roomId, checkIn, checkOut, guestCount, totalPrice);
         return reservationDAO.getReservationByReservationId(reservationId).orElseThrow(() -> new NotFoundDataException("해당하는 예약이 없습니다."));
+    }
+
+    public List<ReservationList> getReservationsByUser(String authorization) {
+        User user = getUserFromAuthorization(userDAO, authorization);
+        return reservationDAO.findMultipleReservations(user.getId());
     }
 
     public void cancelReservation(Long reservationId) {
