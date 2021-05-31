@@ -1,9 +1,17 @@
-import { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import ModalContainer from "../../../styles/ModalContainer";
 import { ModalInterface } from "../../../utils/interfaces";
 
-export default function FeeModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
+function FeeModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
+	const DATA = [75000, 79000, 79000, 80000, 80000, 85000, 85000, 85000, 85000, 85000, 90000, 90000, 90000, 90000, 90000, 90000, 92000, 92000, 95000, 95000, 95000, 95000, 95000, 95000, 95000, 95000, 95000, 98000, 98000, 98000, 98000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000];
+	const MIN = `${DATA[0]}`;
+	const MAX = "100000";
+	const [leftSliderValue, setLeftSliderValue] = useState(MIN);
+	const [rightSliderValue, setRightSliderValue] = useState("100000");
+	const priceList = DATA.map((price) => price + "");
+	const optionList = priceList.map((price, idx) => <option key={idx} value={price}></option>);
+
 	const handleOutClick = () => {
 		setModalOn(false);
 		window.removeEventListener("click", handleOutClick);
@@ -13,8 +21,19 @@ export default function FeeModal({ type, setInplaceHolder, isActive, setModalOn 
 		window.addEventListener("click", handleOutClick);
 	}, []);
 
-	const handleOnclick = (e: any) => {
+	const handleOnclick = (e: React.MouseEvent) => {
 		e.stopPropagation();
+	};
+
+	const changeL = (e: React.FormEvent<HTMLInputElement>) => {
+		const numLeft = Number(e.currentTarget.value);
+		const numRight = Number(rightSliderValue);
+		setLeftSliderValue(`${Math.min(numLeft, numRight)}`);
+	};
+	const changeR = (e: React.FormEvent<HTMLInputElement>) => {
+		const numLeft = Number(leftSliderValue);
+		const numRight = Number(e.currentTarget.value);
+		setRightSliderValue(`${Math.max(numLeft, numRight)}`);
 	};
 	return (
 		<>
@@ -23,16 +42,28 @@ export default function FeeModal({ type, setInplaceHolder, isActive, setModalOn 
 					<ContentWrapper>
 						<Title>가격 범위</Title>
 
-						<PriceRange>100,000 - 1,000,000+</PriceRange>
-						<PriceAvg>평균 1박 요금은 165,556 입니다.</PriceAvg>
+						<PriceRange>
+							￦{leftSliderValue} - ￦{rightSliderValue === "100000" ? rightSliderValue + "+" : rightSliderValue}
+						</PriceRange>
+						<PriceAvg>평균 1박 요금은 ￦$10 입니다.</PriceAvg>
 
-						<StyleGraph>그래프</StyleGraph>
+						<StyleGraph>
+							<svg width="365" height="100"></svg>
+							<RangeSlider>
+								<input type="range" min={MIN} max={MAX} value={leftSliderValue} onInput={changeL} className="left" list={`${priceList}`} />
+								<input type="range" min={MIN} max={MAX} value={rightSliderValue} onInput={changeR} className="right" list={`${priceList}`} />
+								<datalist id={`${priceList}`}>{optionList};</datalist>
+							</RangeSlider>
+						</StyleGraph>
 					</ContentWrapper>
 				</ModalContainer>
 			)}
 		</>
 	);
 }
+
+const FeeModalMemo = React.memo(FeeModal);
+export default FeeModalMemo;
 
 const ContentWrapper = styled.div`
 	display: flex;
@@ -55,8 +86,29 @@ const PriceAvg = styled.div`
 `;
 
 const StyleGraph = styled.div`
+	position: relative;
 	width: 365px;
 	height: 100px;
 	border: 1px solid red;
 	margin: 30px 0;
+`;
+
+const RangeSlider = styled.div`
+	position: relative;
+	input[type="range"] {
+		position: absolute;
+		pointer-events: none;
+		top: 0px;
+		z-index: 2;
+		height: 10px;
+		width: 100%;
+		cursor: pointer;
+	}
+
+	input[type="range"]::-webkit-slider-thumb {
+		pointer-events: all;
+		border-radius: 0;
+		border: 0 none;
+		-webkit-appearance: none;
+	}
 `;

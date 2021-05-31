@@ -4,6 +4,7 @@ import { ReactComponent as SearchIcon } from "./../../icons/search.svg";
 import parseByType from "../../utils/parseByType";
 import CalendarModal from "../modals/calendar/CalendarModal";
 import FeeModal from "../modals/fee/FeeModal";
+import FeeModalMemo from "../modals/fee/FeeModal";
 import GuestModal from "../modals/guest/GuestModal";
 
 interface SearchFilterInterface {
@@ -68,7 +69,7 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 			)}
 
 			{isCalendarModalOn && <CalendarModal className="calendar-modal" type={type} setCheckInValue={setInplaceHolder} setCheckoutValue={setCheckoutValue} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} checkInValue={inplaceHolder} checkOutValue={checkOutValue} />}
-			{isFeeModalOn && <FeeModal type={type} className="fee-modal" setInplaceHolder={setInplaceHolder} isActive={isFeeModalOn} setModalOn={setIsFeeModalOn} />}
+			{isFeeModalOn && <FeeModalMemo type={type} className="fee-modal" setInplaceHolder={setInplaceHolder} isActive={isFeeModalOn} setModalOn={setIsFeeModalOn} />}
 			{isGuestModalOn && <GuestModal type={type} className="guest-modal" setInplaceHolder={setInplaceHolder} isActive={isGuestModalOn} setModalOn={setIsGuestModalOn} />}
 		</SearchFilterWrapper>
 	);
