@@ -29,11 +29,13 @@ function FeeModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterfa
 		const numLeft = Number(e.currentTarget.value);
 		const numRight = Number(rightSliderValue);
 		setLeftSliderValue(`${Math.min(numLeft, numRight)}`);
+		setInplaceHolder(`${leftSliderValue}-${rightSliderValue}`);
 	};
 	const changeR = (e: React.FormEvent<HTMLInputElement>) => {
 		const numLeft = Number(leftSliderValue);
 		const numRight = Number(e.currentTarget.value);
 		setRightSliderValue(`${Math.max(numLeft, numRight)}`);
+		setInplaceHolder(`${leftSliderValue}-${rightSliderValue}`);
 	};
 	return (
 		<>

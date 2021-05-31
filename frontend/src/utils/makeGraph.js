@@ -52,3 +52,25 @@ export default function makePath(points) {
 	}
 	return result;
 }
+
+window.onload = function () {
+	var graph = [75000, 79000, 79000, 80000, 80000, 85000, 85000, 85000, 85000, 85000, 90000, 90000, 90000, 90000, 90000, 90000, 92000, 92000, 95000, 95000, 95000, 95000, 95000, 95000, 95000, 95000, 95000, 98000, 98000, 98000, 98000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000];
+	var graph2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100000 - 75000, 100000 - 79000, 100000 - 79000, 100000 - 80000, 100000 - 80000, 100000 - 85000, 100000 - 85000, 100000 - 85000, 100000 - 85000, 100000 - 85000, 100000 - 90000, 100000 - 90000, 100000 - 90000, 100000 - 90000, 100000 - 90000, 100000 - 90000, 100000 - 92000, 100000 - 92000, 100000 - 95000, 100000 - 95000, 100000 - 95000, 100000 - 95000, 100000 - 95000, 100000 - 95000, 100000 - 95000, 100000 - 95000, 100000 - 95000, 100000 - 98000, 100000 - 98000, 100000 - 98000, 100000 - 98000];
+	var points = [];
+	var points2 = [];
+	for (var i = 0; i < graph.length; i++) {
+		points.push({ x: i * 7, y: graph[i] * 0.003 * -1 + 320 });
+		points2.push({ x: i * 7, y: graph2[i] * 0.003 * -1 + 320 });
+	}
+	document.querySelector("#svg path").setAttribute("d", makePath(points));
+	document.querySelector("#svg2 path").setAttribute("d", makePath(points2));
+	// 좌표 점 찍기 설정
+	// for (var i = 0; i < points.length; i++) {
+	// 	var circle = points[i];
+	// 	var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+	// 	c.setAttribute("cx", circle.x); // 좌표 점 x 위치
+	// 	c.setAttribute("cy", circle.y); // 좌표 점 y 위치
+	// 	// c.setAttribute("r", "1"); // 좌표 점 크기
+	// 	document.querySelector("#svg").appendChild(c);
+	// }
+};
