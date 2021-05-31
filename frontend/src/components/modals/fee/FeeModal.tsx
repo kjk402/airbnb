@@ -103,12 +103,18 @@ const RangeSlider = styled.div`
 		height: 10px;
 		width: 100%;
 		cursor: pointer;
+		-webkit-appearance: none;
+		background: transparent;
+		outline: none;
 	}
 
 	input[type="range"]::-webkit-slider-thumb {
+		background: url("/pause-circle.png") no-repeat;
+		background-position: center center;
+		width: 20px;
+		height: 20px;
 		pointer-events: all;
-		border-radius: 0;
-		border: 0 none;
+		border-radius: 50%;
 		-webkit-appearance: none;
 	}
 `;
