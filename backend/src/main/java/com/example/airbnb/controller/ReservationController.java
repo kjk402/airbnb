@@ -38,13 +38,16 @@ public class ReservationController {
     @DeleteMapping("/{reservationId}")
     @ApiOperation(value = "예약 취소", notes = "예약을 취소합니다.")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteReservation(@ApiParam("예약 식별자") @PathVariable Long reservationId) {
-        reservationService.cancelReservation(reservationId);
+    public void deleteReservation(
+            @ApiParam(value = "토큰", example = "Bearer ") @RequestHeader String authorization,
+            @ApiParam("예약 식별자") @PathVariable Long reservationId) {
+        reservationService.cancelReservation(authorization, reservationId);
     }
 
     @GetMapping
     @ApiOperation(value = "예약 보기", notes = "유저별 예약현황을 보여줍니다.")
-    public List<ReservationList> getRoomDetail(@ApiParam(value = "토큰", example = "Bearer ") @RequestHeader String authorization) {
+    public List<ReservationList> getRoomDetail(
+            @ApiParam(value = "토큰", example = "Bearer ") @RequestHeader String authorization) {
         return reservationService.getReservationsByUser(authorization);
     }
 

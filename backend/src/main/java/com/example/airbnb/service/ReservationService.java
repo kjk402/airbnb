@@ -3,6 +3,7 @@ package com.example.airbnb.service;
 import com.example.airbnb.dao.UserDAO;
 import com.example.airbnb.domain.User;
 import com.example.airbnb.dto.ReservationList;
+import com.example.airbnb.exception.UserMatchingException;
 import com.example.airbnb.utils.Calculators;
 import com.example.airbnb.dao.ReservationDAO;
 import com.example.airbnb.dao.RoomDAO;
@@ -50,7 +51,12 @@ public class ReservationService {
         return reservationDAO.findMultipleReservations(user.getId());
     }
 
-    public void cancelReservation(Long reservationId) {
+    public void cancelReservation(String authorization, Long reservationId) {
+        String userId = reservationDAO.getReservationByReservationId(reservationId).orElseThrow(() -> new NotFoundDataException("해당하는 예약이 없습니다.")).getUserId();
+        User user = getUserFromAuthorization(userDAO, authorization);
+        if (!userId.equals(user.getUserId())) {
+            throw new UserMatchingException("본인의 예약만 취소가능합니다.");
+        }
         reservationDAO.cancelReservationById(reservationId);
     }
 
@@ -80,6 +86,5 @@ public class ReservationService {
         List<Long> exceedRoomList = new ArrayList<>(roomDAO.headcountCondition(guestCount));
         return exceedRoomList.contains(roomId);
     }
-
 
 }

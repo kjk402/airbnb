@@ -30,12 +30,22 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`city` (
 -- -----------------------------------------------------
 -- Table `airbnb`.`user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `airbnb`.`user` ;
+-- DROP TABLE IF EXISTS `airbnb`.`user` ;
+--
+-- CREATE TABLE IF NOT EXISTS `airbnb`.`user` (
+--     `id` BIGINT NOT NULL AUTO_INCREMENT,
+--     `github_id` VARCHAR(45) NOT NULL,
+--     `github_email` VARCHAR(45) NOT NULL,
+--     PRIMARY KEY (`id`))
+--     ENGINE = InnoDB;
 
+DROP TABLE IF EXISTS `airbnb`.`user`;
 CREATE TABLE IF NOT EXISTS `airbnb`.`user` (
-    `id` BIGINT NOT NULL AUTO_INCREMENT,
-    `github_id` VARCHAR(45) NOT NULL,
-    `github_email` VARCHAR(45) NOT NULL,
+                                               `id` BIGINT AUTO_INCREMENT NOT NULL,
+                                               `user_id` VARCHAR(45) UNIQUE KEY NOT NULL,
+    `email` VARCHAR(45) NOT NULL,
+    `name` VARCHAR(45) NULL,
+    `token` VARCHAR(255) NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
@@ -108,3 +118,5 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`image`(
     `room` BIGINT,
     CONSTRAINT room_image_foreign_key FOREIGN KEY (`room`) references `room` (id)
     );
+
+

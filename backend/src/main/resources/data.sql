@@ -10,6 +10,12 @@ VALUES (1, '서울', 'https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b71
        (7, '부산', 'https://a0.muscache.com/im/pictures/f7736f4a-f8b9-4527-b46c-d0d8df856984.jpg?im_q=medq&im_w=240'),
        (8, '제주', 'https://a0.muscache.com/im/pictures/85bd76fe-3c73-4e79-b581-36b9676892f7.jpg?im_q=medq&im_w=240');
 
+-- INSERT INTO user (user_id, email, `name`, token)
+-- VALUES ('kjk402', 'joonki402@gmail.com', NULL, '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');
+--
+
+
+
 /*
 INSERT INTO location
     (id, latitude, longitude, city)
