@@ -26,6 +26,9 @@ export default function CalendarModal({ filter, setFilter, type, isActive, setMo
 
 	useEffect(() => {
 		window.addEventListener("click", handleOutClick);
+		const newSearchFilter = { checkIn: checkInValue, checkOut: checkOutValue };
+		Object.assign(filter, newSearchFilter);
+		setFilter(filter);
 	}, []);
 
 	const handleOnclick = (e: React.MouseEvent) => {

@@ -2,8 +2,9 @@ import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import ModalContainer from "../../../styles/ModalContainer";
 import { ModalInterface } from "../../../utils/interfaces";
-import { getURL, Urls } from "./../../../utils/url";
+import { getURL } from "./../../../utils/url";
 import makeKRW from "./../../../utils/makeKRW";
+import { ReactComponent as XCircle } from "./../../../icons/x-circle.svg";
 
 function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
 	const [data, setData] = useState([]);
@@ -60,6 +61,11 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 		Object.assign(filter, newSearchFilter);
 		setFilter(filter);
 	};
+
+	const cleanUpPrice = (e: React.MouseEvent) => {
+		e.stopPropagation();
+		setInplaceHolder("금액대 설정");
+	};
 	return (
 		<>
 			{isActive && (
@@ -70,7 +76,7 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 						<PriceRange>
 							￦{makeKRW(Number(leftSliderValue))} ~ ￦{rightSliderValue === "100000" ? makeKRW(Number(rightSliderValue)) + "+" : makeKRW(Number(rightSliderValue))}
 						</PriceRange>
-						{data ? <PriceAvg>평균 1박 요금은 ￦{avgPrice} 입니다.</PriceAvg> : <PriceAvg>여행 도시 및 체크인/아웃 날짜를 먼저 선택해주세요.</PriceAvg>}
+						{data ? <PriceAvg>평균 1박 요금은 ￦{avgPrice} 입니다.</PriceAvg> : <PriceAvg>도시, 여행일자를 먼저 입력해주세요😅</PriceAvg>}
 
 						<StyleGraph>
 							<svg width="365" height="100"></svg>
@@ -82,6 +88,13 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 						</StyleGraph>
 					</ContentWrapper>
 				</ModalContainer>
+			)}
+			{Number(leftSliderValue) >= 0 ? (
+				<XCircleWrapper onClick={cleanUpPrice}>
+					<XCircle className="x-circle" />
+				</XCircleWrapper>
+			) : (
+				<></>
 			)}
 		</>
 	);
@@ -141,5 +154,18 @@ const RangeSlider = styled.div`
 		pointer-events: all;
 		border-radius: 50%;
 		-webkit-appearance: none;
+	}
+`;
+
+const XCircleWrapper = styled.div`
+	position: absolute;
+	left: 160px;
+	background: none;
+	z-index: 1;
+	* {
+		:hover {
+			fill: "#e4e4e4";
+			cursor: pointer;
+		}
 	}
 `;
