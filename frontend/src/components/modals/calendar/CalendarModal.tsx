@@ -8,6 +8,8 @@ interface ICalendar {
 	type: string;
 	checkInValue: string | undefined;
 	checkOutValue: string | undefined;
+	filter: any;
+	setFilter: any;
 	setCheckInValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 	setCheckoutValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 	className?: string;
@@ -15,7 +17,7 @@ interface ICalendar {
 	setModalOn: any;
 }
 
-export default function CalendarModal({ type, isActive, setModalOn, setCheckInValue, setCheckoutValue, checkInValue, checkOutValue }: ICalendar) {
+export default function CalendarModal({ filter, setFilter, type, isActive, setModalOn, setCheckInValue, setCheckoutValue, checkInValue, checkOutValue }: ICalendar) {
 	const clickCntRef = useRef(0);
 	const handleOutClick = () => {
 		setModalOn(false);
@@ -42,7 +44,7 @@ export default function CalendarModal({ type, isActive, setModalOn, setCheckInVa
 			{isActive && (
 				<ModalContainer type={type} onClick={(e) => handleOnclick(e)}>
 					<ContentWrapper>
-						<CalendarContainer checkInValue={checkInValue} checkOutValue={checkOutValue} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} />
+						<CalendarContainer filter={filter} setFilter={setFilter} checkInValue={checkInValue} checkOutValue={checkOutValue} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} clickCntRef={clickCntRef} />
 					</ContentWrapper>
 				</ModalContainer>
 			)}

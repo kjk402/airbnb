@@ -6,7 +6,7 @@ import { ReactComponent as Minus } from "./../../../icons/minus.svg";
 import { ReactComponent as Plus } from "./../../../icons/plus.svg";
 import { ReactComponent as XCircle } from "./../../../icons/x-circle.svg";
 
-export default function GuestModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
+export default function GuestModal({ filter, setFilter, type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
 	const [adultCount, setAdultCount] = useState<number>(0);
 	const [childCount, setChildCount] = useState<number>(0);
 	const [infantCount, setInfantCount] = useState<number>(0);
@@ -29,8 +29,12 @@ export default function GuestModal({ type, setInplaceHolder, isActive, setModalO
 
 	useEffect(() => {
 		totalGuest.current = adultCount + childCount;
-		if (totalGuest.current) setInplaceHolder(`게스트 ${totalGuest.current}명, 유아 ${infantCount}명`);
-		else setInplaceHolder("게스트 추가");
+		if (totalGuest.current) {
+			setInplaceHolder(`게스트 ${totalGuest.current}명, 유아 ${infantCount}명`);
+		} else setInplaceHolder("게스트 추가");
+		const newSearchFilter = { numOfPeople: adultCount + childCount };
+		Object.assign(filter, newSearchFilter);
+		setFilter(filter);
 	});
 
 	const cleanUpGuest = (e: any) => {

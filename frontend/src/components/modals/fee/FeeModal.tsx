@@ -2,14 +2,28 @@ import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import ModalContainer from "../../../styles/ModalContainer";
 import { ModalInterface } from "../../../utils/interfaces";
+import { getURL, Urls } from "./../../../utils/url";
 
-function FeeModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
-	const DATA = [75000, 79000, 79000, 80000, 80000, 85000, 85000, 85000, 85000, 85000, 90000, 90000, 90000, 90000, 90000, 90000, 92000, 92000, 95000, 95000, 95000, 95000, 95000, 95000, 95000, 95000, 95000, 98000, 98000, 98000, 98000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000];
-	const MIN = `${DATA[0]}`;
+function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
+	const [data, setData] = useState([]);
+	const [avgPrice, setAvgPrice] = useState();
+	const MIN = `0`;
 	const MAX = "100000";
 	const [leftSliderValue, setLeftSliderValue] = useState(MIN);
 	const [rightSliderValue, setRightSliderValue] = useState("100000");
-	const priceList = DATA.map((price) => price + "");
+
+	const fetchData = async () => {
+		const url = getURL("price", filter.checkIn, filter.checkOut, filter.city);
+		try {
+			const res = await fetch(url);
+			const json = await res.json();
+			setAvgPrice(json.averagePrice);
+			setData(json.allPrices);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+	const priceList = data.map((price) => price + "");
 	const optionList = priceList.map((price, idx) => <option key={idx} value={price}></option>);
 
 	const handleOutClick = () => {
@@ -18,6 +32,7 @@ function FeeModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterfa
 	};
 
 	useEffect(() => {
+		fetchData();
 		window.addEventListener("click", handleOutClick);
 	}, []);
 
@@ -30,12 +45,18 @@ function FeeModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterfa
 		const numRight = Number(rightSliderValue);
 		setLeftSliderValue(`${Math.min(numLeft, numRight)}`);
 		setInplaceHolder(`${leftSliderValue}-${rightSliderValue}`);
+		const newSearchFilter = { minPrice: leftSliderValue };
+		Object.assign(filter, newSearchFilter);
+		setFilter(filter);
 	};
 	const changeR = (e: React.FormEvent<HTMLInputElement>) => {
 		const numLeft = Number(leftSliderValue);
 		const numRight = Number(e.currentTarget.value);
 		setRightSliderValue(`${Math.max(numLeft, numRight)}`);
 		setInplaceHolder(`${leftSliderValue}-${rightSliderValue}`);
+		const newSearchFilter = { maxPrice: rightSliderValue };
+		Object.assign(filter, newSearchFilter);
+		setFilter(filter);
 	};
 	return (
 		<>
@@ -47,7 +68,7 @@ function FeeModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterfa
 						<PriceRange>
 							￦{leftSliderValue} - ￦{rightSliderValue === "100000" ? rightSliderValue + "+" : rightSliderValue}
 						</PriceRange>
-						<PriceAvg>평균 1박 요금은 ￦$10 입니다.</PriceAvg>
+						<PriceAvg>평균 1박 요금은 ￦{avgPrice} 입니다.</PriceAvg>
 
 						<StyleGraph>
 							<svg width="365" height="100"></svg>
