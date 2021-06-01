@@ -11,6 +11,8 @@ import Charts
 class FeeViewController: UIViewController {
 
     @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var informationView: InformationView!
+    @IBOutlet weak var bottomView: BottomView!
     
     var findingAccommodationManager: FindingAccommodationManager!
     let rangeSlider = RangeSlider(frame: .zero)
@@ -19,6 +21,22 @@ class FeeViewController: UIViewController {
         super.viewDidLoad()
         setChartView()
         setRangeSlider()
+        setInformationView()
+        setBottomViewLeftButton()
+    }
+    
+    private func setInformationView() {
+        informationView.setLocationLabel(text: findingAccommodationManager.cityName!)
+        informationView.setperiodLabel(min: findingAccommodationManager.checkIn!, max: findingAccommodationManager.checkOut!)
+    }
+    
+    func setBottomViewLeftButton() {
+        self.bottomView.leftButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    @objc func buttonTapped() {
+        guard let viewController = storyboard?.instantiateViewController(identifier: "PersonnelViewController") as? PersonnelViewController else { return }
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc func rangeSliderValueChanged(rangeSlider: RangeSlider) {
@@ -49,7 +67,6 @@ class FeeViewController: UIViewController {
         lineChartView.rightAxis.enabled = false
         lineChartView.legend.enabled = false
         lineChartView.doubleTapToZoomEnabled = false
-        
     }
     
     func setChartData() {
@@ -58,29 +75,16 @@ class FeeViewController: UIViewController {
         var dataEntries1: [ChartDataEntry] = []
         var dataEntries2: [ChartDataEntry] = []
         var dataEntries3: [ChartDataEntry] = []
-//        for i in 0..<months.count {
-//            let dataEntry = ChartDataEntry(x: Double(i), y: unitsSold[i])
-//            dataEntries.append(dataEntry)
-//        }
+
         var dataSet1: LineChartDataSet
         var dataSet2: LineChartDataSet
         var dataSet3: LineChartDataSet
         var dataSets = [LineChartDataSet]()
         
-//        let minimumIndex = Int(minimum * CGFloat(months.count))
-//        let maximumIndex = Int(maximum * CGFloat(months.count))
-        
         for i in 0..<4 {
             let dataEntry = ChartDataEntry(x: Double(i), y: unitsSold[i])
             dataEntries1.append(dataEntry)
         }
-//        dataSet1 = LineChartDataSet(dataEntries1)
-//        dataSet1.lineWidth = 2.0
-//        dataSet1.circleRadius = 6.0
-//        dataSet1.fillAlpha = 1
-//        dataSet1.fillColor = UIColor.green
-//        dataSet1.drawFilledEnabled = true
-//        dataSets.append(dataSet1)
         
         for i in 4..<7 {
             let dataEntry = ChartDataEntry(x: Double(i), y: unitsSold[i])
@@ -96,16 +100,6 @@ class FeeViewController: UIViewController {
         }
         dataSet3 = LineChartDataSet(dataEntries3)
         dataSets.append(dataSet3)
-
-//        let chartDataSet = LineChartDataSet(entries: dataEntries, label: "판매량")
-//        chartDataSet.mode = .cubicBezier
-//        chartDataSet.drawCirclesEnabled = false
-//        chartDataSet.setColor(.white)
-//        chartDataSet.fill = Fill(CGColor: #colorLiteral(red: 0.1999770403, green: 0.2000164688, blue: 0.1999686062, alpha: 1))
-//        chartDataSet.fillAlpha = 1
-//        chartDataSet.drawFilledEnabled = true
-//        chartDataSet.drawHorizontalHighlightIndicatorEnabled = false
-//        chartDataSet.drawVerticalHighlightIndicatorEnabled = false
 
         // 데이터 삽입
         dataSets.forEach { setDataSet(dataSet: $0) }
