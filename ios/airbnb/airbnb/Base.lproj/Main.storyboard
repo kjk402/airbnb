@@ -154,7 +154,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayq-bd-qlS">
-                                                <rect key="frame" x="40" y="569" width="334" height="40"/>
+                                                <rect key="frame" x="40" y="8" width="334" height="40"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hLg-8h-w9K">
                                                         <rect key="frame" x="76.5" y="8" width="181" height="24"/>
@@ -418,12 +418,29 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="AML-7o-eeR" id="n0V-tn-CEg"/>
+                        <outlet property="informationView" destination="q8m-mT-S7v" id="Js8-5X-dSf"/>
                         <outlet property="lineChartView" destination="7ht-1x-mxk" id="xNP-8p-Hu1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bav-Va-I6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3522" y="-131"/>
+        </scene>
+        <!--Personnel View Controller-->
+        <scene sceneID="NRc-LB-Wuc">
+            <objects>
+                <viewController storyboardIdentifier="PersonnelViewController" id="23d-Y9-8k5" customClass="PersonnelViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JYP-ve-SVS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="JBh-5z-Uvg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gpR-kD-wQ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4401" y="-131"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9wb-Pd-fxU">
