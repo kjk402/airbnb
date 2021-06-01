@@ -6,13 +6,15 @@ interface Props {
 	month: number;
 	day: number;
 	lastDay: number;
+	filter: Object;
+	setFilter: any;
 	setCheckInValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 	setCheckoutValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 	checkInValue: string | undefined;
 	checkOutValue: string | undefined;
 	clickCntRef: React.MutableRefObject<number>;
 }
-export default function Day({ year, month, day, lastDay, setCheckInValue, setCheckoutValue, clickCntRef, checkInValue, checkOutValue }: Props) {
+export default function Day({ filter, setFilter, year, month, day, lastDay, setCheckInValue, setCheckoutValue, clickCntRef, checkInValue, checkOutValue }: Props) {
 	const [selected, setSelected] = useState(false);
 	const date = new Date(year, month, day);
 	const today = new Date();
@@ -21,12 +23,25 @@ export default function Day({ year, month, day, lastDay, setCheckInValue, setChe
 	if (date > makeDate(checkInValue) && date < makeDate(checkOutValue)) isMiddleDay = true;
 	const handleOnClick = () => {
 		clickCntRef.current = clickCntRef.current + 1;
-		if (clickCntRef.current === 1) setCheckInValue(`${year}년 ${month + 1}월 ${day}일`);
-		else {
-			if (date >= makeDate(checkInValue)) setCheckoutValue(`${year}년 ${month + 1}월 ${day}일`);
-			else {
+		const newMonth = month < 9 ? "0" + (month + 1) : month + 1;
+		const newDay = day < 10 ? "0" + day : day;
+		if (clickCntRef.current === 1) {
+			setCheckInValue(`${year}년 ${newMonth}월 ${newDay}일`);
+			const newSearchFilter = { checkIn: `${year}-${newMonth}-${newDay}` };
+			Object.assign(filter, newSearchFilter);
+			setFilter(filter);
+		} else {
+			if (date >= makeDate(checkInValue)) {
+				setCheckoutValue(`${year}년 ${newMonth}월 ${newDay}일`);
+				const newSearchFilter = { checkOut: `${year}-${newMonth}-${newDay}` };
+				Object.assign(filter, newSearchFilter);
+				setFilter(filter);
+			} else {
 				setCheckoutValue(checkInValue);
-				setCheckInValue(`${year}년 ${month + 1}월 ${day}일`);
+				setCheckInValue(`${year}년 ${newMonth}월 ${newDay}일`);
+				const newSearchFilter = { checkIn: `${year}-${newMonth}-${newDay}`, checkOut: `${checkInValue}` };
+				Object.assign(filter, newSearchFilter);
+				setFilter(filter);
 			}
 		}
 	};

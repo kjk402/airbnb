@@ -10,9 +10,11 @@ export interface Props {
 	checkInValue: string | undefined;
 	checkOutValue: string | undefined;
 	clickCntRef: React.MutableRefObject<number>;
+	filter: Object;
+	setFilter: any;
 }
 
-export default function CalendarContainer({ setCheckInValue, setCheckoutValue, clickCntRef, checkInValue, checkOutValue }: Props) {
+export default function CalendarContainer({ filter, setFilter, setCheckInValue, setCheckoutValue, clickCntRef, checkInValue, checkOutValue }: Props) {
 	const CALENDAR_WIDTH = 800;
 	const now = new Date();
 	const [dx, setDx] = useState([-2, -1, 0, 1, 2, 3]);
@@ -46,7 +48,7 @@ export default function CalendarContainer({ setCheckInValue, setCheckoutValue, c
 	useEffect(() => {
 		setDateList(dateList.map((date, i) => new Date(now.getFullYear(), now.getMonth() + dx[i])));
 	}, [dx]);
-	const calendarList = dateList.map((calendar, idx) => <CalendarCon checkInValue={checkInValue} checkOutValue={checkOutValue} clickCntRef={clickCntRef} key={idx} data={calendar} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} />);
+	const calendarList = dateList.map((calendar, idx) => <CalendarCon filter={filter} setFilter={setFilter} checkInValue={checkInValue} checkOutValue={checkOutValue} clickCntRef={clickCntRef} key={idx} data={calendar} setCheckInValue={setCheckInValue} setCheckoutValue={setCheckoutValue} />);
 
 	return (
 		<>

@@ -3,13 +3,16 @@ import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "./../../icons/search.svg";
 import parseByType from "../../utils/parseByType";
 import CalendarModal from "../modals/calendar/CalendarModal";
-import FeeModal from "../modals/fee/FeeModal";
+import FeeModalMemo from "../modals/fee/FeeModal";
 import GuestModal from "../modals/guest/GuestModal";
+import { Urls } from "./../../utils/url";
 
 interface SearchFilterInterface {
 	type: string;
 	isEnd: boolean;
 	input?: string;
+	filter: any;
+	setFilter: any;
 	placeholder?: string | undefined;
 	isCalendarModalOn?: boolean;
 	setIsCalendarModalOn?: any;
@@ -23,12 +26,19 @@ interface SearchFilterInterface {
 	calendarToggleCheckOutRef?: any;
 }
 
-export default function SearchFilter({ type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn, calendarToggleCheckInRef, calendarToggleCheckOutRef }: SearchFilterInterface) {
+export default function SearchFilter({ filter, setFilter, type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn, calendarToggleCheckInRef, calendarToggleCheckOutRef }: SearchFilterInterface) {
 	const [inplaceHolder, setInplaceHolder] = useState(placeholder);
 	const [checkOutValue, setCheckoutValue] = useState(placeholder);
 
 	const handleSearchClick = (e: React.MouseEvent): void => {
 		e.stopPropagation();
+		const { city, checkIn, checkOut, minPrice, maxPrice, numOfPeople } = filter;
+	};
+
+	const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+		const newSearchFilter = { city: e.currentTarget.value };
+		Object.assign(filter, newSearchFilter);
+		setFilter(filter);
 	};
 
 	const handleOnClick = (e: React.MouseEvent, type: string): void => {
@@ -55,7 +65,7 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 					) : (
 						<>
 							{parseByType("title", type)}
-							{input && <SearchLocationStyle placeholder={input} />}
+							{input && <SearchLocationStyle onInput={handleInput} placeholder={input} />}
 							{placeholder && <div>{inplaceHolder}</div>}{" "}
 						</>
 					)}
@@ -67,9 +77,9 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 				</StyleSearchBtn>
 			)}
 
-			{isCalendarModalOn && <CalendarModal className="calendar-modal" type={type} setCheckInValue={setInplaceHolder} setCheckoutValue={setCheckoutValue} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} checkInValue={inplaceHolder} checkOutValue={checkOutValue} />}
-			{isFeeModalOn && <FeeModal type={type} className="fee-modal" setInplaceHolder={setInplaceHolder} isActive={isFeeModalOn} setModalOn={setIsFeeModalOn} />}
-			{isGuestModalOn && <GuestModal type={type} className="guest-modal" setInplaceHolder={setInplaceHolder} isActive={isGuestModalOn} setModalOn={setIsGuestModalOn} />}
+			{isCalendarModalOn && <CalendarModal className="calendar-modal" filter={filter} setFilter={setFilter} type={type} setCheckInValue={setInplaceHolder} setCheckoutValue={setCheckoutValue} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} checkInValue={inplaceHolder} checkOutValue={checkOutValue} />}
+			{isFeeModalOn && <FeeModalMemo type={type} className="fee-modal" filter={filter} setFilter={setFilter} setInplaceHolder={setInplaceHolder} isActive={isFeeModalOn} setModalOn={setIsFeeModalOn} />}
+			{isGuestModalOn && <GuestModal type={type} className="guest-modal" filter={filter} setFilter={setFilter} setInplaceHolder={setInplaceHolder} isActive={isGuestModalOn} setModalOn={setIsGuestModalOn} />}
 		</SearchFilterWrapper>
 	);
 }
