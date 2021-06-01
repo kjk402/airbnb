@@ -29,9 +29,6 @@
                     <state key="normal" title="다음">
                         <color key="titleColor" red="0.48231399060000002" green="0.48237484689999999" blue="0.48229330780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
-                    <connections>
-                        <action selector="convertNextView:" destination="-1" eventType="touchUpInside" id="2ZP-4a-Q8Q"/>
-                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

@@ -13,6 +13,9 @@ final class ViewController: UIViewController {
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var curationImage: UIImageView!
     @IBOutlet weak var spotTitle: UILabel!
+    @IBOutlet weak var curationTitle: UILabel!
+    @IBOutlet weak var subtitle: UILabel!
+    
     private var locationManager: LocationManager!
     private var cancelable = Set<AnyCancellable>()
     @IBOutlet weak var cityCollectionView: UICollectionView!
@@ -20,6 +23,7 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUILabelText()
         let networkManager = NetworkManager()
         locationManager = LocationManager(getDataManager: networkManager)
         locationManager.fetchCitiesLocation()
@@ -28,7 +32,6 @@ final class ViewController: UIViewController {
         registerNib()
         cityCollectionView.dataSource = self
         spotCollectionView.dataSource = self
-        spotTitle.text = "어디에서나, 여행은\n살아보는거야"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +43,12 @@ final class ViewController: UIViewController {
         let spotNib = UINib(nibName: SpotCollectionViewCell.nibName, bundle: nil)
         cityCollectionView.register(cityNib, forCellWithReuseIdentifier: CityCollectionViewCell.identifier)
         spotCollectionView.register(spotNib, forCellWithReuseIdentifier: SpotCollectionViewCell.identifier)
+    }
+    
+    private func setUILabelText() {
+        spotTitle.text = "어디에서나, 여행은\n살아보는거야"
+        curationTitle.text = "슬기로운\n자연생활"
+        subtitle.text = "에어비앤비가 엄선한\n위시리스트를 만나보세요"
     }
     
     private func addTapGesture() {

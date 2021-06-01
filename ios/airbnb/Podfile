@@ -6,4 +6,5 @@ target 'airbnb' do
   use_frameworks!
   pod 'GooglePlaces', '5.0.0'
   pod 'FSCalendar'
+  pod 'Charts'
 end

@@ -1,20 +1,26 @@
 PODS:
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - FSCalendar (2.8.2)
   - GooglePlaces (5.0.0)
 
 DEPENDENCIES:
+  - Charts
   - FSCalendar
   - GooglePlaces (= 5.0.0)
 
 SPEC REPOS:
   trunk:
+    - Charts
     - FSCalendar
     - GooglePlaces
 
 SPEC CHECKSUMS:
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   GooglePlaces: 5d87ca13ed98b7a937e0d8bc7026f718c7263271
 
-PODFILE CHECKSUM: 71f3b24e82e7ec0e8c41010c02f6fe7a7c563932
+PODFILE CHECKSUM: 63f47b0fe9df56ba1f336d7dbc05eeffb8a43e4d
 
 COCOAPODS: 1.10.1

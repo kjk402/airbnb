@@ -9,7 +9,7 @@ import Foundation
 
 final class FindingAccommodationManager {
     private(set) var cityName: String?
-    private var checkIn: String?
+    private(set) var checkIn: String?
     @Published private(set) var checkOut: String?
     private var allPrices: [Int]?
     private var averagePrices: Int?

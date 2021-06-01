@@ -23,9 +23,6 @@ class BottomView: UIView {
         xibSetUp()
         rightButton.setTitleColor(.lightGray, for: .normal)
     }
-    @IBAction func convertNextView(completion: () -> Void) {
-        completion()
-    }
     
     private func xibSetUp() {
         guard let view = loadViewFromNib(nib: "BottomView") else { return }

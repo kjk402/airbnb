@@ -25,25 +25,26 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8HO-Nd-p0X" secondAttribute="height" multiplier="1:1" id="1Pn-Rl-vID"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="osy-ER-C52">
-                                <rect key="frame" x="94" y="22" width="41.5" height="20.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugF-WY-M5E">
-                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugF-WY-M5E">
+                                <rect key="frame" x="80" y="22" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="osy-ER-C52" firstAttribute="leading" secondItem="8HO-Nd-p0X" secondAttribute="trailing" constant="30" id="3RV-IN-mjp"/>
-                            <constraint firstItem="osy-ER-C52" firstAttribute="centerY" secondItem="iuY-zY-ug5" secondAttribute="centerY" id="6el-tu-NQy"/>
                             <constraint firstItem="8HO-Nd-p0X" firstAttribute="top" secondItem="iuY-zY-ug5" secondAttribute="top" id="Fh3-9H-mS6"/>
                             <constraint firstItem="8HO-Nd-p0X" firstAttribute="leading" secondItem="iuY-zY-ug5" secondAttribute="leading" id="W30-De-Imz"/>
+                            <constraint firstItem="ugF-WY-M5E" firstAttribute="leading" secondItem="8HO-Nd-p0X" secondAttribute="trailing" constant="16" id="b7d-3F-5B2"/>
+                            <constraint firstItem="ugF-WY-M5E" firstAttribute="centerY" secondItem="iuY-zY-ug5" secondAttribute="centerY" id="e2L-J7-Unn"/>
                             <constraint firstAttribute="bottom" secondItem="8HO-Nd-p0X" secondAttribute="bottom" id="t1E-O0-4yF"/>
                         </constraints>
                     </view>
