@@ -3,10 +3,11 @@ import styled from "styled-components";
 import ModalContainer from "../../../styles/ModalContainer";
 import { ModalInterface } from "../../../utils/interfaces";
 import { getURL, Urls } from "./../../../utils/url";
+import makeKRW from "./../../../utils/makeKRW";
 
 function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
 	const [data, setData] = useState([]);
-	const [avgPrice, setAvgPrice] = useState();
+	const [avgPrice, setAvgPrice] = useState("");
 	const MIN = `0`;
 	const MAX = "100000";
 	const [leftSliderValue, setLeftSliderValue] = useState(MIN);
@@ -17,14 +18,15 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 		try {
 			const res = await fetch(url);
 			const json = await res.json();
-			setAvgPrice(json.averagePrice);
+			const avg = makeKRW(Number(json.averagePrice));
+			setAvgPrice(avg);
 			setData(json.allPrices);
 		} catch (error) {
 			console.error(error);
 		}
 	};
-	const priceList = data.map((price) => price + "");
-	const optionList = priceList.map((price, idx) => <option key={idx} value={price}></option>);
+	const priceList = data && data.map((price) => price + "");
+	const optionList = priceList && priceList.map((price, idx) => <option key={idx} value={price}></option>);
 
 	const handleOutClick = () => {
 		setModalOn(false);
@@ -44,7 +46,7 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 		const numLeft = Number(e.currentTarget.value);
 		const numRight = Number(rightSliderValue);
 		setLeftSliderValue(`${Math.min(numLeft, numRight)}`);
-		setInplaceHolder(`${leftSliderValue}-${rightSliderValue}`);
+		setInplaceHolder(`${makeKRW(Number(leftSliderValue))} ~ ${makeKRW(Number(rightSliderValue))}`);
 		const newSearchFilter = { minPrice: leftSliderValue };
 		Object.assign(filter, newSearchFilter);
 		setFilter(filter);
@@ -53,7 +55,7 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 		const numLeft = Number(leftSliderValue);
 		const numRight = Number(e.currentTarget.value);
 		setRightSliderValue(`${Math.max(numLeft, numRight)}`);
-		setInplaceHolder(`${leftSliderValue}-${rightSliderValue}`);
+		setInplaceHolder(`${makeKRW(Number(leftSliderValue))} ~ ${makeKRW(Number(rightSliderValue))}`);
 		const newSearchFilter = { maxPrice: rightSliderValue };
 		Object.assign(filter, newSearchFilter);
 		setFilter(filter);
@@ -66,15 +68,15 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 						<Title>가격 범위</Title>
 
 						<PriceRange>
-							￦{leftSliderValue} - ￦{rightSliderValue === "100000" ? rightSliderValue + "+" : rightSliderValue}
+							￦{makeKRW(Number(leftSliderValue))} ~ ￦{rightSliderValue === "100000" ? makeKRW(Number(rightSliderValue)) + "+" : makeKRW(Number(rightSliderValue))}
 						</PriceRange>
-						<PriceAvg>평균 1박 요금은 ￦{avgPrice} 입니다.</PriceAvg>
+						{data ? <PriceAvg>평균 1박 요금은 ￦{avgPrice} 입니다.</PriceAvg> : <PriceAvg>여행 도시 및 체크인/아웃 날짜를 먼저 선택해주세요.</PriceAvg>}
 
 						<StyleGraph>
 							<svg width="365" height="100"></svg>
 							<RangeSlider>
-								<input type="range" min={MIN} max={MAX} value={leftSliderValue} onInput={changeL} className="left" list={`${priceList}`} />
-								<input type="range" min={MIN} max={MAX} value={rightSliderValue} onInput={changeR} className="right" list={`${priceList}`} />
+								<input type="range" disabled={!data} min={MIN} max={MAX} value={leftSliderValue} onInput={changeL} className="left" list={`${priceList}`} />
+								<input type="range" disabled={!data} min={MIN} max={MAX} value={rightSliderValue} onInput={changeR} className="right" list={`${priceList}`} />
 								<datalist id={`${priceList}`}>{optionList};</datalist>
 							</RangeSlider>
 						</StyleGraph>
