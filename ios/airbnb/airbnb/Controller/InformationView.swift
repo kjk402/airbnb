@@ -38,4 +38,20 @@ final class InformationView: UIView {
         let nib = UINib(nibName: nib, bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
+    
+    func setLocationLabel(text: String) {
+        self.locationLabel.text = text
+    }
+    
+    func setperiodLabel(min: String, max: String) {
+        self.periodLabel.text = "\(min) - \(max)"
+    }
+    
+    func setFeeLabel(fee: String) {
+        self.feeLabel.text = fee
+    }
+    
+    func setNumberOfPeopleLabel() {
+        
+    }
 }
