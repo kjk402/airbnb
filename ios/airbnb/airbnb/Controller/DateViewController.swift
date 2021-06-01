@@ -14,7 +14,7 @@ final class DateViewController: UIViewController {
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var informationView: InformationView!
     @IBOutlet weak var bottomView: BottomView!
-    private var findingAccmmodationManager: FindingAccommodationManager!
+    private var findingAccommodationManager: FindingAccommodationManager!
     private var cancelable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ final class DateViewController: UIViewController {
     }
     
     func bind() {
-        findingAccmmodationManager.$checkOut
+        findingAccommodationManager.$checkOut
             .receive(on: DispatchQueue.main)
             .sink { checkOut in
                 if checkOut != nil {
@@ -56,7 +56,7 @@ final class DateViewController: UIViewController {
     }
     
     private func setInformationView() {
-        self.informationView.locationLabel.text = findingAccmmodationManager.cityName
+        self.informationView.locationLabel.text = findingAccommodationManager.cityName
     }
     
     private func setNextButton() {
@@ -65,11 +65,12 @@ final class DateViewController: UIViewController {
     
     @objc func nextButtonTapped() {
         guard let viewController = storyboard?.instantiateViewController(identifier: "FeeViewController") as? FeeViewController else { return }
+        viewController.setFindingAccommodationManafer(object: findingAccommodationManager)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func getFindingAccommodationManager(object: FindingAccommodationManager) {
-        self.findingAccmmodationManager = object
+        self.findingAccommodationManager = object
     }
 }
 
@@ -82,14 +83,14 @@ extension DateViewController: FSCalendarDelegate {
         
         if calendar.selectedDates.count >= 2 {
             self.informationView.periodLabel.text = "\(minDate) - \(maxDate)"
-            findingAccmmodationManager.setCheckInAndOut(checkIn: minDate, checkOut: maxDate)
+            findingAccommodationManager.setCheckInAndOut(checkIn: minDate, checkOut: maxDate)
             selectDateRange(calendar: calendar)
         } else if calendar.selectedDates.count == 1 {
             self.informationView.periodLabel.text = "\(minDate)"
-            findingAccmmodationManager.setCheckInAndOut(checkIn: minDate, checkOut: nil)
+            findingAccommodationManager.setCheckInAndOut(checkIn: minDate, checkOut: nil)
         } else {
             self.informationView.periodLabel.text = ""
-            findingAccmmodationManager.setCheckInAndOut(checkIn: nil, checkOut: nil)
+            findingAccommodationManager.setCheckInAndOut(checkIn: nil, checkOut: nil)
         }
         
     }
@@ -100,19 +101,19 @@ extension DateViewController: FSCalendarDelegate {
         
         guard let min = calendar.selectedDates.min() else {
             self.informationView.periodLabel.text = ""
-            findingAccmmodationManager.setCheckInAndOut(checkIn: nil, checkOut: nil)
+            findingAccommodationManager.setCheckInAndOut(checkIn: nil, checkOut: nil)
             return
         }
         let formattingMinDate = dateFormatter.string(from: min)
         
         if calendar.selectedDates.count == 1 {
             self.informationView.periodLabel.text = "\(formattingMinDate)"
-            findingAccmmodationManager.setCheckInAndOut(checkIn: formattingMinDate, checkOut: nil)
+            findingAccommodationManager.setCheckInAndOut(checkIn: formattingMinDate, checkOut: nil)
         } else if calendar.selectedDates.count > 1 {
             let maxDate = calendar.selectedDates.max()!
             let formattingMaxDate = dateFormatter.string(from: maxDate)
             self.informationView.periodLabel.text = "\(formattingMinDate) - \(formattingMaxDate)"
-            findingAccmmodationManager.setCheckInAndOut(checkIn: formattingMinDate, checkOut: formattingMaxDate)
+            findingAccommodationManager.setCheckInAndOut(checkIn: formattingMinDate, checkOut: formattingMaxDate)
         }
     }
     
