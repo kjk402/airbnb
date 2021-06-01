@@ -1,4 +1,4 @@
-function catmullRom2bezier(points) {
+function catmullRom2bezier(points: any): any {
 	var result = [];
 	for (var i = 0; i < points.length - 1; i++) {
 		var p = [];
@@ -44,7 +44,7 @@ function catmullRom2bezier(points) {
 	return result;
 }
 
-export default function makePath(points) {
+export default function makePath(points: any): any {
 	var result = "M" + points[0].x + "," + points[0].y + " ";
 	var catmull = catmullRom2bezier(points);
 	for (var i = 0; i < catmull.length; i++) {
@@ -62,8 +62,8 @@ window.onload = function () {
 		points.push({ x: i * 7, y: graph[i] * 0.003 * -1 + 320 });
 		points2.push({ x: i * 7, y: graph2[i] * 0.003 * -1 + 320 });
 	}
-	document.querySelector("#svg path").setAttribute("d", makePath(points));
-	document.querySelector("#svg2 path").setAttribute("d", makePath(points2));
+	// document.querySelector("#svg path").setAttribute("d", makePath(points));
+	// document.querySelector("#svg2 path").setAttribute("d", makePath(points2));
 	// 좌표 점 찍기 설정
 	// for (var i = 0; i < points.length; i++) {
 	// 	var circle = points[i];
