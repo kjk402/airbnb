@@ -8,7 +8,7 @@
 import UIKit
 import Charts
 
-class FeeViewController: UIViewController {
+final class FeeViewController: UIViewController {
 
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var informationView: InformationView!
@@ -36,10 +36,12 @@ class FeeViewController: UIViewController {
     
     @objc func buttonTapped() {
         guard let viewController = storyboard?.instantiateViewController(identifier: "PersonnelViewController") as? PersonnelViewController else { return }
+        viewController.setFindingAccommodationManager(object: findingAccommodationManager)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc func rangeSliderValueChanged(rangeSlider: RangeSlider) {
+        print("최솟값\(rangeSlider.lowerValue), 최대값\(rangeSlider.upperValue)")
         setChartData()
     }
     
@@ -70,6 +72,7 @@ class FeeViewController: UIViewController {
     }
     
     func setChartData() {
+        print("setChartData 호출")
         let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"]
         let unitsSold = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
         var dataEntries1: [ChartDataEntry] = []

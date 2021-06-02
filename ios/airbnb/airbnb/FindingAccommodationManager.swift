@@ -15,7 +15,7 @@ final class FindingAccommodationManager {
     private var averagePrices: Int?
     private var maxPrice: Int?
     private var minPrice: Int?
-    private var numOfPeople: Int?
+    @Published private(set) var numOfPeople: Int?
     private var roomList: RoomsList?
     private let networkManager: Networking
     
@@ -66,5 +66,9 @@ final class FindingAccommodationManager {
     func setCheckInAndOut(checkIn: String?, checkOut: String?) {
         self.checkIn = checkIn
         self.checkOut = checkOut
+    }
+    
+    func setNumberOfPeople(num: Int) {
+        self.numOfPeople = num
     }
 }

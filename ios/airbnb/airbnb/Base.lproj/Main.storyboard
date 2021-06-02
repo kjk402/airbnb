@@ -434,9 +434,48 @@
                     <view key="view" contentMode="scaleToFill" id="JYP-ve-SVS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lF-oP-Q8M" customClass="PersonnelView" customModule="airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="302"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="302" id="Xnr-5k-Xrp"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mK-rZ-3HC" customClass="BottomView" customModule="airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="eHg-OK-9Tj"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcT-bo-4cj" customClass="InformationView" customModule="airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="637" width="414" height="176"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="176" id="92q-Il-rQj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="JBh-5z-Uvg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JBh-5z-Uvg" firstAttribute="trailing" secondItem="gcT-bo-4cj" secondAttribute="trailing" id="2Hs-eL-goQ"/>
+                            <constraint firstItem="4mK-rZ-3HC" firstAttribute="top" secondItem="gcT-bo-4cj" secondAttribute="bottom" id="JRo-TR-Ab0"/>
+                            <constraint firstItem="gcT-bo-4cj" firstAttribute="leading" secondItem="JBh-5z-Uvg" secondAttribute="leading" id="Lx2-Jt-Rvw"/>
+                            <constraint firstItem="2lF-oP-Q8M" firstAttribute="leading" secondItem="JBh-5z-Uvg" secondAttribute="leading" id="TEB-iH-aQ1"/>
+                            <constraint firstItem="4mK-rZ-3HC" firstAttribute="leading" secondItem="JBh-5z-Uvg" secondAttribute="leading" id="dIy-Wl-f8q"/>
+                            <constraint firstItem="JBh-5z-Uvg" firstAttribute="trailing" secondItem="4mK-rZ-3HC" secondAttribute="trailing" id="hdV-Ex-VWg"/>
+                            <constraint firstItem="JBh-5z-Uvg" firstAttribute="trailing" secondItem="2lF-oP-Q8M" secondAttribute="trailing" id="jDq-bw-yB5"/>
+                            <constraint firstAttribute="bottom" secondItem="4mK-rZ-3HC" secondAttribute="bottom" id="wcx-w6-xs2"/>
+                            <constraint firstItem="2lF-oP-Q8M" firstAttribute="top" secondItem="JBh-5z-Uvg" secondAttribute="top" id="xie-UG-4kD"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bottomView" destination="4mK-rZ-3HC" id="7Hr-19-0wO"/>
+                        <outlet property="informationView" destination="gcT-bo-4cj" id="ivC-vz-fAB"/>
+                        <outlet property="personnelView" destination="2lF-oP-Q8M" id="74t-Ga-Rir"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpR-kD-wQ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

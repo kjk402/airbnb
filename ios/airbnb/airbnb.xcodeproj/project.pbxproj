@@ -20,6 +20,9 @@
 		B34110F02664BCEE00CB183A /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34110EF2664BCEE00CB183A /* RangeSlider.swift */; };
 		B34110F22664CD4100CB183A /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34110F12664CD4100CB183A /* RangeSliderTrackLayer.swift */; };
 		B3958DC1266611150080341E /* PersonnelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3958DC0266611150080341E /* PersonnelViewController.swift */; };
+		B3958DC3266614030080341E /* PersonnelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3958DC2266614030080341E /* PersonnelView.swift */; };
+		B3958DC52666140E0080341E /* PersonnelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3958DC42666140E0080341E /* PersonnelView.xib */; };
+		B3958DC726661FC70080341E /* Personnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3958DC626661FC70080341E /* Personnel.swift */; };
 		B3A811EB265F4A4F007FCE43 /* FeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A811EA265F4A4F007FCE43 /* FeeViewController.swift */; };
 		B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */; };
 		B3C8FB172655FD52005C6235 /* CityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */; };
@@ -84,6 +87,9 @@
 		B34110EF2664BCEE00CB183A /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RangeSlider.swift; path = airbnb/Controller/RangeSlider.swift; sourceTree = SOURCE_ROOT; };
 		B34110F12664CD4100CB183A /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RangeSliderTrackLayer.swift; path = airbnb/Controller/RangeSliderTrackLayer.swift; sourceTree = SOURCE_ROOT; };
 		B3958DC0266611150080341E /* PersonnelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonnelViewController.swift; sourceTree = "<group>"; };
+		B3958DC2266614030080341E /* PersonnelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonnelView.swift; path = airbnb/PersonnelView.swift; sourceTree = SOURCE_ROOT; };
+		B3958DC42666140E0080341E /* PersonnelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonnelView.xib; sourceTree = "<group>"; };
+		B3958DC626661FC70080341E /* Personnel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Personnel.swift; path = airbnb/View/Personnel.swift; sourceTree = SOURCE_ROOT; };
 		B3A811EA265F4A4F007FCE43 /* FeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeeViewController.swift; path = airbnb/FeeViewController.swift; sourceTree = SOURCE_ROOT; };
 		B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 		B30210FE265757D900A0AA92 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B3958DC2266614030080341E /* PersonnelView.swift */,
+				B3958DC42666140E0080341E /* PersonnelView.xib */,
 				B34110F12664CD4100CB183A /* RangeSliderTrackLayer.swift */,
 				B34110EF2664BCEE00CB183A /* RangeSlider.swift */,
 				B3D54D5B265E7C3E00736374 /* BottomView.swift */,
@@ -178,6 +186,7 @@
 		B3C8FB1F26562E83005C6235 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B3958DC626661FC70080341E /* Personnel.swift */,
 				B304DF07265CC945008F3BB3 /* FindingAccommodationManager.swift */,
 				B3C8FB1D26562E7C005C6235 /* NetworkManager.swift */,
 				B3C8FB2426563D26005C6235 /* LocationManager.swift */,
@@ -389,6 +398,7 @@
 				B3D7316326523C4400FE6C62 /* LaunchScreen.storyboard in Resources */,
 				B302110226575A8000A0AA92 /* SpotCollectionViewCell.xib in Resources */,
 				B3D7316026523C4400FE6C62 /* Assets.xcassets in Resources */,
+				B3958DC52666140E0080341E /* PersonnelView.xib in Resources */,
 				B304DF06265C9255008F3BB3 /* InformationView.xib in Resources */,
 				B3D7315E26523C4300FE6C62 /* Main.storyboard in Resources */,
 				B3D54D5E265E7C4700736374 /* BottomView.xib in Resources */,
@@ -491,10 +501,12 @@
 				B3C8FB2526563D26005C6235 /* LocationManager.swift in Sources */,
 				B302110126575A8000A0AA92 /* SpotCollectionViewCell.swift in Sources */,
 				B3C8FB2126563304005C6235 /* MainLayout.swift in Sources */,
+				B3958DC3266614030080341E /* PersonnelView.swift in Sources */,
 				B304DF04265C9233008F3BB3 /* InformationView.swift in Sources */,
 				B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */,
 				B34110F22664CD4100CB183A /* RangeSliderTrackLayer.swift in Sources */,
 				B3D54D5C265E7C3E00736374 /* BottomView.swift in Sources */,
+				B3958DC726661FC70080341E /* Personnel.swift in Sources */,
 				B34110F02664BCEE00CB183A /* RangeSlider.swift in Sources */,
 				B3D73187265289DA00FE6C62 /* LocationViewController.swift in Sources */,
 			);
