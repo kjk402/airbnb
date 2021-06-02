@@ -5,7 +5,7 @@ import parseByType from "../../utils/parseByType";
 import CalendarModal from "../modals/calendar/CalendarModal";
 import FeeModalMemo from "../modals/fee/FeeModal";
 import GuestModal from "../modals/guest/GuestModal";
-import { Urls } from "./../../utils/url";
+import { Link } from "react-router-dom";
 
 interface SearchFilterInterface {
 	type: string;
@@ -32,7 +32,7 @@ export default function SearchFilter({ filter, setFilter, type, input, isEnd, pl
 
 	const handleSearchClick = (e: React.MouseEvent): void => {
 		e.stopPropagation();
-		const { city, checkIn, checkOut, minPrice, maxPrice, numOfPeople } = filter;
+		setFilter(filter);
 	};
 
 	const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -72,9 +72,11 @@ export default function SearchFilter({ filter, setFilter, type, input, isEnd, pl
 				</SearchWrapper>
 			</StyleFilter>
 			{isEnd && (
-				<StyleSearchBtn onClick={(e) => handleSearchClick(e)}>
-					<SearchIcon stroke="#FFFFFF" />
-				</StyleSearchBtn>
+				<Link to="/search_result">
+					<StyleSearchBtn onClick={(e) => handleSearchClick(e)}>
+						<SearchIcon stroke="#FFFFFF" />
+					</StyleSearchBtn>
+				</Link>
 			)}
 
 			{isCalendarModalOn && <CalendarModal className="calendar-modal" filter={filter} setFilter={setFilter} type={type} setCheckInValue={setInplaceHolder} setCheckoutValue={setCheckoutValue} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} checkInValue={inplaceHolder} checkOutValue={checkOutValue} />}

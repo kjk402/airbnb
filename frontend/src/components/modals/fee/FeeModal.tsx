@@ -29,8 +29,6 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 			console.error(error);
 		}
 	};
-	// const priceList = data && data.map((price) => price + "");
-	// const optionList = priceList && priceList.map((price, idx) => <option key={idx} value={price}></option>);
 
 	const handleOutClick = () => {
 		setModalOn(false);
@@ -45,7 +43,6 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 		priceList && setOptionList(priceList.map((price, idx) => <option key={idx} value={price}></option>));
 	}, [priceList]);
 
-	console.log(priceList, optionList);
 	useEffect(() => {
 		fetchData();
 		window.addEventListener("click", handleOutClick);
