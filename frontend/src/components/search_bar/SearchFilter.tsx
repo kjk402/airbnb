@@ -13,6 +13,7 @@ interface SearchFilterInterface {
 	input?: string;
 	filter: any;
 	setFilter: any;
+	setFlag: any;
 	placeholder?: string | undefined;
 	isCalendarModalOn?: boolean;
 	setIsCalendarModalOn?: any;
@@ -26,13 +27,13 @@ interface SearchFilterInterface {
 	calendarToggleCheckOutRef?: any;
 }
 
-export default function SearchFilter({ filter, setFilter, type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn, calendarToggleCheckInRef, calendarToggleCheckOutRef }: SearchFilterInterface) {
+export default function SearchFilter({ setFlag, filter, setFilter, type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn, calendarToggleCheckInRef, calendarToggleCheckOutRef }: SearchFilterInterface) {
 	const [inplaceHolder, setInplaceHolder] = useState(placeholder);
 	const [checkOutValue, setCheckoutValue] = useState(placeholder);
 
 	const handleSearchClick = (e: React.MouseEvent): void => {
 		e.stopPropagation();
-		setFilter(filter);
+		setFlag(true);
 	};
 
 	const handleInput = (e: React.FormEvent<HTMLInputElement>) => {

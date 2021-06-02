@@ -1,10 +1,16 @@
-import SearchBar from "./../search_bar/SearchBar";
 import styled from "styled-components";
+import SearchBar from "./../search_bar/SearchBar";
 
-export default function Main({}) {
+interface MainProps {
+	filter: any;
+	setFilter: any;
+	setFlag: any;
+}
+
+export default function Main({ filter, setFilter, setFlag }: MainProps) {
 	return (
 		<StyleMain>
-			<SearchBar />
+			<SearchBar filter={filter} setFilter={setFilter} setFlag={setFlag} />
 		</StyleMain>
 	);
 }
