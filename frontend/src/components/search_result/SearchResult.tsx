@@ -1,30 +1,37 @@
-import { useEffect } from "react";
-import {useRecoilState} from 'recoil';
-import {cityState, checkInState, checkOutState, minPriceState, maxPriceState, numOfPeopleState} from './../../atoms';
+import { useEffect, useState } from "react";
 
-export interface SearchResultProps {
-	filter: any;
-	setFilter: any;
-	tmp: string;
-	numOfPeople: number;
-}
+export default function SearchResult() {
+	const URL = parseURL(window.location.href);
+	console.log(URL);
+	const [data, setData] = useState();
 
+	const fetchData = async () => {
+		try {
+			const res = await fetch(URL);
+			const json = await res.json();
+			setData(json);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-export default function SearchResult({ filter, setFilter, tmp, numOfPeople}: SearchResultProps) {
-	const [numOfPeople2] = useRecoilState(numOfPeopleState);
-	console.log('검색결과...' + numOfPeople);
-	console.log('검색결과...' + numOfPeople2);
-	console.log(filter);
 	useEffect(() => {
-		console.log('검색결과:' + numOfPeople2);
-		console.log('검색결과:' + numOfPeople);
-	});
+		fetchData();
+	}, []);
+	console.log(data);
+
 	return (
 		<div>
 			<div>검색결과</div>
-			<div>{tmp}</div>
-			<div>{numOfPeople}</div>
-			<div>{filter.numOfPeople}</div>
 		</div>
 	);
 }
+
+const parseURL = (url: string): string => {
+	let newUrl = "http://52.78.158.138";
+	for (let i = 21; i < url.length; i++) {
+		newUrl += url[i];
+	}
+
+	return newUrl;
+};

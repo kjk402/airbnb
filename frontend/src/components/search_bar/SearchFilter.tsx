@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "./../../icons/search.svg";
 import parseByType from "../../utils/parseByType";
@@ -6,6 +7,7 @@ import CalendarModal from "../modals/calendar/CalendarModal";
 import FeeModalMemo from "../modals/fee/FeeModal";
 import GuestModal from "../modals/guest/GuestModal";
 import { Link } from "react-router-dom";
+import { urlState } from "./../../atoms";
 
 interface SearchFilterInterface {
 	type: string;
@@ -30,9 +32,11 @@ interface SearchFilterInterface {
 export default function SearchFilter({ setFlag, filter, setFilter, type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn, calendarToggleCheckInRef, calendarToggleCheckOutRef }: SearchFilterInterface) {
 	const [inplaceHolder, setInplaceHolder] = useState(placeholder);
 	const [checkOutValue, setCheckoutValue] = useState(placeholder);
+	const [url, setUrlState] = useRecoilState(urlState);
 
 	const handleSearchClick = (e: React.MouseEvent): void => {
 		e.stopPropagation();
+		setUrlState(`${filter.city}${filter.checkIn}${filter.checkOut}${filter.minPrice}${filter.maxPrice}${filter.numOfPeople}`);
 		setFlag(true);
 	};
 
@@ -73,7 +77,7 @@ export default function SearchFilter({ setFlag, filter, setFilter, type, input, 
 				</SearchWrapper>
 			</StyleFilter>
 			{isEnd && (
-				<Link to={{pathname: `/${filter.city}${filter.checkIn}${filter.checkOut}${filter.minPrice}${filter.maxPrice}${filter.numOfPeople}`}}>
+				<Link to={{ pathname: `/rooms/search?checkIn=${filter.checkIn}&checkOut=${filter.checkOut}&cityName=${filter.city}&maxPrice=${filter.maxPrice}&minPrice=${filter.minPrice}&numOfPeople=${filter.numOfPeople}` }}>
 					<StyleSearchBtn onClick={(e) => handleSearchClick(e)}>
 						<SearchIcon stroke="#FFFFFF" />
 					</StyleSearchBtn>
