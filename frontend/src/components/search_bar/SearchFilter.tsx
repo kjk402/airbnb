@@ -73,7 +73,7 @@ export default function SearchFilter({ setFlag, filter, setFilter, type, input, 
 				</SearchWrapper>
 			</StyleFilter>
 			{isEnd && (
-				<Link to="/search_result">
+				<Link to={{pathname: `/${filter.city}${filter.checkIn}${filter.checkOut}${filter.minPrice}${filter.maxPrice}${filter.numOfPeople}`}}>
 					<StyleSearchBtn onClick={(e) => handleSearchClick(e)}>
 						<SearchIcon stroke="#FFFFFF" />
 					</StyleSearchBtn>
