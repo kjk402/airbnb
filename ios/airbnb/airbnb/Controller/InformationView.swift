@@ -51,7 +51,7 @@ final class InformationView: UIView {
         self.feeLabel.text = fee
     }
     
-    func setNumberOfPeopleLabel() {
-        
+    func setNumberOfPeopleLabel(count: Int) {
+        self.numberOfPeopleLabel.text = "\(count)"
     }
 }
