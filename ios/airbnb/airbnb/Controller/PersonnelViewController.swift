@@ -14,8 +14,8 @@ final class PersonnelViewController: UIViewController {
     @IBOutlet weak var informationView: InformationView!
     @IBOutlet weak var bottomView: BottomView!
     
-    let personnel = Perssonel(adult: 0, kid: 0, infant: 0)
-    var findingAccommodationManager: FindingAccommodationManager!
+    private let personnel = Perssonel(adult: 0, kid: 0, infant: 0)
+    private var findingAccommodationManager: FindingAccommodationManager!
     private var cancelable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -25,7 +25,7 @@ final class PersonnelViewController: UIViewController {
         setInformationView()
     }
     
-    func bind() {
+    private func bind() {
         personnel.$adult
             .receive(on: DispatchQueue.main)
             .sink { [weak self] adult in
@@ -86,7 +86,7 @@ final class PersonnelViewController: UIViewController {
             .store(in: &cancelable)
     }
     
-    func setInformationView() {
+    private func setInformationView() {
         informationView.setLocationLabel(text: findingAccommodationManager.cityName!)
         informationView.setperiodLabel(min: findingAccommodationManager.checkIn!, max: findingAccommodationManager.checkOut!)
     }
@@ -95,7 +95,7 @@ final class PersonnelViewController: UIViewController {
         self.findingAccommodationManager = object
     }
     
-    func addAction() {
+    private func addAction() {
         personnelView.addAdultButton.addTarget(self, action: #selector(addAdult), for: .touchUpInside)
         personnelView.addKidButton.addTarget(self, action: #selector(addKid), for: .touchUpInside)
         personnelView.addInfantButton.addTarget(self, action: #selector(addInfant), for: .touchUpInside)
