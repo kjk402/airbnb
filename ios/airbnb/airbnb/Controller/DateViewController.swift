@@ -77,7 +77,7 @@ final class DateViewController: UIViewController {
 extension DateViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM월 dd일"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let minDate = dateFormatter.string(from: calendar.selectedDates.min()!)
         let maxDate = dateFormatter.string(from: calendar.selectedDates.max()!)
         

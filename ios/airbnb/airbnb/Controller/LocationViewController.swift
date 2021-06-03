@@ -93,7 +93,7 @@ extension LocationViewController: GMSAutocompleteResultsViewControllerDelegate {
         searchController?.isActive = false
         
         let dateViewController = storyboard?.instantiateViewController(identifier: "DateViewController") as! DateViewController
-        findingAccommodationManager?.getCityName(cityName: place.name!)
+        findingAccommodationManager?.getCityName(cityName: "인천")
         dateViewController.getFindingAccommodationManager(object: findingAccommodationManager!)
         
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {

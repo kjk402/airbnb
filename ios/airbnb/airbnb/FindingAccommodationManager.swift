@@ -12,9 +12,9 @@ final class FindingAccommodationManager {
     private(set) var checkIn: String?
     @Published private(set) var checkOut: String?
     private var allPrices: [Int]?
-    private var averagePrices: Int?
-    private var maxPrice: Int?
-    private var minPrice: Int?
+    @Published private(set) var averagePrices: Int?
+    @Published private(set) var maxPrice: Int?
+    @Published private(set) var minPrice: Int?
     @Published private(set) var numOfPeople: Int?
     private var roomList: RoomsList?
     private let networkManager: Networking
@@ -31,7 +31,8 @@ final class FindingAccommodationManager {
         self.networkManager = networkManager
     }
     
-    private func getAvailableRoomsPrices(checkIn: String, checkOut: String, cityName: String) {
+    func getAvailableRoomsPrices() {
+        guard let cityName = cityName, let checkIn = checkIn, let checkOut = checkOut else { return }
         var queryItems = [URLQueryItem]()
         queryItems.append(QueryItems.cityName.assign(value: cityName))
         queryItems.append(QueryItems.checkIn.assign(value: checkIn))
@@ -70,6 +71,11 @@ final class FindingAccommodationManager {
     func setCheckInAndOut(checkIn: String?, checkOut: String?) {
         self.checkIn = checkIn
         self.checkOut = checkOut
+    }
+    
+    func setMaxAndMin(max: Int, min: Int) {
+        self.maxPrice = max
+        self.minPrice = min
     }
     
     func setNumberOfPeople(num: Int) {

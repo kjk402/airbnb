@@ -20,6 +20,7 @@ final class PersonnelViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "숙소 찾기"
         bind()
         addAction()
         setInformationView()
@@ -89,6 +90,18 @@ final class PersonnelViewController: UIViewController {
     private func setInformationView() {
         informationView.setLocationLabel(text: findingAccommodationManager.cityName!)
         informationView.setperiodLabel(min: findingAccommodationManager.checkIn!, max: findingAccommodationManager.checkOut!)
+        let min = decimalWon(value: findingAccommodationManager.minPrice!)
+        let max = decimalWon(value: findingAccommodationManager.maxPrice!)
+        informationView.setMinLabel(fee: min + "-")
+        informationView.setMaxLabel(fee: max)
+    }
+    
+    func decimalWon(value: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let result = "₩" + numberFormatter.string(from: NSNumber(value: value))!
+        
+        return result
     }
     
     func setFindingAccommodationManager(object: FindingAccommodationManager) {
