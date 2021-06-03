@@ -10,7 +10,7 @@ export default function RoomCard({ info }: IAppProps) {
 	const image = info.thumbImage;
 	const { maxGuest, bathroom, bed, title, description, pricePerDay } = info.room;
 	const { basicPrice, cleaningFee, resultFee, serviceFee, totalPrice, weekSalePrice } = info.receipt;
-	console.log(info);
+
 	return (
 		<StyleCard>
 			<Wrapper>

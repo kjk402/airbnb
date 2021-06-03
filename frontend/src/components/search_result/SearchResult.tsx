@@ -9,6 +9,7 @@ import { FilterProps } from "./../../App";
 import { getFilter } from "./../../utils/getFilter";
 import MiniSearchBar from "./MiniSearchBar";
 import Rooms from "./Rooms";
+import { MapMemo } from "./Map";
 
 export default function SearchResult() {
 	const URL = parseURL(window.location.href);
@@ -18,6 +19,7 @@ export default function SearchResult() {
 	const [filter, setFilter] = useState<FilterProps>({ city: undefined, checkIn: checkIn, checkOut: checkOut, minPrice: minPrice, maxPrice: maxPrice, numOfPeople: numOfPeople });
 	const [isMini, setIsMini] = useState(true);
 
+	// console.log("filter: ", filter);
 	const fetchData = async () => {
 		try {
 			const res = await fetch(URL);
@@ -60,14 +62,16 @@ export default function SearchResult() {
 				)}
 				<SideContainer />
 			</StyleHeader>
-			<SearchBarArea>{!isMini && <SearchBar filter={filter} setFilter={setFilter} setFlag={true} isResultPage={true} isMini={false} />}</SearchBarArea>
+			<SearchBarArea>{!isMini && <SearchBar filter={filter} setFilter={setFilter} setFlag={true} isResultPage={true} isMini={isMini} />}</SearchBarArea>
 			<StyleMain>
 				{data.length > 0 ? (
 					<MainWrapper>
 						<StyleRooms>
 							<Rooms data={data} filter={filter} />
 						</StyleRooms>
-						<StyleMap>지도</StyleMap>
+						<StyleMap>
+							<MapMemo data={data} />
+						</StyleMap>
 					</MainWrapper>
 				) : (
 					<>loading</>
@@ -89,7 +93,9 @@ const StyleHeader = styled.div`
 	z-index: 10;
 `;
 
-const StyleMain = styled.div``;
+const StyleMain = styled.div`
+	height: 1024px;
+`;
 
 const SearchBarArea = styled.div``;
 
@@ -100,11 +106,15 @@ const MainWrapper = styled.div`
 `;
 
 const StyleRooms = styled.div`
+	width: 100%;
+	height: 1024px;
 	padding-top: 10px;
 	padding-left: 50px; /* 중요*/
+	overflow-y: scroll;
 `;
 
 const StyleMap = styled.div`
+	width: 100%;
 	padding-top: 10px;
 	padding-right: 50px; /* 중요*/
 `;

@@ -14,7 +14,7 @@ export interface IAppProps {
 }
 
 export default function Rooms({ data, filter }: IAppProps) {
-	const roomList = data.map((info: object) => <RoomCard info={info} />);
+	const roomList = data.map((info: object, key: number) => <RoomCard key={key} info={info} />);
 	const checkInSchedule = filter.checkIn.split("-");
 	const checkOutSchedule = filter.checkOut.split("-");
 	const checkInMonth = Number(checkInSchedule[1]);
