@@ -1,23 +1,33 @@
 import styled from "styled-components";
 import { ReactComponent as SearchBtn } from "./../../icons/search.svg";
+import makeKRW from "./../../utils/makeKRW";
 
 export interface IAppProps {
 	filter: any;
 }
 
 export default function MiniSearchBar({ filter }: IAppProps) {
-	console.log(filter);
+	const checkInSchedule = filter.checkIn.split("-");
+	const checkOutSchedule = filter.checkOut.split("-");
+	const checkInMonth = Number(checkInSchedule[1]);
+	const checkInDay = Number(checkInSchedule[2]);
+	const checkOutMonth = Number(checkOutSchedule[1]);
+	const checkOutDay = Number(checkOutSchedule[2]);
+	const minPrice = makeKRW(Number(filter.minPrice));
+	const maxPrice = makeKRW(Number(filter.maxPrice));
+	const numOfPeople = filter.numOfPeople;
+
 	return (
 		<Wrapper>
 			<StyleMiniSearch>
 				<FilterWrapper>
 					<StyleFilter>
-						{filter.checkIn}-{filter.checkOut}
+						{checkInMonth}월 {checkInDay}일 - {checkOutMonth}월 {checkOutDay}일
 					</StyleFilter>
 					<StyleFilter>
-						₩{filter.minPrice} ~ ₩{filter.maxPrice}
+						₩{minPrice} ~ ₩{maxPrice}
 					</StyleFilter>
-					<StyleFilter>게스트 {filter.numOfPeople}명</StyleFilter>
+					<StyleFilter>게스트 {numOfPeople}명</StyleFilter>
 				</FilterWrapper>
 				<SearchBtnWrapper>
 					<SearchBtn stroke="#ffffff" width="20" height="20" />
@@ -51,7 +61,9 @@ const FilterWrapper = styled.div`
 	align-items: center;
 `;
 
-const StyleFilter = styled.div``;
+const StyleFilter = styled.div`
+	font-size: 12px;
+`;
 
 const SearchBtnWrapper = styled.button`
 	position: relative;
