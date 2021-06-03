@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "./../../icons/search.svg";
 import parseByType from "../../utils/parseByType";
 import CalendarModal from "../modals/calendar/CalendarModal";
 import FeeModalMemo from "../modals/fee/FeeModal";
 import GuestModal from "../modals/guest/GuestModal";
-import { Urls } from "./../../utils/url";
+import { Link } from "react-router-dom";
+import { urlState } from "./../../atoms";
 
 interface SearchFilterInterface {
 	type: string;
@@ -13,6 +15,7 @@ interface SearchFilterInterface {
 	input?: string;
 	filter: any;
 	setFilter: any;
+	setFlag: any;
 	placeholder?: string | undefined;
 	isCalendarModalOn?: boolean;
 	setIsCalendarModalOn?: any;
@@ -26,13 +29,14 @@ interface SearchFilterInterface {
 	calendarToggleCheckOutRef?: any;
 }
 
-export default function SearchFilter({ filter, setFilter, type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn, calendarToggleCheckInRef, calendarToggleCheckOutRef }: SearchFilterInterface) {
+export default function SearchFilter({ setFlag, filter, setFilter, type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn, calendarToggleCheckInRef, calendarToggleCheckOutRef }: SearchFilterInterface) {
 	const [inplaceHolder, setInplaceHolder] = useState(placeholder);
 	const [checkOutValue, setCheckoutValue] = useState(placeholder);
+	const [url, setUrlState] = useRecoilState(urlState);
 
 	const handleSearchClick = (e: React.MouseEvent): void => {
 		e.stopPropagation();
-		const { city, checkIn, checkOut, minPrice, maxPrice, numOfPeople } = filter;
+		setUrlState(`${filter.city}${filter.checkIn}${filter.checkOut}${filter.minPrice}${filter.maxPrice}${filter.numOfPeople}`);
 	};
 
 	const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -72,9 +76,11 @@ export default function SearchFilter({ filter, setFilter, type, input, isEnd, pl
 				</SearchWrapper>
 			</StyleFilter>
 			{isEnd && (
-				<StyleSearchBtn onClick={(e) => handleSearchClick(e)}>
-					<SearchIcon stroke="#FFFFFF" />
-				</StyleSearchBtn>
+				<Link to={{ pathname: `/rooms/search?checkIn=${filter.checkIn}&checkOut=${filter.checkOut}&cityName=${filter.city}&maxPrice=${filter.maxPrice}&minPrice=${filter.minPrice}&numOfPeople=${filter.numOfPeople}` }}>
+					<StyleSearchBtn onClick={(e) => handleSearchClick(e)}>
+						<SearchIcon stroke="#FFFFFF" width="24" height="24" />
+					</StyleSearchBtn>
+				</Link>
 			)}
 
 			{isCalendarModalOn && <CalendarModal className="calendar-modal" filter={filter} setFilter={setFilter} type={type} setCheckInValue={setInplaceHolder} setCheckoutValue={setCheckoutValue} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} checkInValue={inplaceHolder} checkOutValue={checkOutValue} />}

@@ -5,6 +5,7 @@ import { ModalInterface } from "../../../utils/interfaces";
 import { getURL } from "./../../../utils/url";
 import makeKRW from "./../../../utils/makeKRW";
 import { ReactComponent as XCircle } from "./../../../icons/x-circle.svg";
+import makePath from "./../../../utils/makeGraph";
 
 function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
 	const [data, setData] = useState([]);
@@ -13,6 +14,8 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 	const MAX = "100000";
 	const [leftSliderValue, setLeftSliderValue] = useState(MIN);
 	const [rightSliderValue, setRightSliderValue] = useState("100000");
+	const [priceList, setPriceList] = useState<string[]>([]);
+	const [optionList, setOptionList] = useState<JSX.Element[]>([]);
 
 	const fetchData = async () => {
 		const url = getURL("price", filter.checkIn, filter.checkOut, filter.city);
@@ -26,13 +29,19 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 			console.error(error);
 		}
 	};
-	const priceList = data && data.map((price) => price + "");
-	const optionList = priceList && priceList.map((price, idx) => <option key={idx} value={price}></option>);
 
 	const handleOutClick = () => {
 		setModalOn(false);
 		window.removeEventListener("click", handleOutClick);
 	};
+
+	useEffect(() => {
+		data && setPriceList(data.map((price) => price + ""));
+	}, [data]);
+
+	useEffect(() => {
+		priceList && setOptionList(priceList.map((price, idx) => <option key={idx} value={price}></option>));
+	}, [priceList]);
 
 	useEffect(() => {
 		fetchData();
@@ -66,6 +75,14 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 		e.stopPropagation();
 		setInplaceHolder("금액대 설정");
 	};
+
+	const points: any = [];
+	if (data) {
+		for (var i = 0; i < data.length; i++) {
+			points.push({ x: i * 7, y: data[i] * 0.003 * -1 + 320 });
+		}
+	}
+
 	return (
 		<>
 			{isActive && (
@@ -79,11 +96,21 @@ function FeeModal({ filter, setFilter, type, setInplaceHolder, isActive, setModa
 						{data ? <PriceAvg>평균 1박 요금은 ￦{avgPrice} 입니다.</PriceAvg> : <PriceAvg>도시, 여행일자를 먼저 입력해주세요😅</PriceAvg>}
 
 						<StyleGraph>
-							<svg width="365" height="100"></svg>
+							{points.length ? (
+								<div>
+									<svg width="365" height="100" className="sv">
+										<path fill="none" stroke="black" d={makePath(points)} className="path" />
+									</svg>
+								</div>
+							) : (
+								<div>
+									<svg width="365" height="100"></svg>
+								</div>
+							)}
 							<RangeSlider>
 								<input type="range" disabled={!data} min={MIN} max={MAX} value={leftSliderValue} onInput={changeL} className="left" list={`${priceList}`} />
 								<input type="range" disabled={!data} min={MIN} max={MAX} value={rightSliderValue} onInput={changeR} className="right" list={`${priceList}`} />
-								<datalist id={`${priceList}`}>{optionList};</datalist>
+								{priceList.length > 0 && optionList.length > 0 && <datalist id={`${priceList}`}>{optionList}</datalist>}
 							</RangeSlider>
 						</StyleGraph>
 					</ContentWrapper>

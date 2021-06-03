@@ -28,7 +28,7 @@ const UserButton = styled.button`
 	width: 76px;
 	height: 40px;
 	border-radius: 25px;
-	border: none;
+	border: 1px solid #bdbdbd;
 	background-color: white;
 	.menu_icon {
 		padding: 2px;

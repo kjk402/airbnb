@@ -5,11 +5,16 @@ import { ModalInterface } from "../../../utils/interfaces";
 import { ReactComponent as Minus } from "./../../../icons/minus.svg";
 import { ReactComponent as Plus } from "./../../../icons/plus.svg";
 import { ReactComponent as XCircle } from "./../../../icons/x-circle.svg";
+import {useRecoilState} from 'recoil';
+import {numOfPeopleState} from './../../../atoms';
+import {urlState} from './../../../atoms';
 
 export default function GuestModal({ filter, setFilter, type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
 	const [adultCount, setAdultCount] = useState<number>(0);
 	const [childCount, setChildCount] = useState<number>(0);
 	const [infantCount, setInfantCount] = useState<number>(0);
+	const [numOfPeople, setNumOfPeople] = useRecoilState(numOfPeopleState);
+	const [url, setUrl] = useRecoilState(urlState);
 	const onAdultIncrease = () => setAdultCount(adultCount + 1);
 	const onAdultDecrease = () => {
 		if ((childCount || infantCount) && adultCount === 1) return;
@@ -31,6 +36,8 @@ export default function GuestModal({ filter, setFilter, type, setInplaceHolder, 
 		totalGuest.current = adultCount + childCount;
 		if (totalGuest.current) {
 			setInplaceHolder(`게스트 ${totalGuest.current}명, 유아 ${infantCount}명`);
+			setNumOfPeople(totalGuest.current);
+			setUrl(`${filter.city}${filter.checkIn}${filter.checkOut}${filter.minPrice}${filter.maxPrice}${filter.numOfPeople}`);
 		} else setInplaceHolder("게스트 추가");
 		const newSearchFilter = { numOfPeople: adultCount + childCount };
 		Object.assign(filter, newSearchFilter);
