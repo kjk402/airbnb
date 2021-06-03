@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import makeKRW from "./../../utils/makeKRW";
+import { ReactComponent as Heart } from "./../../icons/heart.svg";
 
 export interface IAppProps {
 	info: any;
@@ -16,17 +18,20 @@ export default function RoomCard({ info }: IAppProps) {
 				<Info>
 					<div>
 						<div className="description">{description}</div>
+						<div className="heart">
+							<Heart />
+						</div>
 						<div className="title">{title}</div>
 						<div className="detail">
 							최대인원 ${maxGuest}명 - 침대 {bed}개 - 욕실{bathroom}개
 						</div>
 					</div>
 					<PricePerDay>
-						<span className="price">￦{pricePerDay}</span> / 박
+						<span className="price">￦{makeKRW(pricePerDay)}</span> / 박
 					</PricePerDay>
 					<Bottom>
-						<div>후기별점</div>
-						<div>총액 ￦{totalPrice}</div>
+						<div>후기 N 개</div>
+						<div>총액 ￦{makeKRW(totalPrice)}</div>
 					</Bottom>
 				</Info>
 			</Wrapper>
@@ -59,6 +64,12 @@ const Info = styled.div`
 	width: 518.02px;
 	height: 100%;
 	padding-left: 10px;
+
+	.heart {
+		position: relative;
+		float: right;
+		top: -25px;
+	}
 
 	.description,
 	.detail {
