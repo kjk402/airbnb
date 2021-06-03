@@ -42,7 +42,7 @@ function Map({ data }: IAppProps) {
 
 	return (
 		<StyleMap>
-			{center && isLoaded ? (
+			{isLoaded ? (
 				<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onLoad={onLoad} onUnmount={onUnmount}>
 					{markers}
 					<></>

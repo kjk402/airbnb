@@ -55,7 +55,7 @@ export default function SearchResult() {
 				{isMini ? (
 					<div onClick={(e) => handleSearchBar(e)}>
 						{" "}
-						<MiniSearchBar />
+						<MiniSearchBar filter={filter} />
 					</div>
 				) : (
 					<Tour />

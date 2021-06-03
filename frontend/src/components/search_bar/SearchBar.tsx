@@ -8,16 +8,6 @@ interface SearchBarProps {
 	setFlag: any;
 	isResultPage: boolean;
 	isMini: boolean;
-	// isCalendarModalOn?: boolean;
-	// setIsCalendarModalOn?: any;
-	// isFeeModalOn?: boolean;
-	// setIsFeeModalOn?: any;
-	// isGuestModalOn?: boolean;
-	// setIsGuestModalOn?: any;
-	// isLocationModalOn?: boolean;
-	// setIsLocationModalOn?: any;
-	// calendarToggleCheckInRef?: any;
-	// calendarToggleCheckOutRef?: any;
 }
 
 export default function SearchBar({ filter, setFilter, setFlag, isResultPage, isMini }: SearchBarProps) {

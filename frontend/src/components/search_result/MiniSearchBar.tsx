@@ -1,15 +1,23 @@
 import styled from "styled-components";
 import { ReactComponent as SearchBtn } from "./../../icons/search.svg";
-export interface IAppProps {}
 
-export default function MiniSearchBar(props: IAppProps) {
+export interface IAppProps {
+	filter: any;
+}
+
+export default function MiniSearchBar({ filter }: IAppProps) {
+	console.log(filter);
 	return (
 		<Wrapper>
 			<StyleMiniSearch>
 				<FilterWrapper>
-					<StyleFilter>체크인-아웃</StyleFilter>
-					<StyleFilter>요금</StyleFilter>
-					<StyleFilter>게스트 N명</StyleFilter>
+					<StyleFilter>
+						{filter.checkIn}-{filter.checkOut}
+					</StyleFilter>
+					<StyleFilter>
+						₩{filter.minPrice} ~ ₩{filter.maxPrice}
+					</StyleFilter>
+					<StyleFilter>게스트 {filter.numOfPeople}명</StyleFilter>
 				</FilterWrapper>
 				<SearchBtnWrapper>
 					<SearchBtn stroke="#ffffff" width="20" height="20" />
