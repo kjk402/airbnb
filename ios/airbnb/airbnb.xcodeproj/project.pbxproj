@@ -29,6 +29,10 @@
 		B3958DC52666140E0080341E /* PersonnelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3958DC42666140E0080341E /* PersonnelView.xib */; };
 		B3958DC726661FC70080341E /* Personnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3958DC626661FC70080341E /* Personnel.swift */; };
 		B3A811EB265F4A4F007FCE43 /* FeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A811EA265F4A4F007FCE43 /* FeeViewController.swift */; };
+		B3B376202668C4D40006FFF7 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B3761F2668C4D40006FFF7 /* RoomsViewController.swift */; };
+		B3B376232668C5570006FFF7 /* RoomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B376212668C5570006FFF7 /* RoomCollectionViewCell.swift */; };
+		B3B376242668C5570006FFF7 /* RoomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3B376222668C5570006FFF7 /* RoomCollectionViewCell.xib */; };
+		B3B37626266921830006FFF7 /* Int+DecimalFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B37625266921830006FFF7 /* Int+DecimalFormat.swift */; };
 		B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */; };
 		B3C8FB172655FD52005C6235 /* CityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */; };
 		B3C8FB1C26562E13005C6235 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B3C8FB1B26562E13005C6235 /* Alamofire */; };
@@ -100,6 +104,10 @@
 		B3958DC42666140E0080341E /* PersonnelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonnelView.xib; sourceTree = "<group>"; };
 		B3958DC626661FC70080341E /* Personnel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Personnel.swift; path = airbnb/View/Personnel.swift; sourceTree = SOURCE_ROOT; };
 		B3A811EA265F4A4F007FCE43 /* FeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeeViewController.swift; path = airbnb/FeeViewController.swift; sourceTree = SOURCE_ROOT; };
+		B3B3761F2668C4D40006FFF7 /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoomsViewController.swift; path = airbnb/View/RoomsViewController.swift; sourceTree = SOURCE_ROOT; };
+		B3B376212668C5570006FFF7 /* RoomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoomCollectionViewCell.swift; path = airbnb/RoomCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		B3B376222668C5570006FFF7 /* RoomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RoomCollectionViewCell.xib; path = airbnb/RoomCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
+		B3B37625266921830006FFF7 /* Int+DecimalFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DecimalFormat.swift"; sourceTree = "<group>"; };
 		B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3C8FB1D26562E7C005C6235 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -159,6 +167,8 @@
 		B30210FE265757D900A0AA92 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B3B376212668C5570006FFF7 /* RoomCollectionViewCell.swift */,
+				B3B376222668C5570006FFF7 /* RoomCollectionViewCell.xib */,
 				B3958DC2266614030080341E /* PersonnelView.swift */,
 				B3958DC42666140E0080341E /* PersonnelView.xib */,
 				B34110F12664CD4100CB183A /* RangeSliderTrackLayer.swift */,
@@ -191,6 +201,7 @@
 			children = (
 				B30E1276265A80F7004425D6 /* ImageView+Load.swift */,
 				B30AB83D2667632B007F12A5 /* URL+QueryItems.swift */,
+				B3B37625266921830006FFF7 /* Int+DecimalFormat.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -275,6 +286,7 @@
 				B302CD7D265B7F8600FDD896 /* DateViewController.swift */,
 				B3A811EA265F4A4F007FCE43 /* FeeViewController.swift */,
 				B3958DC0266611150080341E /* PersonnelViewController.swift */,
+				B3B3761F2668C4D40006FFF7 /* RoomsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -412,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3D7316326523C4400FE6C62 /* LaunchScreen.storyboard in Resources */,
+				B3B376242668C5570006FFF7 /* RoomCollectionViewCell.xib in Resources */,
 				B302110226575A8000A0AA92 /* SpotCollectionViewCell.xib in Resources */,
 				B3D7316026523C4400FE6C62 /* Assets.xcassets in Resources */,
 				B3958DC52666140E0080341E /* PersonnelView.xib in Resources */,
@@ -505,6 +518,7 @@
 				B304DF0B265CCE14008F3BB3 /* RoomsPrice.swift in Sources */,
 				B3A811EB265F4A4F007FCE43 /* FeeViewController.swift in Sources */,
 				B3C8FB1E26562E7C005C6235 /* NetworkManager.swift in Sources */,
+				B3B376202668C4D40006FFF7 /* RoomsViewController.swift in Sources */,
 				B30AB83E2667632B007F12A5 /* URL+QueryItems.swift in Sources */,
 				B30E1277265A80F7004425D6 /* ImageView+Load.swift in Sources */,
 				B30AB83926675FAB007F12A5 /* OAuthViewController.swift in Sources */,
@@ -515,8 +529,10 @@
 				B304DF0D265CCE1E008F3BB3 /* RoomsList.swift in Sources */,
 				B302CD7E265B7F8600FDD896 /* DateViewController.swift in Sources */,
 				B3C8FB2726564787005C6235 /* EndPoint.swift in Sources */,
+				B3B37626266921830006FFF7 /* Int+DecimalFormat.swift in Sources */,
 				B3D7315926523C4300FE6C62 /* SceneDelegate.swift in Sources */,
 				B3C8FB2526563D26005C6235 /* LocationManager.swift in Sources */,
+				B3B376232668C5570006FFF7 /* RoomCollectionViewCell.swift in Sources */,
 				B302110126575A8000A0AA92 /* SpotCollectionViewCell.swift in Sources */,
 				B3C8FB2126563304005C6235 /* MainLayout.swift in Sources */,
 				B30AB84226676DFC007F12A5 /* UserProfile.swift in Sources */,
