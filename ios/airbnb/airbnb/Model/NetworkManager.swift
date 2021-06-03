@@ -10,11 +10,12 @@ import Foundation
 
 
 protocol Networking {
-    func getData<T: Decodable>(url: String, decodableType: T.Type, completion: @escaping (T) -> Void)
+    func getData<T: Decodable>(url: URL, decodableType: T.Type, completion: @escaping (T) -> Void)
+    func postData<T: Decodable>(url: URL, decodeType: T.Type, completion: @escaping (T) -> Void)
 }
 
 final class NetworkManager: Networking {
-    func getData<T: Decodable>(url: String, decodableType: T.Type, completion: @escaping (T) -> Void) {
+    func getData<T: Decodable>(url: URL, decodableType: T.Type, completion: @escaping (T) -> Void) {
         AF.request(url,
                    method: .get,
                    parameters: nil,
@@ -26,6 +27,23 @@ final class NetworkManager: Networking {
                 case .success:
                     guard let cities = response.value else { return }
                     completion(cities)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
+    
+    func postData<T: Decodable>(url: URL, decodeType: T.Type, completion: @escaping (T) -> Void) {
+        AF.request(url,
+                   method: .post,
+                   parameters: nil,
+                   encoding: URLEncoding.default,
+                   headers: ["Content-Type":"application/json", "Accept":"application/json"])
+            .validate(statusCode: 200..<300)
+            .responseDecodable(of: decodeType) { response in
+                switch response.result {
+                case .success(let userProfile):
+                    completion(userProfile)
                 case .failure(let error):
                     print(error)
                 }
