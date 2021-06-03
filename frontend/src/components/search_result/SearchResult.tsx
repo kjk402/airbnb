@@ -19,7 +19,6 @@ export default function SearchResult() {
 	const [filter, setFilter] = useState<FilterProps>({ city: undefined, checkIn: checkIn, checkOut: checkOut, minPrice: minPrice, maxPrice: maxPrice, numOfPeople: numOfPeople });
 	const [isMini, setIsMini] = useState(true);
 
-	// console.log("filter: ", filter);
 	const fetchData = async () => {
 		try {
 			const res = await fetch(URL);
@@ -51,18 +50,20 @@ export default function SearchResult() {
 	return (
 		<>
 			<StyleHeader>
-				<Logo />
+				<Logo isMini={isMini} />
 				{isMini ? (
 					<div onClick={(e) => handleSearchBar(e)}>
 						{" "}
 						<MiniSearchBar filter={filter} />
 					</div>
 				) : (
-					<Tour />
+					<NewHeaderWrapper>
+						<Tour />
+						<SearchBarArea>{!isMini && <SearchBar filter={filter} setFilter={setFilter} setFlag={true} isResultPage={true} isMini={isMini} />}</SearchBarArea>
+					</NewHeaderWrapper>
 				)}
-				<SideContainer />
+				<SideContainer isMini={isMini} />
 			</StyleHeader>
-			<SearchBarArea>{!isMini && <SearchBar filter={filter} setFilter={setFilter} setFlag={true} isResultPage={true} isMini={isMini} />}</SearchBarArea>
 			<StyleMain>
 				{data.length > 0 ? (
 					<MainWrapper>
@@ -93,6 +94,11 @@ const StyleHeader = styled.div`
 	z-index: 10;
 `;
 
+const NewHeaderWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
 const StyleMain = styled.div`
 	height: 800px;
 `;
@@ -111,6 +117,9 @@ const StyleRooms = styled.div`
 	padding-top: 10px;
 	padding-left: 50px; /* 중요*/
 	overflow-y: scroll;
+	::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, Opera*/
+	}
 `;
 
 const StyleMap = styled.div`

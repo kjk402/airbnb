@@ -35,9 +35,10 @@ const StyleSearchBar = styled.div`
 	display: flex;
 	position: relative;
 	align-items: center;
-	width: 1016px;
+	width: 1030px;
 	height: 76px;
 	margin-top: 30px;
 	border-radius: 60px;
 	background-color: #ffffff;
+	border: 1px solid #bdbdbd;
 `;

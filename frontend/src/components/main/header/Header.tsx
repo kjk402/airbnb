@@ -7,9 +7,9 @@ import { EmptyInterface } from "./../../../utils/interfaces";
 export default function Header(props: EmptyInterface) {
 	return (
 		<StyleHeader>
-			<Logo />
+			<Logo isMini={false} />
 			<Tour />
-			<SideContainer />
+			<SideContainer isMini={false} />
 		</StyleHeader>
 	);
 }

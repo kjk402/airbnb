@@ -3,10 +3,14 @@ import { ReactComponent as MenuIcon } from "./../../../../icons/menu.svg";
 import { ReactComponent as UserIcon } from "./../../../../icons/user.svg";
 import { EmptyInterface } from "./../../../../utils/interfaces";
 
-export default function UserMenu(props: EmptyInterface) {
+interface IAppProps {
+	isMini: boolean;
+}
+
+export default function UserMenu({ isMini }: IAppProps) {
 	return (
 		<>
-			<StyleUserMenu>
+			<StyleUserMenu isMini={isMini}>
 				<UserButton>
 					<MenuIcon className="menu_icon" width="24" height="24" />
 					<UserIcon className="user_icon" stroke="#ffffff" width="28" height="28" />
@@ -16,9 +20,11 @@ export default function UserMenu(props: EmptyInterface) {
 	);
 }
 
-const StyleUserMenu = styled.div`
+const StyleUserMenu = styled.div<{ isMini: boolean }>`
+	position: relative;
 	display: flex;
 	justify-content: flex-end;
+	top: ${(props) => (props.isMini ? "0px" : "-48px")};
 `;
 
 const UserButton = styled.button`
