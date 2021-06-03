@@ -24,6 +24,7 @@ final class PersonnelViewController: UIViewController {
         bind()
         addAction()
         setInformationView()
+        setBottomViewButton()
     }
     
     private func bind() {
@@ -79,9 +80,7 @@ final class PersonnelViewController: UIViewController {
                     self?.bottomView.rightButton.setTitleColor(.black, for: .normal)
                     self?.bottomView.rightButton.isEnabled = true
                 } else {
-                    self?.bottomView.leftButton.setTitle("검색", for: .normal)
-                    self?.bottomView.rightButton.setTitleColor(.lightGray, for: .normal)
-                    self?.bottomView.rightButton.isEnabled = false
+                    self?.bottomView.leftButton.setTitle("건너뛰기", for: .normal)
                 }
             }
             .store(in: &cancelable)
@@ -90,10 +89,21 @@ final class PersonnelViewController: UIViewController {
     private func setInformationView() {
         informationView.setLocationLabel(text: findingAccommodationManager.cityName!)
         informationView.setperiodLabel(min: findingAccommodationManager.checkIn!, max: findingAccommodationManager.checkOut!)
-        let min = decimalWon(value: findingAccommodationManager.minPrice!)
-        let max = decimalWon(value: findingAccommodationManager.maxPrice!)
+        
+        let min = findingAccommodationManager.minPrice!.convertDecimalWon()
+        let max = findingAccommodationManager.maxPrice!.convertDecimalWon()
         informationView.setMinLabel(fee: min + "-")
         informationView.setMaxLabel(fee: max)
+    }
+    
+    func setBottomViewButton() {
+        self.bottomView.rightButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    @objc func buttonTapped() {
+        guard let viewController = storyboard?.instantiateViewController(identifier: "RoomsViewController") as? RoomsViewController else { return }
+        viewController.setFindingAccommodationManager(object: findingAccommodationManager)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func decimalWon(value: Int) -> String {
