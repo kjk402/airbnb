@@ -37,7 +37,6 @@ export default function SearchFilter({ setFlag, filter, setFilter, type, input, 
 	const handleSearchClick = (e: React.MouseEvent): void => {
 		e.stopPropagation();
 		setUrlState(`${filter.city}${filter.checkIn}${filter.checkOut}${filter.minPrice}${filter.maxPrice}${filter.numOfPeople}`);
-		setFlag(true);
 	};
 
 	const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -79,7 +78,7 @@ export default function SearchFilter({ setFlag, filter, setFilter, type, input, 
 			{isEnd && (
 				<Link to={{ pathname: `/rooms/search?checkIn=${filter.checkIn}&checkOut=${filter.checkOut}&cityName=${filter.city}&maxPrice=${filter.maxPrice}&minPrice=${filter.minPrice}&numOfPeople=${filter.numOfPeople}` }}>
 					<StyleSearchBtn onClick={(e) => handleSearchClick(e)}>
-						<SearchIcon stroke="#FFFFFF" />
+						<SearchIcon stroke="#FFFFFF" width="24" height="24" />
 					</StyleSearchBtn>
 				</Link>
 			)}

@@ -6,6 +6,8 @@ interface SearchBarProps {
 	filter: any;
 	setFilter: any;
 	setFlag: any;
+	isResultPage: boolean;
+	isMini: boolean;
 	// isCalendarModalOn?: boolean;
 	// setIsCalendarModalOn?: any;
 	// isFeeModalOn?: boolean;
@@ -18,7 +20,7 @@ interface SearchBarProps {
 	// calendarToggleCheckOutRef?: any;
 }
 
-export default function SearchBar({ filter, setFilter, setFlag }: SearchBarProps) {
+export default function SearchBar({ filter, setFilter, setFlag, isResultPage, isMini }: SearchBarProps) {
 	const [isLocationModalOn, setIsLocationModalOn] = useState<boolean>(false);
 	const [isCalendarModalOn, setIsCalendarModalOn] = useState<boolean>(false);
 	const [isFeeModalOn, setIsFeeModalOn] = useState<boolean>(false);

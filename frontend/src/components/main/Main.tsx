@@ -10,7 +10,7 @@ interface MainProps {
 export default function Main({ filter, setFilter, setFlag }: MainProps) {
 	return (
 		<StyleMain>
-			<SearchBar filter={filter} setFilter={setFilter} setFlag={setFlag} />
+			<SearchBar filter={filter} setFilter={setFilter} setFlag={setFlag} isResultPage={false} isMini={false} />
 		</StyleMain>
 	);
 }

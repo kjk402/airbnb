@@ -7,7 +7,7 @@ import SearchResult from "./components/search_result/SearchResult";
 import { cityState, checkInState, checkOutState, minPriceState, maxPriceState, numOfPeopleState, urlState } from "./atoms";
 import { useRecoilState } from "recoil";
 
-interface FilterProps {
+export interface FilterProps {
 	city?: string | undefined;
 	checkIn?: string | undefined;
 	checkOut?: string | undefined;
@@ -39,8 +39,6 @@ function App() {
 export default App;
 
 const RouterComponent = ({ filter, setFilter, setFlag, numOfPeople }: GlobalProps) => {
-	const [url] = useRecoilState(urlState);
-	const [numOfPeople2] = useRecoilState(numOfPeopleState);
 	return (
 		<Router>
 			<Switch>
