@@ -8,12 +8,13 @@ import SearchBar from "./../search_bar/SearchBar";
 import { FilterProps } from "./../../App";
 import { getFilter } from "./../../utils/getFilter";
 import MiniSearchBar from "./MiniSearchBar";
+import Rooms from "./Rooms";
 
 export default function SearchResult() {
 	const URL = parseURL(window.location.href);
 	const filterData = getFilter(window.location.href);
 	const { checkIn, checkOut, minPrice, maxPrice, numOfPeople }: FilterProps = filterData;
-	const [data, setData] = useState();
+	const [data, setData] = useState([]);
 	const [filter, setFilter] = useState<FilterProps>({ city: undefined, checkIn: checkIn, checkOut: checkOut, minPrice: minPrice, maxPrice: maxPrice, numOfPeople: numOfPeople });
 	const [isMini, setIsMini] = useState(true);
 
@@ -29,8 +30,11 @@ export default function SearchResult() {
 
 	useEffect(() => {
 		fetchData();
-		window.addEventListener("click", handleOutClick);
 	}, []);
+
+	useEffect(() => {
+		window.addEventListener("click", handleOutClick);
+	}, [isMini]);
 
 	const handleSearchBar = (e: React.MouseEvent) => {
 		e.stopPropagation();
@@ -43,7 +47,7 @@ export default function SearchResult() {
 	};
 
 	return (
-		<BodyWrapper>
+		<>
 			<StyleHeader>
 				<Logo />
 				{isMini ? (
@@ -58,26 +62,30 @@ export default function SearchResult() {
 			</StyleHeader>
 			<SearchBarArea>{!isMini && <SearchBar filter={filter} setFilter={setFilter} setFlag={true} isResultPage={true} isMini={false} />}</SearchBarArea>
 			<StyleMain>
-				{data ? (
+				{data.length > 0 ? (
 					<MainWrapper>
-						<StyleRooms>검색결과</StyleRooms>
+						<StyleRooms>
+							<Rooms data={data} filter={filter} />
+						</StyleRooms>
 						<StyleMap>지도</StyleMap>
 					</MainWrapper>
 				) : (
 					<>loading</>
 				)}
 			</StyleMain>
-		</BodyWrapper>
+		</>
 	);
 }
 
-const BodyWrapper = styled.div`
-	margin: 10px 10px;
-`;
 const StyleHeader = styled.div`
+	position: sticky;
+	padding: 10px 50px; /* 중요*/
+	top: 0;
 	display: grid;
-	grid-template-columns: 1fr 5fr 1fr;
+	grid-template-columns: 4fr 2fr 4fr;
 	align-items: center;
+	box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25);
+	backdrop-filter: blur(4px);
 `;
 
 const StyleMain = styled.div``;
@@ -90,6 +98,12 @@ const MainWrapper = styled.div`
 	justify-content: space-between;
 `;
 
-const StyleRooms = styled.div``;
+const StyleRooms = styled.div`
+	padding-top: 10px;
+	padding-left: 50px; /* 중요*/
+`;
 
-const StyleMap = styled.div``;
+const StyleMap = styled.div`
+	padding-top: 10px;
+	padding-right: 50px; /* 중요*/
+`;

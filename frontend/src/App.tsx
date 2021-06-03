@@ -27,7 +27,6 @@ function App() {
 	const [filter, setFilter] = useState<FilterProps>({ city: undefined, checkIn: undefined, checkOut: undefined, minPrice: "0", maxPrice: "100000", numOfPeople: undefined });
 	const [flag, setFlag] = useState(false);
 	const [numOfPeople] = useRecoilState(numOfPeopleState);
-	console.log("사람수: " + numOfPeople);
 
 	return (
 		<>
