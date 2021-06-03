@@ -3,7 +3,9 @@ import { ReactComponent as LogoImg } from "./../../../icons/logo.svg";
 import { EmptyInterface } from "./../../../utils/interfaces";
 import { Link } from "react-router-dom";
 
-export default function Logo(props: EmptyInterface) {
+interface IAppProps {}
+
+export default function Logo({}: IAppProps) {
 	return (
 		<>
 			<LOGO>
@@ -16,6 +18,7 @@ export default function Logo(props: EmptyInterface) {
 }
 
 const LOGO = styled.div`
+	position: relative;
 	display: flex;
 	align-items: center;
 	width: 88px;

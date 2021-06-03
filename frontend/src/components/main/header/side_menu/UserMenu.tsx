@@ -3,7 +3,9 @@ import { ReactComponent as MenuIcon } from "./../../../../icons/menu.svg";
 import { ReactComponent as UserIcon } from "./../../../../icons/user.svg";
 import { EmptyInterface } from "./../../../../utils/interfaces";
 
-export default function UserMenu(props: EmptyInterface) {
+interface IAppProps {}
+
+export default function UserMenu({}: IAppProps) {
 	return (
 		<>
 			<StyleUserMenu>
@@ -17,6 +19,7 @@ export default function UserMenu(props: EmptyInterface) {
 }
 
 const StyleUserMenu = styled.div`
+	position: relative;
 	display: flex;
 	justify-content: flex-end;
 `;

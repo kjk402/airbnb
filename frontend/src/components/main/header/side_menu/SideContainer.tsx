@@ -2,7 +2,9 @@ import UserMenu from "./UserMenu";
 
 import { EmptyInterface } from "./../../../../utils/interfaces";
 
-export default function SideContainer(props: EmptyInterface) {
+interface IAppProps {}
+
+export default function SideContainer({}: IAppProps) {
 	return (
 		<div>
 			<UserMenu />
