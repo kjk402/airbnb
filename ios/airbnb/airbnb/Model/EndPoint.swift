@@ -15,6 +15,7 @@ enum EndPoint {
     enum Path: String {
         case cities = "/cities"
         case rooms, reservation
+        case search = "/rooms/search"
         case price = "/rooms/prices"
         case login = "/login"
         
@@ -55,6 +56,8 @@ enum EndPoint {
             case .price:
                 return path.rawValue
             case .login:
+                return path.rawValue
+            case .search:
                 return path.rawValue
             }
         }()

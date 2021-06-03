@@ -16,7 +16,7 @@ final class FindingAccommodationManager {
     @Published private(set) var maxPrice: Int?
     @Published private(set) var minPrice: Int?
     @Published private(set) var numOfPeople: Int?
-    private var roomList: RoomsList?
+    @Published private(set) var roomList: RoomsList?
     private let networkManager: Networking
     
     init(cityName: String? = nil, checkIn: String? = nil, checkOut: String? = nil, allPrices: [Int]? = nil, averagePrices: Int? = nil, maxPrice: Int? = nil, minPrice: Int? = nil, numOfPeople: Int? = nil, networkManager: Networking) {
@@ -43,21 +43,19 @@ final class FindingAccommodationManager {
         networkManager.getData(url: url, decodableType: RoomsPrice.self) { price in
             self.allPrices = price.allPrices
             self.averagePrices = price.averagePrice
-            self.maxPrice = price.allPrices.max()
-            self.minPrice = price.allPrices.min()
         }
     }
     
-    private func getAvailableRoomsList(numOfPeople: Int) {
+    func getAvailableRoomsList() {
         var queryItems = [URLQueryItem]()
         queryItems.append(QueryItems.checkIn.assign(value: checkIn!))
         queryItems.append(QueryItems.checkOut.assign(value: checkOut!))
         queryItems.append(QueryItems.cityName.assign(value: cityName!))
         queryItems.append(QueryItems.maxPrice.assign(value: String(maxPrice!)))
         queryItems.append(QueryItems.minPrice.assign(value: String(minPrice!)))
-        queryItems.append(QueryItems.numOfPeople.assign(value: String(numOfPeople)))
+        queryItems.append(QueryItems.numOfPeople.assign(value: String(numOfPeople!)))
         
-        guard let url = EndPoint.url(path: .rooms, queryItems: queryItems) else { return }
+        guard let url = EndPoint.url(path: .search, queryItems: queryItems) else { return }
         
         networkManager.getData(url: url, decodableType: RoomsList.self) { roomList in
             self.roomList = roomList

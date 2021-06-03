@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -354,8 +355,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b50-sv-mAB">
-                                <rect key="frame" x="16" y="97" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩200,000 - " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b50-sv-mAB">
+                                <rect key="frame" x="16" y="97" width="96" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.20000064370000001" green="0.19999992850000001" blue="0.1999979019" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -393,8 +394,8 @@
                                     <constraint firstAttribute="height" constant="100" id="Lps-ba-anu"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evA-ZH-CSR">
-                                <rect key="frame" x="59" y="97" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩800,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evA-ZH-CSR">
+                                <rect key="frame" x="113" y="97" width="80" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -490,6 +491,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpR-kD-wQ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4401" y="-131"/>
+        </scene>
+        <!--Rooms View Controller-->
+        <scene sceneID="tIS-ml-hVx">
+            <objects>
+                <viewController storyboardIdentifier="RoomsViewController" id="eGS-hh-ohc" customClass="RoomsViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xAn-Bg-dgl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="X5f-5H-SQu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="24" id="cDC-Ha-xgs">
+                                    <size key="itemSize" width="343" height="349"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="24" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="o7O-1t-KrA">
+                                        <rect key="frame" x="35.5" y="24" width="343" height="349"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Lrv-UU-FK2">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="349"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ldh-nT-dg8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ldh-nT-dg8" firstAttribute="bottom" secondItem="X5f-5H-SQu" secondAttribute="bottom" id="CG3-e6-k0k"/>
+                            <constraint firstItem="X5f-5H-SQu" firstAttribute="leading" secondItem="Ldh-nT-dg8" secondAttribute="leading" id="NPi-ir-ghx"/>
+                            <constraint firstItem="Ldh-nT-dg8" firstAttribute="trailing" secondItem="X5f-5H-SQu" secondAttribute="trailing" id="aJn-IZ-UM7"/>
+                            <constraint firstItem="X5f-5H-SQu" firstAttribute="top" secondItem="Ldh-nT-dg8" secondAttribute="top" id="liP-Cg-yyl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="roomCollectionView" destination="X5f-5H-SQu" id="684-Ef-Lal"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1aY-hv-zpR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5238" y="-131"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="2RX-8r-cDb">

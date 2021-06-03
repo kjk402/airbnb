@@ -7,38 +7,36 @@
 
 import Foundation
 
-struct RoomsList: Decodable {
-    let list: [RoomInformation]
-}
-
 struct RoomInformation: Decodable {
-    let receipt: Receipt
     let room: Room
     let thumbImage: String
+    let receipt: Receipt
 }
 
 struct Receipt: Decodable {
     let basicPrice: Int
-    let cleaningFee: Int
-    let resultFee: Int
-    let serviceFee: Int
-    let totalPrice: Int
     let weekSalePrice: Int
+    let cleaningFee: Int
+    let serviceFee: Int
+    let resultFee: Int
+    let totalPrice: Int
 }
 
 struct Room: Decodable {
-    let bathRoom: Int
-    let bed: Int
-    let description: String
     let id: Int
-    let location: Location
-    let maxGuest: Int
+    let title: String
+    let description: String
     let pricePerDay: Int
     let roomType: String
-    let title: String
+    let bed: Int
+    let maxGuest: Int
+    let bathRoom: Int?
+    let location: Location
 }
 
 struct Location: Decodable {
-    let latitude: Int
-    let longtitude: Int
+    let latitude: Double
+    let longitude: Double
 }
+
+typealias RoomsList = [RoomInformation]
