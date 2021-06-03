@@ -3,14 +3,12 @@ import { ReactComponent as LogoImg } from "./../../../icons/logo.svg";
 import { EmptyInterface } from "./../../../utils/interfaces";
 import { Link } from "react-router-dom";
 
-interface IAppProps {
-	isMini: boolean;
-}
+interface IAppProps {}
 
-export default function Logo({ isMini }: IAppProps) {
+export default function Logo({}: IAppProps) {
 	return (
 		<>
-			<LOGO isMini={isMini}>
+			<LOGO>
 				<Link to="/">
 					<LogoImg />
 				</Link>
@@ -19,11 +17,10 @@ export default function Logo({ isMini }: IAppProps) {
 	);
 }
 
-const LOGO = styled.div<{ isMini: boolean }>`
+const LOGO = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
 	width: 88px;
 	height: 46px;
-	top: ${(props) => (props.isMini ? "0" : "-48px")};
 `;

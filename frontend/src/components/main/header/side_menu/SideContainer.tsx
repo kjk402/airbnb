@@ -2,14 +2,12 @@ import UserMenu from "./UserMenu";
 
 import { EmptyInterface } from "./../../../../utils/interfaces";
 
-interface IAppProps {
-	isMini: boolean;
-}
+interface IAppProps {}
 
-export default function SideContainer({ isMini }: IAppProps) {
+export default function SideContainer({}: IAppProps) {
 	return (
 		<div>
-			<UserMenu isMini={isMini} />
+			<UserMenu />
 		</div>
 	);
 }

@@ -28,7 +28,7 @@ const Bg = styled.div`
 	width: 1440px;
 	height: 1440px;
 	background-color: #0e0e0e;
-	/* opacity: 0.33; */
+	opacity: 0.33;
 `;
 
 const Modal = styled.div`

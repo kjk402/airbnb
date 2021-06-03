@@ -50,7 +50,7 @@ export default function SearchResult() {
 	return (
 		<>
 			<StyleHeader>
-				<Logo isMini={isMini} />
+				<Logo />
 				{isMini ? (
 					<div onClick={(e) => handleSearchBar(e)}>
 						{" "}
@@ -62,7 +62,7 @@ export default function SearchResult() {
 						<SearchBarArea>{!isMini && <SearchBar filter={filter} setFilter={setFilter} setFlag={true} isResultPage={true} isMini={isMini} />}</SearchBarArea>
 					</NewHeaderWrapper>
 				)}
-				<SideContainer isMini={isMini} />
+				<SideContainer />
 			</StyleHeader>
 			<StyleMain>
 				{data.length > 0 ? (
