@@ -37,7 +37,9 @@ final class FindingAccommodationManager {
         queryItems.append(QueryItems.checkIn.assign(value: checkIn))
         queryItems.append(QueryItems.checkOut.assign(value: checkOut))
         
-        networkManager.getData(url: EndPoint.url(path: .price, queryItems: queryItems), decodableType: RoomsPrice.self) { price in
+        guard let url = EndPoint.url(path: .price, queryItems: queryItems) else { return }
+        
+        networkManager.getData(url: url, decodableType: RoomsPrice.self) { price in
             self.allPrices = price.allPrices
             self.averagePrices = price.averagePrice
             self.maxPrice = price.allPrices.max()
@@ -54,7 +56,9 @@ final class FindingAccommodationManager {
         queryItems.append(QueryItems.minPrice.assign(value: String(minPrice!)))
         queryItems.append(QueryItems.numOfPeople.assign(value: String(numOfPeople)))
         
-        networkManager.getData(url: EndPoint.url(path: .rooms), decodableType: RoomsList.self) { roomList in
+        guard let url = EndPoint.url(path: .rooms, queryItems: queryItems) else { return }
+        
+        networkManager.getData(url: url, decodableType: RoomsList.self) { roomList in
             self.roomList = roomList
         }
     }

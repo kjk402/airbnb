@@ -38,7 +38,7 @@ enum EndPoint {
         }
     }
     
-    static func url(path: Path, queryItems: [URLQueryItem]? = nil, reservationRoomId: Int? = nil, roomId: Int? = nil) -> String {
+    static func url(path: Path, queryItems: [URLQueryItem]? = nil, reservationRoomId: Int? = nil, roomId: Int? = nil) -> URL? {
         var component = URLComponents()
         component.scheme = scheme
         component.host = host
@@ -56,7 +56,7 @@ enum EndPoint {
             }
         }()
         component.queryItems = queryItems
-        guard let urlString = component.url?.absoluteString else { return "somethingwrong" }
+        return component.url
         return urlString
     }
 }
