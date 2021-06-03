@@ -94,7 +94,7 @@ const StyleHeader = styled.div`
 `;
 
 const StyleMain = styled.div`
-	height: 1024px;
+	height: 800px;
 `;
 
 const SearchBarArea = styled.div``;
@@ -107,7 +107,7 @@ const MainWrapper = styled.div`
 
 const StyleRooms = styled.div`
 	width: 100%;
-	height: 1024px;
+	height: 800px;
 	padding-top: 10px;
 	padding-left: 50px; /* 중요*/
 	overflow-y: scroll;

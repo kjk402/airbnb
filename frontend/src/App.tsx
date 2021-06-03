@@ -47,7 +47,9 @@ const RouterComponent = ({ filter, setFilter, setFlag, numOfPeople }: GlobalProp
 						<Main filter={filter} setFilter={setFilter} setFlag={setFlag} />
 					</MainWrapper>
 				</Route>
-				<Route path={`/rooms`} component={SearchResult} />
+				<SearchResultWrapper>
+					<Route path={`/rooms`} component={SearchResult} />
+				</SearchResultWrapper>
 			</Switch>
 		</Router>
 	);
@@ -59,4 +61,8 @@ const MainWrapper = styled.div`
 	min-width: 1280px;
 	min-height: 1280px;
 	padding: 30px 100px;
+`;
+
+const SearchResultWrapper = styled.div`
+	height: 800px;
 `;

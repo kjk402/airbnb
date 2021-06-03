@@ -19,17 +19,13 @@ function Map({ data }: IAppProps) {
 	console.log("좌표: ", coordinateList);
 	const containerStyle = {
 		width: "100%",
-		height: "1024px",
+		height: "800px",
 	};
 
 	const center = {
 		lat: coordinateList[0].latitude,
 		lng: coordinateList[0].longitude,
 	};
-
-	useEffect(() => {
-		setMap(map);
-	}, [data]);
 
 	const onLoad = useCallback(function callback(map) {
 		const bounds = new window.google.maps.LatLngBounds();
@@ -43,7 +39,7 @@ function Map({ data }: IAppProps) {
 
 	return (
 		<StyleMap>
-			{isLoaded ? (
+			{center && isLoaded ? (
 				<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onLoad={onLoad} onUnmount={onUnmount}>
 					{/* Child components, such as markers, info windows, etc. */}
 					{markers}
@@ -60,6 +56,5 @@ export const MapMemo = React.memo(Map);
 
 const StyleMap = styled.div`
 	width: 100%;
-	height: 100%;
 	padding-left: 10px;
 `;
