@@ -369,7 +369,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74d-7P-TJ4">
                                 <rect key="frame" x="16" y="126" width="31" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.48231399060000002" green="0.48237484689999999" blue="0.48229330780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AML-7o-eeR" customClass="BottomView" customModule="airbnb" customModuleProvider="target">
@@ -393,10 +393,17 @@
                                     <constraint firstAttribute="height" constant="100" id="Lps-ba-anu"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evA-ZH-CSR">
+                                <rect key="frame" x="59" y="97" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zh0-CK-9eK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="evA-ZH-CSR" firstAttribute="leading" secondItem="b50-sv-mAB" secondAttribute="trailing" constant="1" id="0HC-kE-0EO"/>
                             <constraint firstItem="b50-sv-mAB" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" constant="16" id="4dU-Zb-QQi"/>
                             <constraint firstItem="7ht-1x-mxk" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" constant="16" id="5Gh-bI-cYm"/>
                             <constraint firstAttribute="bottom" secondItem="AML-7o-eeR" secondAttribute="bottom" id="Com-0I-rvg"/>
@@ -413,14 +420,17 @@
                             <constraint firstItem="j10-A6-xpo" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" constant="16" id="ekD-mb-818"/>
                             <constraint firstItem="b50-sv-mAB" firstAttribute="top" secondItem="j10-A6-xpo" secondAttribute="bottom" constant="16" id="mW6-il-KBd"/>
                             <constraint firstItem="AML-7o-eeR" firstAttribute="leading" secondItem="Zh0-CK-9eK" secondAttribute="leading" id="mbP-Nh-0NI"/>
-                            <constraint firstItem="Zh0-CK-9eK" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="b50-sv-mAB" secondAttribute="trailing" constant="356" id="tEX-bS-yVt"/>
+                            <constraint firstItem="evA-ZH-CSR" firstAttribute="top" secondItem="j10-A6-xpo" secondAttribute="bottom" constant="16" id="qb1-I2-T4f"/>
                             <constraint firstItem="Zh0-CK-9eK" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="j10-A6-xpo" secondAttribute="trailing" constant="353.5" id="zop-6i-rJq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="averagePrice" destination="74d-7P-TJ4" id="Tlg-SU-b6U"/>
                         <outlet property="bottomView" destination="AML-7o-eeR" id="n0V-tn-CEg"/>
                         <outlet property="informationView" destination="q8m-mT-S7v" id="Js8-5X-dSf"/>
                         <outlet property="lineChartView" destination="7ht-1x-mxk" id="xNP-8p-Hu1"/>
+                        <outlet property="maximumLabel" destination="evA-ZH-CSR" id="AAK-oO-9Fa"/>
+                        <outlet property="minimumLabel" destination="b50-sv-mAB" id="On2-lS-zkv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bav-Va-I6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

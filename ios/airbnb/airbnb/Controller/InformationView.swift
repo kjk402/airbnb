@@ -11,7 +11,8 @@ final class InformationView: UIView {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var periodLabel: UILabel!
-    @IBOutlet weak var feeLabel: UILabel!
+    @IBOutlet weak var maximumLabel: UILabel!
+    @IBOutlet weak var minimumLabel: UILabel!
     @IBOutlet weak var numberOfPeopleLabel: UILabel!
     
     
@@ -47,8 +48,12 @@ final class InformationView: UIView {
         self.periodLabel.text = "\(min) - \(max)"
     }
     
-    func setFeeLabel(fee: String) {
-        self.feeLabel.text = fee
+    func setMaxLabel(fee: String) {
+        self.maximumLabel.text = fee
+    }
+    
+    func setMinLabel(fee: String) {
+        self.minimumLabel.text = fee
     }
     
     func setNumberOfPeopleLabel(count: Int) {
