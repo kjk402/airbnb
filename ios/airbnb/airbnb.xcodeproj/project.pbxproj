@@ -24,6 +24,7 @@
 		B30E1277265A80F7004425D6 /* ImageView+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E1276265A80F7004425D6 /* ImageView+Load.swift */; };
 		B34110F02664BCEE00CB183A /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34110EF2664BCEE00CB183A /* RangeSlider.swift */; };
 		B34110F22664CD4100CB183A /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34110F12664CD4100CB183A /* RangeSliderTrackLayer.swift */; };
+		B35DC14A2669F491004177C8 /* billabong.otf in Resources */ = {isa = PBXBuildFile; fileRef = B35DC1492669F491004177C8 /* billabong.otf */; };
 		B3958DC1266611150080341E /* PersonnelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3958DC0266611150080341E /* PersonnelViewController.swift */; };
 		B3958DC3266614030080341E /* PersonnelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3958DC2266614030080341E /* PersonnelView.swift */; };
 		B3958DC52666140E0080341E /* PersonnelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3958DC42666140E0080341E /* PersonnelView.xib */; };
@@ -33,6 +34,7 @@
 		B3B376232668C5570006FFF7 /* RoomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B376212668C5570006FFF7 /* RoomCollectionViewCell.swift */; };
 		B3B376242668C5570006FFF7 /* RoomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3B376222668C5570006FFF7 /* RoomCollectionViewCell.xib */; };
 		B3B37626266921830006FFF7 /* Int+DecimalFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B37625266921830006FFF7 /* Int+DecimalFormat.swift */; };
+		B3B376282669352F0006FFF7 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B376272669352F0006FFF7 /* GoogleMapViewController.swift */; };
 		B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */; };
 		B3C8FB172655FD52005C6235 /* CityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */; };
 		B3C8FB1C26562E13005C6235 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B3C8FB1B26562E13005C6235 /* Alamofire */; };
@@ -99,6 +101,7 @@
 		B30E1276265A80F7004425D6 /* ImageView+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Load.swift"; sourceTree = "<group>"; };
 		B34110EF2664BCEE00CB183A /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RangeSlider.swift; path = airbnb/Controller/RangeSlider.swift; sourceTree = SOURCE_ROOT; };
 		B34110F12664CD4100CB183A /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RangeSliderTrackLayer.swift; path = airbnb/Controller/RangeSliderTrackLayer.swift; sourceTree = SOURCE_ROOT; };
+		B35DC1492669F491004177C8 /* billabong.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = billabong.otf; sourceTree = "<group>"; };
 		B3958DC0266611150080341E /* PersonnelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonnelViewController.swift; sourceTree = "<group>"; };
 		B3958DC2266614030080341E /* PersonnelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonnelView.swift; path = airbnb/PersonnelView.swift; sourceTree = SOURCE_ROOT; };
 		B3958DC42666140E0080341E /* PersonnelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonnelView.xib; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		B3B376212668C5570006FFF7 /* RoomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoomCollectionViewCell.swift; path = airbnb/RoomCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		B3B376222668C5570006FFF7 /* RoomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RoomCollectionViewCell.xib; path = airbnb/RoomCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		B3B37625266921830006FFF7 /* Int+DecimalFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DecimalFormat.swift"; sourceTree = "<group>"; };
+		B3B376272669352F0006FFF7 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoogleMapViewController.swift; path = airbnb/GoogleMapViewController.swift; sourceTree = SOURCE_ROOT; };
 		B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3C8FB1D26562E7C005C6235 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -206,6 +210,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		B35DC14B2669F591004177C8 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				B35DC1492669F491004177C8 /* billabong.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		B3C8FB1F26562E83005C6235 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +260,7 @@
 				B3D7315626523C4300FE6C62 /* AppDelegate.swift */,
 				B3D7315826523C4300FE6C62 /* SceneDelegate.swift */,
 				B3D7315C26523C4300FE6C62 /* Main.storyboard */,
+				B35DC14B2669F591004177C8 /* Font */,
 				B30210FE265757D900A0AA92 /* View */,
 				B30E1278265A80FC004425D6 /* Extension */,
 				B3C8FB1F26562E83005C6235 /* Model */,
@@ -287,6 +300,7 @@
 				B3A811EA265F4A4F007FCE43 /* FeeViewController.swift */,
 				B3958DC0266611150080341E /* PersonnelViewController.swift */,
 				B3B3761F2668C4D40006FFF7 /* RoomsViewController.swift */,
+				B3B376272669352F0006FFF7 /* GoogleMapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -423,6 +437,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B35DC14A2669F491004177C8 /* billabong.otf in Resources */,
 				B3D7316326523C4400FE6C62 /* LaunchScreen.storyboard in Resources */,
 				B3B376242668C5570006FFF7 /* RoomCollectionViewCell.xib in Resources */,
 				B302110226575A8000A0AA92 /* SpotCollectionViewCell.xib in Resources */,
@@ -520,6 +535,7 @@
 				B3C8FB1E26562E7C005C6235 /* NetworkManager.swift in Sources */,
 				B3B376202668C4D40006FFF7 /* RoomsViewController.swift in Sources */,
 				B30AB83E2667632B007F12A5 /* URL+QueryItems.swift in Sources */,
+				B3B376282669352F0006FFF7 /* GoogleMapViewController.swift in Sources */,
 				B30E1277265A80F7004425D6 /* ImageView+Load.swift in Sources */,
 				B30AB83926675FAB007F12A5 /* OAuthViewController.swift in Sources */,
 				B304DF08265CC945008F3BB3 /* FindingAccommodationManager.swift in Sources */,
