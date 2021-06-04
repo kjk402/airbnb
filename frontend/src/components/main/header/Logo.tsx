@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import { ReactComponent as LogoImg } from "./../../../icons/logo.svg";
-import { EmptyInterface } from "./../../../utils/interfaces";
 import { Link } from "react-router-dom";
 
-interface IAppProps {}
-
-export default function Logo({}: IAppProps) {
+export default function Logo({}: {}) {
 	return (
 		<>
 			<LOGO>

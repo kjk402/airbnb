@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import styled from "styled-components";
 import { Key } from "./../../utils/apiKey";

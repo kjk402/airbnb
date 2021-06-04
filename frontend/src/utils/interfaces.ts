@@ -1,7 +1,5 @@
 import React from "react";
 
-export interface EmptyInterface {}
-
 export interface ModalInterface {
 	filter: any;
 	setFilter: any;
@@ -11,5 +9,3 @@ export interface ModalInterface {
 	isActive: boolean;
 	setModalOn: any;
 }
-
-export type ModalType = "location" | "calendar" | "fee" | "guest";

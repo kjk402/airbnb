@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import makeKRW from "./../../utils/makeKRW";
 import { ReactComponent as Heart } from "./../../icons/heart.svg";
-import BookModal from "./BookModal";
 import { useRecoilState } from "recoil";
 import { bookModalState, cardInfoState } from "./../../atoms";
 
@@ -13,14 +11,9 @@ export interface IAppProps {
 export default function RoomCard({ info }: IAppProps) {
 	const [isModalOn, setIsModalOn] = useRecoilState(bookModalState);
 	const [cardInfo, setCardInfo] = useRecoilState(cardInfoState);
-	// console.log(info);
 	const image = info.thumbImage;
 	const { maxGuest, bathroom, bed, title, description, pricePerDay } = info.room;
-	const { basicPrice, cleaningFee, resultFee, serviceFee, totalPrice, weekSalePrice } = info.receipt;
-
-	// useEffect(() => {
-
-	// },[])
+	const { totalPrice } = info.receipt;
 
 	const handleOnClick = () => {
 		setCardInfo(info);
