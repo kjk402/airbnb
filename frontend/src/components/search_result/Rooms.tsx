@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import RoomCard from "./RoomCard";
 import makeKRW from "./../../utils/makeKRW";
+import { useRecoilState } from "recoil";
+import { filterState } from "./../../atoms";
 
 export interface roomInfoI {
 	room: object;
@@ -23,6 +26,10 @@ export default function Rooms({ data, filter }: IAppProps) {
 	const checkOutDay = Number(checkOutSchedule[2]);
 	const minPrice = makeKRW(Number(filter.minPrice));
 	const maxPrice = makeKRW(Number(filter.maxPrice));
+	const [filterData, setFilterData] = useRecoilState(filterState);
+	useEffect(() => {
+		setFilterData(filter);
+	}, []);
 
 	return (
 		<RoomsWrapper>

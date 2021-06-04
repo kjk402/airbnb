@@ -10,6 +10,10 @@ import { getFilter } from "./../../utils/getFilter";
 import MiniSearchBar from "./MiniSearchBar";
 import Rooms from "./Rooms";
 import { MapMemo } from "./Map";
+import { useRecoilState } from "recoil";
+import { bookModalState, cardInfoState } from "./../../atoms";
+import BookContent from "./BookContent";
+import ModalContainer from "../../styles/ModalContainer";
 
 export default function SearchResult() {
 	const URL = parseURL(window.location.href);
@@ -18,6 +22,8 @@ export default function SearchResult() {
 	const [data, setData] = useState([]);
 	const [filter, setFilter] = useState<FilterProps>({ city: undefined, checkIn: checkIn, checkOut: checkOut, minPrice: minPrice, maxPrice: maxPrice, numOfPeople: numOfPeople });
 	const [isMini, setIsMini] = useState(true);
+	const [isModalOn, setIsModalOn] = useRecoilState(bookModalState);
+	const [cardInfo, setCardInfo] = useRecoilState(cardInfoState);
 
 	const fetchData = async () => {
 		try {
@@ -45,6 +51,14 @@ export default function SearchResult() {
 	const handleOutClick = () => {
 		setIsMini(true);
 		window.removeEventListener("click", handleOutClick);
+	};
+
+	const handleModalClick = (e: React.MouseEvent) => {
+		e.stopPropagation();
+	};
+
+	const handleBgClick = () => {
+		setIsModalOn(false);
 	};
 
 	return (
@@ -78,9 +92,36 @@ export default function SearchResult() {
 					<>loading</>
 				)}
 			</StyleMain>
+
+			{isModalOn && (
+				<ModalBg onClick={handleBgClick}>
+					<BookModal onClick={handleModalClick}>
+						<BookContent cardInfo={cardInfo} />
+					</BookModal>
+				</ModalBg>
+			)}
 		</>
 	);
 }
+
+const BookModal = styled.div`
+	width: 400px;
+	height: 542px;
+	position: absolute;
+	top: 25%;
+	left: 760px;
+	background-color: #ffffff;
+`;
+
+const ModalBg = styled.div`
+	top: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #333333;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: 1000;
+`;
 
 const StyleHeader = styled.div`
 	position: sticky;
@@ -91,7 +132,7 @@ const StyleHeader = styled.div`
 	align-items: center;
 	box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25);
 	backdrop-filter: blur(4px);
-	z-index: 10;
+	z-index: 1;
 `;
 
 const NewHeaderWrapper = styled.div`

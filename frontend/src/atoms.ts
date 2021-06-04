@@ -32,5 +32,20 @@ export const numOfPeopleState = atom({
 
 export const urlState = atom({
 	key: "url",
-	default: '1'
+	default: "1",
+});
+
+export const bookModalState = atom({
+	key: "bookModal",
+	default: false,
+});
+
+export const cardInfoState = atom({
+	key: "cardData",
+	default: {},
+});
+
+export const filterState = atom({
+	key: "filter",
+	default: {},
 });
