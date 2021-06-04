@@ -24,7 +24,7 @@ export default function BookModal({ info, setIsModalOn }: IAppProps) {
 
 const Bg = styled.div`
 	position: absolute;
-	z-index: 100;
+
 	width: 1440px;
 	height: 1440px;
 	background-color: #0e0e0e;
@@ -32,7 +32,6 @@ const Bg = styled.div`
 `;
 
 const Modal = styled.div`
-	z-index: 101;
 	width: 400px;
 	height: 542px;
 	background-color: #ffffff;

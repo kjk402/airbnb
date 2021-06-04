@@ -17,7 +17,7 @@ function Map({ data }: IAppProps) {
 	});
 	const coordinateList = data.map((el: any) => el.room.location);
 	const markers = coordinateList.map((el, idx) => <Marker key={idx} position={{ lat: el.latitude, lng: el.longitude }} />);
-	console.log("좌표: ", coordinateList);
+
 	const containerStyle = {
 		width: "100%",
 		height: "800px",
