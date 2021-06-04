@@ -4,7 +4,7 @@ import { filterState } from "../../atoms";
 import makeKRW from "./../../utils/makeKRW";
 
 export default function BookContent({ cardInfo }) {
-	const [filterData, setFilterData] = useRecoilState(filterState);
+	const [filterData] = useRecoilState(filterState);
 	const { checkIn, checkOut, numOfPeople } = filterData;
 	const checkInSchedule = filterData.checkIn.split("-");
 	const checkOutSchedule = filterData.checkOut.split("-");
@@ -95,7 +95,6 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
-	/* border: 1px solid red; */
 	width: 90%;
 	height: 90%;
 	display: flex;

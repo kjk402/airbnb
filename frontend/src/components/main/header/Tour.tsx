@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { EmptyInterface } from "./../../../utils/interfaces";
 
-export default function Tour(props: EmptyInterface) {
+export default function Tour({}: {}) {
 	return (
 		<>
 			<StyleList>

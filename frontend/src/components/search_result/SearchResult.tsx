@@ -13,7 +13,6 @@ import { MapMemo } from "./Map";
 import { useRecoilState } from "recoil";
 import { bookModalState, cardInfoState } from "./../../atoms";
 import BookContent from "./BookContent";
-import ModalContainer from "../../styles/ModalContainer";
 
 export default function SearchResult() {
 	const URL = parseURL(window.location.href);
@@ -23,7 +22,7 @@ export default function SearchResult() {
 	const [filter, setFilter] = useState<FilterProps>({ city: undefined, checkIn: checkIn, checkOut: checkOut, minPrice: minPrice, maxPrice: maxPrice, numOfPeople: numOfPeople });
 	const [isMini, setIsMini] = useState(true);
 	const [isModalOn, setIsModalOn] = useRecoilState(bookModalState);
-	const [cardInfo, setCardInfo] = useRecoilState(cardInfoState);
+	const [cardInfo] = useRecoilState(cardInfoState);
 
 	const fetchData = async () => {
 		try {
@@ -73,7 +72,7 @@ export default function SearchResult() {
 				) : (
 					<NewHeaderWrapper>
 						<Tour />
-						<SearchBarArea>{!isMini && <SearchBar filter={filter} setFilter={setFilter} setFlag={true} isResultPage={true} isMini={isMini} />}</SearchBarArea>
+						<SearchBarArea>{!isMini && <SearchBar filter={filter} setFilter={setFilter} setFlag={true} />}</SearchBarArea>
 					</NewHeaderWrapper>
 				)}
 				<SideContainer />
@@ -89,7 +88,7 @@ export default function SearchResult() {
 						</StyleMap>
 					</MainWrapper>
 				) : (
-					<>loading</>
+					<Loading>숙소를 불러오는 중...</Loading>
 				)}
 			</StyleMain>
 
@@ -125,7 +124,7 @@ const ModalBg = styled.div`
 
 const StyleHeader = styled.div`
 	position: sticky;
-	padding: 10px 50px; /* 중요*/
+	padding: 10px 50px;
 	top: 0;
 	display: grid;
 	grid-template-columns: 4fr 2fr 4fr;
@@ -156,15 +155,26 @@ const StyleRooms = styled.div`
 	width: 100%;
 	height: 800px;
 	padding-top: 10px;
-	padding-left: 50px; /* 중요*/
+	padding-left: 50px;
 	overflow-y: scroll;
 	::-webkit-scrollbar {
-		display: none; /* Chrome, Safari, Opera*/
+		display: none;
 	}
 `;
 
 const StyleMap = styled.div`
 	width: 100%;
 	padding-top: 10px;
-	padding-right: 50px; /* 중요*/
+	padding-right: 50px;
+`;
+
+const Loading = styled.div`
+	display: flex;
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	justify-content: center;
+	align-items: center;
+	font-size: 50px;
+	font-weight: 700;
 `;

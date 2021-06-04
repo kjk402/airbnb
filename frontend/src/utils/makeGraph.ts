@@ -20,12 +20,6 @@ function catmullRom2bezier(points: any): any {
 			y: points[Math.min(i + 2, points.length - 1)].y,
 		});
 
-		// Catmull-Rom to Cubic Bezier conversion matrix
-		//    0       1       0       0
-		//  -1/6      1      1/6      0
-		//    0      1/6      1     -1/6
-		//    0       0       1       0
-
 		var bp = [];
 		bp.push({
 			x: (-p[0].x + 6 * p[1].x + p[2].x) / 6,

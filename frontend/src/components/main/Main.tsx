@@ -4,13 +4,13 @@ import SearchBar from "./../search_bar/SearchBar";
 interface MainProps {
 	filter: any;
 	setFilter: any;
-	setFlag: any;
+	setFlag?: any;
 }
 
-export default function Main({ filter, setFilter, setFlag }: MainProps) {
+export default function Main({ filter, setFilter }: MainProps) {
 	return (
 		<StyleMain>
-			<SearchBar filter={filter} setFilter={setFilter} setFlag={setFlag} isResultPage={false} isMini={false} />
+			<SearchBar filter={filter} setFilter={setFilter} />
 		</StyleMain>
 	);
 }

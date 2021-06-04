@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import ModalContainer from "../../../styles/ModalContainer";
 import { ModalInterface } from "../../../utils/interfaces";
 import { ReactComponent as Minus } from "./../../../icons/minus.svg";
 import { ReactComponent as Plus } from "./../../../icons/plus.svg";
 import { ReactComponent as XCircle } from "./../../../icons/x-circle.svg";
-import {useRecoilState} from 'recoil';
-import {numOfPeopleState} from './../../../atoms';
-import {urlState} from './../../../atoms';
+import { useRecoilState } from "recoil";
+import { numOfPeopleState } from "./../../../atoms";
+import { urlState } from "./../../../atoms";
 
 export default function GuestModal({ filter, setFilter, type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
 	const [adultCount, setAdultCount] = useState<number>(0);
