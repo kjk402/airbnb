@@ -12,6 +12,7 @@ public class Reservation {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private final LocalDate checkIn;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private final LocalDate checkOut;
 

@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class RoomService {
@@ -37,9 +38,7 @@ public class RoomService {
     }
 
     public PriceDTO getAllPricesByConditionsOfCityAndPeriod(LocalDate checkIn, LocalDate checkOut, String cityName) {
-        List<Long> cityCondition = roomDAO.cityCondition(cityName);
-        List<Long> periodCondition = roomDAO.periodCondition(checkIn, checkOut);
-        List<Long> allConditions = Calculators.difference(cityCondition, periodCondition);
+        List<Long> allConditions = conditionsUsedGetPrices(checkIn, checkOut, cityName);
 
         List<Integer> allPrices = new ArrayList<>(roomDAO.getAllPrices(allConditions));
         Collections.sort(allPrices);
@@ -47,6 +46,24 @@ public class RoomService {
     }
 
     public List<RoomListDTO> getRoomsByConditionsOfCityAndPeriodAndPriceAndHeadcount(LocalDate checkIn, LocalDate checkOut, String cityName, int minPrice, int maxPrice, int guestCount) {
+        List<Long> allConditions = conditionsUsedGetRooms(checkIn, checkOut, cityName, minPrice, maxPrice, guestCount);
+        int fewNights = Calculators.calculatePeriod(checkIn, checkOut);
+
+        return roomDAO.findMultipleRooms(allConditions, fewNights);
+    }
+
+    private List<Long> conditionsUsedGetPrices(LocalDate checkIn, LocalDate checkOut, String cityName) {
+        List<Long> cityCondition = roomDAO.cityCondition(cityName);
+        List<Long> periodCondition = roomDAO.periodCondition(checkIn, checkOut);
+
+        List<Long> allConditions = Calculators.difference(cityCondition, periodCondition);
+
+        if (allConditions.isEmpty())
+            allConditions.add(0L);
+        return allConditions;
+    }
+
+    private List<Long> conditionsUsedGetRooms(LocalDate checkIn, LocalDate checkOut, String cityName, int minPrice, int maxPrice, int guestCount) {
         List<Long> cityCondition = roomDAO.cityCondition(cityName);
         List<Long> periodCondition = roomDAO.periodCondition(checkIn, checkOut);
         List<Long> priceCondition = roomDAO.priceCondition(minPrice, maxPrice);
@@ -55,18 +72,9 @@ public class RoomService {
         List<Long> allConditions = Calculators.intersection(cityCondition, Calculators.intersection(priceCondition, headcountCondition));
         Calculators.difference(allConditions, periodCondition);
 
-        int fewNights = Calculators.calculatePeriod(checkIn, checkOut);
-
-        List<RoomListDTO> roomListDTO = new ArrayList<>();
-
-        List<RoomDTO> roomDTOS = roomDAO.findMultipleRooms(allConditions);
-        List<String> thumbImages = imageDAO.getThumbImages(allConditions);
-        for (int i = 0; i< roomDTOS.size(); i++) {
-            roomListDTO.add(
-                    new RoomListDTO(roomDTOS.get(i), thumbImages.get(i), fewNights)
-            );
-        }
-        return roomListDTO;
+        if (allConditions.isEmpty())
+            allConditions.add(0L);
+        return allConditions;
     }
 
 }

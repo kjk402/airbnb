@@ -30,12 +30,22 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`city` (
 -- -----------------------------------------------------
 -- Table `airbnb`.`user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `airbnb`.`user` ;
+-- DROP TABLE IF EXISTS `airbnb`.`user` ;
+--
+-- CREATE TABLE IF NOT EXISTS `airbnb`.`user` (
+--     `id` BIGINT NOT NULL AUTO_INCREMENT,
+--     `github_id` VARCHAR(45) NOT NULL,
+--     `github_email` VARCHAR(45) NOT NULL,
+--     PRIMARY KEY (`id`))
+--     ENGINE = InnoDB;
 
+DROP TABLE IF EXISTS `airbnb`.`user`;
 CREATE TABLE IF NOT EXISTS `airbnb`.`user` (
-    `id` BIGINT NOT NULL AUTO_INCREMENT,
-    `github_id` VARCHAR(45) NOT NULL,
-    `github_email` VARCHAR(45) NOT NULL,
+                                               `id` BIGINT AUTO_INCREMENT NOT NULL,
+                                               `user_id` VARCHAR(45) UNIQUE KEY NOT NULL,
+    `email` VARCHAR(45) NOT NULL,
+    `name` VARCHAR(45) NULL,
+    `token` VARCHAR(255) NULL,
     PRIMARY KEY (`id`))
     ENGINE = InnoDB;
 
@@ -61,7 +71,7 @@ DROP TABLE IF EXISTS `airbnb`.`room` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`room`(
     `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
-    `title` varchar(45),
+    `title` varchar(150),
     `description` varchar(150),
     `price_per_day` INT,
     `room_type` varchar(45),
@@ -72,6 +82,9 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`room`(
     CONSTRAINT room_location_cost_foreign_key FOREIGN KEY (`location`) references `location` (id)
     );
 
+ALTER TABLE room CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
 -- -----------------------------------------------------
 -- Table `airbnb`.`reservation`
 -- -----------------------------------------------------
@@ -79,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`room`(
 DROP TABLE IF EXISTS `airbnb`.`reservation` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`reservation`(
-    `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+     `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
     `user` BIGINT,
     `room` BIGINT,
     `check_in` DATE,
@@ -105,3 +118,5 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`image`(
     `room` BIGINT,
     CONSTRAINT room_image_foreign_key FOREIGN KEY (`room`) references `room` (id)
     );
+
+

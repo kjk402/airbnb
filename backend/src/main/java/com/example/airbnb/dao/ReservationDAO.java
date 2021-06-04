@@ -1,6 +1,8 @@
 package com.example.airbnb.dao;
 
+import com.example.airbnb.domain.User;
 import com.example.airbnb.dto.ReservationDTO;
+import com.example.airbnb.dto.ReservationList;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +26,9 @@ public class ReservationDAO {
         namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    public Long reservationRoom(Long roomId, LocalDate checkIn, LocalDate checkOut, int guestCount, int totalPrice) {
+    public Long reservationRoom(User user, Long roomId, LocalDate checkIn, LocalDate checkOut, int guestCount, int totalPrice) {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("user", user.getId())
                 .addValue("room", roomId)
                 .addValue("check_in", checkIn)
                 .addValue("check_out", checkOut)
@@ -43,6 +47,7 @@ public class ReservationDAO {
         List<ReservationDTO> reservationDTO = namedParameterJdbcTemplate.query(SELECT_RESERVATION_BY_ID, sqlParameterSource, (rs, rowNum) -> {
             return new ReservationDTO(
                     reservationId,
+                    rs.getString("user_id"),
                     rs.getLong("room"),
                     rs.getDate("check_in").toLocalDate(),
                     rs.getDate("check_out").toLocalDate(),
@@ -59,4 +64,51 @@ public class ReservationDAO {
         namedParameterJdbcTemplate.update(DELETE_RESERVATION, sqlParameterSource);
     }
 
+    public List<ReservationList> findMultipleReservations(Long userId) {
+        List<ReservationList> reservationDTOS = new ArrayList<>();
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("user", userId);
+        namedParameterJdbcTemplate.query(SELECT_MULTIPLE_RESERVATION_BY_ID, sqlParameterSource, (rs, rowNum) ->
+                reservationDTOS.add(new ReservationList(
+                        rs.getLong("id"),
+                        rs.getString("user_id"),
+                        rs.getString("city"),
+                        rs.getLong("room"),
+                        rs.getString("title"),
+                        rs.getDate("check_in").toLocalDate(),
+                        rs.getDate("check_out").toLocalDate(),
+                        rs.getInt("total_price"),
+                        rs.getInt("number_of_guest"),
+                        rs.getString("url")
+                )));
+        return reservationDTOS;
+    }
+
 }
+
+/*
+public List<RoomListDTO> findMultipleRooms(List<Long> roomList, int fewNights) {
+        List<RoomListDTO> roomDTOS = new ArrayList<>();
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("room_ids", roomList);
+        namedParameterJdbcTemplate.query(SELECT_MULTIPLE_ROOMS_BY_ID, sqlParameterSource, (rs, rowNum) ->
+                roomDTOS.add(new RoomListDTO((new RoomDTO(
+                        rs.getLong("id"),
+                        rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getInt("price_per_day"),
+                        rs.getString("room_type"),
+                        rs.getInt("bed"),
+                        rs.getInt("max_guest"),
+                        rs.getInt("bathroom"),
+                        new LocationDTO(
+                                rs.getDouble("latitude"),
+                                rs.getDouble("longitude")
+                        ))),
+                        rs.getString("url"),
+                        fewNights)
+                ));
+        return roomDTOS;
+    }
+
+ */
