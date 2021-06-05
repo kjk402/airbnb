@@ -8,6 +8,11 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="billabong.otf">
+            <string>Billabong</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--위시리스트-->
         <scene sceneID="V3X-kS-rkt">
@@ -501,9 +506,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="X5f-5H-SQu">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="24" id="cDC-Ha-xgs">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="24" minimumInteritemSpacing="24" id="cDC-Ha-xgs">
                                     <size key="itemSize" width="343" height="349"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -520,23 +525,71 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTM-BK-TMM">
+                                <rect key="frame" x="162" y="759" width="90" height="38"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지도" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Xm-LM-Pul">
+                                        <rect key="frame" x="47.5" y="10" width="30" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="map" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xKW-hv-qtI">
+                                        <rect key="frame" x="17" y="12" width="22" height="18.5"/>
+                                        <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.20000064370000001" green="0.19999992850000001" blue="0.1999979019" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="8Xm-LM-Pul" firstAttribute="top" secondItem="MTM-BK-TMM" secondAttribute="top" constant="10" id="306-dc-PQk"/>
+                                    <constraint firstItem="xKW-hv-qtI" firstAttribute="top" secondItem="MTM-BK-TMM" secondAttribute="top" constant="11.5" id="5UV-Gw-eAc"/>
+                                    <constraint firstAttribute="height" constant="38" id="70f-3i-4Ag"/>
+                                    <constraint firstItem="xKW-hv-qtI" firstAttribute="leading" secondItem="MTM-BK-TMM" secondAttribute="leading" constant="16.75" id="Zsz-ZQ-Y5O"/>
+                                    <constraint firstItem="8Xm-LM-Pul" firstAttribute="leading" secondItem="xKW-hv-qtI" secondAttribute="trailing" constant="8.75" id="cNv-os-m4M"/>
+                                    <constraint firstAttribute="width" constant="90" id="s4O-Sj-JU5"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ldh-nT-dg8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ldh-nT-dg8" firstAttribute="bottom" secondItem="X5f-5H-SQu" secondAttribute="bottom" id="CG3-e6-k0k"/>
+                            <constraint firstAttribute="bottom" secondItem="X5f-5H-SQu" secondAttribute="bottom" constant="83" id="CG3-e6-k0k"/>
                             <constraint firstItem="X5f-5H-SQu" firstAttribute="leading" secondItem="Ldh-nT-dg8" secondAttribute="leading" id="NPi-ir-ghx"/>
+                            <constraint firstItem="MTM-BK-TMM" firstAttribute="centerX" secondItem="xAn-Bg-dgl" secondAttribute="centerX" id="P2Z-Wy-BEj"/>
+                            <constraint firstAttribute="bottom" secondItem="MTM-BK-TMM" secondAttribute="bottom" constant="99" id="WRc-u2-Ad2"/>
                             <constraint firstItem="Ldh-nT-dg8" firstAttribute="trailing" secondItem="X5f-5H-SQu" secondAttribute="trailing" id="aJn-IZ-UM7"/>
                             <constraint firstItem="X5f-5H-SQu" firstAttribute="top" secondItem="Ldh-nT-dg8" secondAttribute="top" id="liP-Cg-yyl"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mapButton" destination="MTM-BK-TMM" id="pwL-ME-sdt"/>
                         <outlet property="roomCollectionView" destination="X5f-5H-SQu" id="684-Ef-Lal"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aY-hv-zpR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5238" y="-131"/>
+            <point key="canvasLocation" x="5237.68115942029" y="-131.25"/>
+        </scene>
+        <!--Google Map View Controller-->
+        <scene sceneID="pdj-Zo-1iv">
+            <objects>
+                <viewController storyboardIdentifier="map" id="VcE-Lq-n6k" customClass="GoogleMapViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y1M-vH-znM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="xnE-pt-noU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nDc-Hn-3Fu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6116" y="-131"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="2RX-8r-cDb">
@@ -606,17 +659,35 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
+                                        <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Instagram" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrX-61-NCF">
+                                <rect key="frame" x="119" y="205" width="295" height="86.5"/>
+                                <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="70"/>
+                                <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instagram" translatesAutoresizingMaskIntoConstraints="NO" id="YzR-FK-bLj">
+                                <rect key="frame" x="30" y="205" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="hh0-Z2-sHC"/>
+                                    <constraint firstAttribute="width" constant="80" id="lL8-fY-zM8"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fc4-We-9FG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Fc4-We-9FG" firstAttribute="trailing" secondItem="QrX-61-NCF" secondAttribute="trailing" id="42Z-sy-OFk"/>
+                            <constraint firstItem="QrX-61-NCF" firstAttribute="leading" secondItem="YzR-FK-bLj" secondAttribute="trailing" constant="9" id="4MP-ac-bjK"/>
                             <constraint firstItem="Fc4-We-9FG" firstAttribute="bottom" secondItem="KAW-p3-IKt" secondAttribute="bottom" constant="156" id="5dr-cO-297"/>
+                            <constraint firstItem="QrX-61-NCF" firstAttribute="top" secondItem="Fc4-We-9FG" secondAttribute="top" constant="161" id="EHB-dZ-9pT"/>
                             <constraint firstItem="Fc4-We-9FG" firstAttribute="trailing" secondItem="KAW-p3-IKt" secondAttribute="trailing" constant="26" id="W7b-1B-br9"/>
                             <constraint firstItem="KAW-p3-IKt" firstAttribute="leading" secondItem="Fc4-We-9FG" secondAttribute="leading" constant="26" id="dE9-IO-t2c"/>
+                            <constraint firstItem="YzR-FK-bLj" firstAttribute="leading" secondItem="Fc4-We-9FG" secondAttribute="leading" constant="30" id="iHT-Fi-N53"/>
+                            <constraint firstItem="YzR-FK-bLj" firstAttribute="top" secondItem="Fc4-We-9FG" secondAttribute="top" constant="161" id="lrW-0x-CrC"/>
                         </constraints>
                     </view>
                     <connections>
@@ -625,7 +696,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNG-tW-asY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3033" y="175"/>
+            <point key="canvasLocation" x="-3033.3333333333335" y="174.77678571428569"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9wb-Pd-fxU">
@@ -674,8 +745,13 @@
     <resources>
         <image name="9919" width="200" height="200"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="instagram" width="728" height="728"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="map" catalog="system" width="128" height="110"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -11,7 +11,7 @@ final class FindingAccommodationManager {
     private(set) var cityName: String?
     private(set) var checkIn: String?
     @Published private(set) var checkOut: String?
-    private var allPrices: [Int]?
+    @Published private(set) var allPrices: [Int]?
     @Published private(set) var averagePrices: Int?
     @Published private(set) var maxPrice: Int?
     @Published private(set) var minPrice: Int?

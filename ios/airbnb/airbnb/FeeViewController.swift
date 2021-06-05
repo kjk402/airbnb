@@ -67,6 +67,13 @@ final class FeeViewController: UIViewController {
                 self?.averagePrice.text = "평균 1박 요금은 ₩\(averagePrice) 입니다."
             }
             .store(in: &cancelable)
+        
+        findingAccommodationManager.$allPrices
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.setChartData()
+            }
+            .store(in: &cancelable)
     }
     
     func decimalWon(value: Int) -> String {
@@ -127,47 +134,36 @@ final class FeeViewController: UIViewController {
         lineChartView.rightAxis.enabled = false
         lineChartView.legend.enabled = false
         lineChartView.doubleTapToZoomEnabled = false
-        setChartData()
     }
     
     func setChartData() {
-        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"]
-        let unitsSold = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
-        var dataEntries1: [ChartDataEntry] = []
-        var dataEntries2: [ChartDataEntry] = []
-        var dataEntries3: [ChartDataEntry] = []
+        let dataEntries = setChartDataEntries()
 
-        var dataSet1: LineChartDataSet
-        var dataSet2: LineChartDataSet
-        var dataSet3: LineChartDataSet
-        var dataSets = [LineChartDataSet]()
-        
-        for i in 0..<4 {
-            let dataEntry = ChartDataEntry(x: Double(i), y: unitsSold[i])
-            dataEntries1.append(dataEntry)
-        }
-        
-        for i in 4..<7 {
-            let dataEntry = ChartDataEntry(x: Double(i), y: unitsSold[i])
-            dataEntries2.append(dataEntry)
-        }
-        dataSet2 = LineChartDataSet(dataEntries2)
-        dataSets.append(dataSet2)
-        
-        for i in 7...months.count-1 {
-            let dataEntry = ChartDataEntry(x: Double(i), y: unitsSold[i])
-            dataEntries3.append(dataEntry)
-
-        }
-        dataSet3 = LineChartDataSet(dataEntries3)
-        dataSets.append(dataSet3)
-
-        // 데이터 삽입
-        dataSets.forEach { setDataSet(dataSet: $0) }
-        
-        let chartData = LineChartData(dataSets: dataSets)
+        let dataSet = LineChartDataSet(dataEntries)
+        setDataSet(dataSet: dataSet)
+    
+        let chartData = LineChartData(dataSet: dataSet)
         chartData.setDrawValues(false)
+        
         lineChartView.data = chartData
+    }
+    
+    func setChartDataEntries() -> [ChartDataEntry] {
+        var dict = [Int: Int]()
+        guard let sortedPrice = findingAccommodationManager.allPrices?.sorted() else { return [] }
+        var dataEntries = [ChartDataEntry]()
+        sortedPrice.forEach { price in
+            if dict[price] == nil {
+                dict[price] = 1
+            } else {
+                dict[price]! += 1
+            }
+        }
+        dict.forEach { (key, value) in
+            let dataEntry = ChartDataEntry(x: Double(key), y: Double(value))
+            dataEntries.append(dataEntry)
+        }
+        return dataEntries
     }
     
     func setDataSet(dataSet: LineChartDataSet) {

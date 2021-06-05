@@ -77,10 +77,14 @@ final class PersonnelViewController: UIViewController {
                 self?.informationView.setNumberOfPeopleLabel(count: numOfPeople)
                 if numOfPeople > 0 {
                     self?.bottomView.leftButton.setTitle("지우기", for: .normal)
+                    self?.bottomView.rightButton.setTitle("검색", for: .normal)
                     self?.bottomView.rightButton.setTitleColor(.black, for: .normal)
                     self?.bottomView.rightButton.isEnabled = true
                 } else {
                     self?.bottomView.leftButton.setTitle("건너뛰기", for: .normal)
+                    self?.bottomView.rightButton.setTitle("다음", for: .normal)
+                    self?.bottomView.rightButton.setTitleColor(.gray, for: .normal)
+                    self?.bottomView.rightButton.isEnabled = false
                 }
             }
             .store(in: &cancelable)

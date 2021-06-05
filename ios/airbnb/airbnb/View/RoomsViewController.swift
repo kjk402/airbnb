@@ -11,6 +11,7 @@ import Combine
 class RoomsViewController: UIViewController {
     
     @IBOutlet weak var roomCollectionView: UICollectionView!
+    @IBOutlet weak var mapButton: UIView!
     
     var findingAccommodationManager: FindingAccommodationManager!
     private var cancelable = Set<AnyCancellable>()
@@ -21,6 +22,16 @@ class RoomsViewController: UIViewController {
         registerXib()
         roomCollectionView.dataSource = self
         bind()
+        setMapButton()
+        navigationItem.title = "숙소찾기"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
     }
     
     func bind() {
@@ -30,6 +41,20 @@ class RoomsViewController: UIViewController {
                 self?.roomCollectionView.reloadData()
             }
             .store(in: &cancelable)
+    }
+    
+    func setMapButton() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(targetViewDidTapped))
+        
+        mapButton.isUserInteractionEnabled = true
+        mapButton.addGestureRecognizer(gesture)
+    }
+    
+    @objc func targetViewDidTapped() {
+        guard let viewController = storyboard?.instantiateViewController(identifier: "map") as? GoogleMapViewController else { return }
+        viewController.setRoomsList(object: findingAccommodationManager.roomList!)
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
     }
     
     func setFindingAccommodationManager(object: FindingAccommodationManager) {
