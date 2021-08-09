@@ -85,30 +85,3 @@ public class ReservationDAO {
     }
 
 }
-
-/*
-public List<RoomListDTO> findMultipleRooms(List<Long> roomList, int fewNights) {
-        List<RoomListDTO> roomDTOS = new ArrayList<>();
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
-                .addValue("room_ids", roomList);
-        namedParameterJdbcTemplate.query(SELECT_MULTIPLE_ROOMS_BY_ID, sqlParameterSource, (rs, rowNum) ->
-                roomDTOS.add(new RoomListDTO((new RoomDTO(
-                        rs.getLong("id"),
-                        rs.getString("title"),
-                        rs.getString("description"),
-                        rs.getInt("price_per_day"),
-                        rs.getString("room_type"),
-                        rs.getInt("bed"),
-                        rs.getInt("max_guest"),
-                        rs.getInt("bathroom"),
-                        new LocationDTO(
-                                rs.getDouble("latitude"),
-                                rs.getDouble("longitude")
-                        ))),
-                        rs.getString("url"),
-                        fewNights)
-                ));
-        return roomDTOS;
-    }
-
- */

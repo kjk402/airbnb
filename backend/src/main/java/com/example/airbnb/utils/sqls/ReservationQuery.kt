@@ -16,7 +16,6 @@ const val DELETE_RESERVATION: String = """
 DELETE r FROM reservation r WHERE r.id=:reservation_id;
 """
 
-
 const val SELECT_MULTIPLE_RESERVATION_BY_ID: String = """
 SELECT r.id, u.user_id, r.room, r.check_in, r.check_out, r.total_price, r.number_of_guest, m.title, l.city , i.url
 FROM reservation r 

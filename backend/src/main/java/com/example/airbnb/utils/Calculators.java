@@ -5,6 +5,7 @@ import com.example.airbnb.exception.NotFoundDataException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Calculators {
@@ -29,6 +30,7 @@ public class Calculators {
         for (Long roomId : condition2) {
             condition1.remove(roomId);
         }
+
         return condition1;
     }
 
